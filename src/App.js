@@ -72,7 +72,7 @@ function App() {
 					<p style={{ color: 'var(--clr-neutral-100)' }}>art</p>
 				</a>
 				<div ref={ref} style={{ zIndex: 0, position: 'relative' }}>
-					<div style={{ height: '5vh' }}></div>
+					<div style={{ height: '8vh' }}></div>
 					<div className={'hero-image'}>
 						<motion.img style={{ scale, opacity }} src={skull}></motion.img>
 					</div>
