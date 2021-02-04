@@ -15,7 +15,6 @@ function App() {
 	// Stores the start middle end scrolling position for our container
 	const [scrollPercentageStart, setScrollPercentageStart] = useState(null);
 	const [scrollPercentageEnd, setScrollPercentageEnd] = useState(null);
-	// const [scrollPercentageMiddle, setScrollPercentageMiddle] = useState(null);
 
 	const { scrollYProgress } = useViewportScroll();
 	const y = useSpring(scrollYProgress, {
@@ -50,12 +49,9 @@ function App() {
 
 		const elementScrollStart = offsetStart / document.body.clientHeight;
 		const elementScrollEnd = offsetEnd / document.body.clientHeight;
-		const elementScrollMiddle =
-			(elementScrollEnd - elementScrollStart) / 2 + elementScrollStart;
 
 		setScrollPercentageStart(elementScrollStart);
 		setScrollPercentageEnd(elementScrollEnd);
-		// setScrollPercentageMiddle(elementScrollMiddle);
 	}, []);
 
 	return (
