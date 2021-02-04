@@ -1,7 +1,7 @@
 import { useState, useRef, useLayoutEffect } from 'react';
 import './App.css';
 import logo from './images/logo.svg';
-import skull from './images/skull_final.svg';
+import skull from './images/skull_3.svg';
 import {
 	motion,
 	useTransform,
