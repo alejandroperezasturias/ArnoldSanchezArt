@@ -1,6 +1,6 @@
 :root {
-	--ff-sans: 'Nunito Sans', sans-serif;
-	--ff-accent: 'Anton', sans-serif;
+	--ff-sans: 'poppins', sans-serif;
+	--ff-accent: 'poppins', sans-serif;
 
 	/* small screen font-sizes */
 	--fs-200: 0.125rem;
@@ -68,12 +68,6 @@ body {
 	font-size: var(--fs-300);
 }
 
-h1 {
-	font-family: var(--ff-accent);
-	font-weight: var(--fw-700);
-	font-size: var(--fs-900);
-}
-
 *,
 *::before,
 *::after {
@@ -132,6 +126,16 @@ img {
 }
 
 /* Typography */
+
+h1 {
+	font-family: var(--ff-accent);
+	font-weight: var(--fw-300);
+	font-size: var(--fs-900);
+	background: linear-gradient(to right, #a2a2a2, var(--clr-neutral-100));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	line-height: normal;
+}
 
 .text-900 {
 	font-size: var(--fs-900);
@@ -198,33 +202,37 @@ img {
 }
 
 .hero-logo {
-	min-height: 30vh;
-	--split-spacer: 0.7rem;
+	height: 40vh;
+	--split-spacer: 1rem;
 }
 
 .hero-image img {
+	position: relative;
 	transform: scale(1);
 }
 
 /* Progress */
 
-.hero-progress-background {
-	background-color: var(--clr-neutral-300);
+/* .hero-progress-background {
+	background-color: var(--clr-neutral-400);
 	position: absolute;
 	top: 0;
 	margin-top: auto;
-	height: 50%;
+	height: 10%;
 	bottom: 0;
-	right: 1rem;
-	width: 0.009rem;
-	border-radius: 100vw;
-	z-index: 45;
-	/* overflow: hidden; */
-}
+	width: 100%;
+} */
 
 .hero-scroll-progress {
-	background-color: red;
-	height: 0%;
+	position: relative;
+	z-index: 10 !important;
+	background-color: var(--clr-section, red);
 	width: 100%;
-	z-index: 50;
+	height: 0%;
+	cursor: pointer;
+	transition: all 500ms ease-in-out;
+}
+.hero-scroll-progress:hover {
+	background-color: var(--clr-section, rgb(255, 255, 255));
+	color: var(--clr-section, red);
 }

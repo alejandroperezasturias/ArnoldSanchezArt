@@ -2,7 +2,12 @@ import { useState, useRef, useLayoutEffect } from 'react';
 import './App.css';
 import logo from './images/logo.svg';
 import skull from './images/skull_final.svg';
-import { motion, useTransform, useViewportScroll } from 'framer-motion';
+import {
+	motion,
+	useTransform,
+	useViewportScroll,
+	useSpring,
+} from 'framer-motion';
 
 function App() {
 	const ref = useRef();
@@ -13,22 +18,26 @@ function App() {
 	const [scrollPercentageMiddle, setScrollPercentageMiddle] = useState(null);
 
 	const { scrollYProgress } = useViewportScroll();
+	const y = useSpring(scrollYProgress, {
+		stiffness: 600,
+		damping: 120,
+	});
 
 	const scale = useTransform(
-		scrollYProgress,
-		[scrollPercentageStart, scrollPercentageMiddle, scrollPercentageEnd],
-		[1, 1.5, 2.2]
+		y,
+		[scrollPercentageStart, scrollPercentageEnd],
+		[1, 2.2]
 	);
 	const opacity = useTransform(
-		scrollYProgress,
-		[scrollPercentageStart, scrollPercentageMiddle, scrollPercentageEnd],
-		[1, 0.5, 0]
+		y,
+		[scrollPercentageStart, scrollPercentageEnd],
+		[1, 0.1]
 	);
 
 	const height = useTransform(
-		scrollYProgress,
+		y,
 		[scrollPercentageStart, scrollPercentageEnd],
-		[0, 300]
+		[0, 200]
 	);
 
 	useLayoutEffect(() => {
@@ -66,32 +75,47 @@ function App() {
 					</h1>
 					<p style={{ color: 'var(--clr-neutral-100)' }}>art</p>
 				</a>
-				<div ref={ref}>
-					<div className={'hero-image'} style={{ position: 'relative' }}>
-						<div style={{ height: '14vh' }}></div>
-						<div>
-							<motion.img style={{ scale, opacity }} src={skull}></motion.img>
-						</div>
-						<div className={'hero-progress-background'}>
-							<motion.div
-								className={'hero-scroll-progress'}
-								style={{ height }}
-							></motion.div>
-						</div>
+				<div ref={ref} style={{ zIndex: 0, position: 'relative' }}>
+					<div style={{ height: '14vh' }}></div>
+					<div className={'hero-image'}>
+						<motion.img style={{ scale, opacity }} src={skull}></motion.img>
 					</div>
+					<div style={{ height: '10vh' }}></div>
 				</div>
 				<div
 					style={{
-						minHeight: '100vh',
+						minHeight: '80vh',
 						alignItems: 'flex-start',
 						justifyContent: 'center',
 						width: '100%',
 					}}
 					className={'xl-space'}
 				>
-					<motion.h2 style={{ scale }} className={'text-900'}>
-						TATTOO
-					</motion.h2>
+					<motion.div
+						style={{ height }}
+						className={'hero-scroll-progress split center-center'}
+						// style={{ display: 'grid', placeItems: 'center' }}
+					>
+						<motion.h2 style={{ scale }} className={'text-900'}>
+							TATTOO
+						</motion.h2>
+					</motion.div>
+					<motion.div
+						style={{ height }}
+						className={'hero-scroll-progress split center-center'}
+					>
+						<motion.h2 style={{ scale }} className={'text-900 '}>
+							ART
+						</motion.h2>
+					</motion.div>
+					<motion.div
+						style={{ height }}
+						className={'hero-scroll-progress split center-center'}
+					>
+						<motion.h2 style={{ scale }} className={'text-900 '}>
+							MERCH
+						</motion.h2>
+					</motion.div>
 				</div>
 			</div>
 		</div>
