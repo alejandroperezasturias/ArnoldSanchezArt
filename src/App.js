@@ -7,6 +7,7 @@ import {
 	useTransform,
 	useViewportScroll,
 	useSpring,
+	AnimateSharedLayout,
 } from 'framer-motion';
 
 function App() {
@@ -30,13 +31,13 @@ function App() {
 	const opacity = useTransform(
 		y,
 		[scrollPercentageStart, scrollPercentageEnd],
-		[1, 0.1]
+		[1, 0.2]
 	);
 
 	const height = useTransform(
 		y,
 		[scrollPercentageStart, scrollPercentageEnd],
-		[30, 200]
+		[60, 280]
 	);
 
 	useLayoutEffect(() => {
@@ -78,6 +79,7 @@ function App() {
 					</div>
 					<div style={{ height: '10vh' }}></div>
 				</div>
+
 				<div
 					style={{
 						minHeight: '80vh',
@@ -87,30 +89,35 @@ function App() {
 					}}
 					className={'xl-space'}
 				>
-					<motion.div
-						style={{ height }}
-						className={'hero-scroll-progress split center-center'}
-						// style={{ display: 'grid', placeItems: 'center' }}
-					>
-						<motion.h2 style={{ scale }} className={'text-900'}>
-							TATTOO
-						</motion.h2>
+					<motion.div>
+						<motion.div
+							style={{ height }}
+							className={'hero-scroll-progress split center-center'}
+						>
+							<motion.h2 style={{ scale }} className={'text-900'}>
+								TATTOO
+							</motion.h2>
+						</motion.div>
 					</motion.div>
-					<motion.div
-						style={{ height }}
-						className={'hero-scroll-progress split center-center'}
-					>
-						<motion.h2 style={{ scale }} className={'text-900 '}>
-							ART
-						</motion.h2>
+					<motion.div>
+						<motion.div
+							style={{ height }}
+							className={'hero-scroll-progress split center-center'}
+						>
+							<motion.h2 style={{ scale }} className={'text-900'}>
+								ART
+							</motion.h2>
+						</motion.div>
 					</motion.div>
-					<motion.div
-						style={{ height }}
-						className={'hero-scroll-progress split center-center'}
-					>
-						<motion.h2 style={{ scale }} className={'text-900 '}>
-							MERCH
-						</motion.h2>
+					<motion.div>
+						<motion.div
+							style={{ height }}
+							className={'hero-scroll-progress split center-center'}
+						>
+							<motion.h2 style={{ scale }} className={'text-900'}>
+								MERCH
+							</motion.h2>
+						</motion.div>
 					</motion.div>
 				</div>
 			</div>
