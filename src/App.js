@@ -40,7 +40,7 @@ function App() {
 		setScrollPercentageStart(elementScrollStart);
 		setScrollPercentageEnd(elementScrollEnd);
 		setScrollPercentageMiddle(elementScrollMiddle);
-	});
+	}, []);
 
 	return (
 		<div className="App">
