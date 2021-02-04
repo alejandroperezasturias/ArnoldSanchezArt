@@ -36,7 +36,7 @@ function App() {
 	const height = useTransform(
 		y,
 		[scrollPercentageStart, scrollPercentageEnd],
-		[0, 200]
+		[30, 200]
 	);
 
 	useLayoutEffect(() => {
