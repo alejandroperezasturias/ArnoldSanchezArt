@@ -19,7 +19,7 @@
 	--clr-neutral-100: #fff;
 	--clr-neutral-150: #f7f7f7;
 	--clr-neutral-200: #e3e3e3;
-	--clr-neutral-300: #242222;
+	--clr-neutral-300: #5c5c5c;
 	--clr-neutral-400: #000000;
 
 	--clr-accent-300: #76d8f4;
@@ -204,4 +204,27 @@ img {
 
 .hero-image img {
 	transform: scale(1);
+}
+
+/* Progress */
+
+.hero-progress-background {
+	background-color: var(--clr-neutral-300);
+	position: absolute;
+	top: 0;
+	margin-top: auto;
+	height: 50%;
+	bottom: 0;
+	right: 1rem;
+	width: 0.009rem;
+	border-radius: 100vw;
+	z-index: 45;
+	/* overflow: hidden; */
+}
+
+.hero-scroll-progress {
+	background-color: red;
+	height: 0%;
+	width: 100%;
+	z-index: 50;
 }

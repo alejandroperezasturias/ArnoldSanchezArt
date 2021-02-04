@@ -13,6 +13,7 @@ function App() {
 	const [scrollPercentageMiddle, setScrollPercentageMiddle] = useState(null);
 
 	const { scrollYProgress } = useViewportScroll();
+
 	const scale = useTransform(
 		scrollYProgress,
 		[scrollPercentageStart, scrollPercentageMiddle, scrollPercentageEnd],
@@ -22,6 +23,12 @@ function App() {
 		scrollYProgress,
 		[scrollPercentageStart, scrollPercentageMiddle, scrollPercentageEnd],
 		[1, 0.5, 0]
+	);
+
+	const height = useTransform(
+		scrollYProgress,
+		[scrollPercentageStart, scrollPercentageEnd],
+		[0, 300]
 	);
 
 	useLayoutEffect(() => {
@@ -60,9 +67,17 @@ function App() {
 					<p style={{ color: 'var(--clr-neutral-100)' }}>art</p>
 				</a>
 				<div ref={ref}>
-					<div className={'hero-image'}>
+					<div className={'hero-image'} style={{ position: 'relative' }}>
 						<div style={{ height: '14vh' }}></div>
-						<motion.img style={{ scale, opacity }} src={skull}></motion.img>
+						<div>
+							<motion.img style={{ scale, opacity }} src={skull}></motion.img>
+						</div>
+						<div className={'hero-progress-background'}>
+							<motion.div
+								className={'hero-scroll-progress'}
+								style={{ height }}
+							></motion.div>
+						</div>
 					</div>
 				</div>
 				<div
