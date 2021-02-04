@@ -203,7 +203,8 @@ h1 {
 
 .hero-logo {
 	height: 40vh;
-	--split-spacer: 1rem;
+	justify-content: flex-end;
+	--split-spacer: 0.3rem;
 }
 
 .hero-image img {

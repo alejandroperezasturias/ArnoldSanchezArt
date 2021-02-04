@@ -60,7 +60,7 @@ function App() {
 				<a
 					href="http://localhost:3001/"
 					aria-label="acme home page"
-					className={'hero-logo split center-center'}
+					className={'hero-logo split '}
 				>
 					<div>
 						<img src={logo} alt="logo"></img>
@@ -72,7 +72,7 @@ function App() {
 					<p style={{ color: 'var(--clr-neutral-100)' }}>art</p>
 				</a>
 				<div ref={ref} style={{ zIndex: 0, position: 'relative' }}>
-					<div style={{ height: '14vh' }}></div>
+					<div style={{ height: '5vh' }}></div>
 					<div className={'hero-image'}>
 						<motion.img style={{ scale, opacity }} src={skull}></motion.img>
 					</div>
