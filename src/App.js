@@ -15,7 +15,7 @@ function App() {
 	// Stores the start middle end scrolling position for our container
 	const [scrollPercentageStart, setScrollPercentageStart] = useState(null);
 	const [scrollPercentageEnd, setScrollPercentageEnd] = useState(null);
-	const [scrollPercentageMiddle, setScrollPercentageMiddle] = useState(null);
+	// const [scrollPercentageMiddle, setScrollPercentageMiddle] = useState(null);
 
 	const { scrollYProgress } = useViewportScroll();
 	const y = useSpring(scrollYProgress, {
@@ -26,7 +26,7 @@ function App() {
 	const scale = useTransform(
 		y,
 		[scrollPercentageStart, scrollPercentageEnd],
-		[1, 2.2]
+		[1, 1.7]
 	);
 	const opacity = useTransform(
 		y,
@@ -55,7 +55,7 @@ function App() {
 
 		setScrollPercentageStart(elementScrollStart);
 		setScrollPercentageEnd(elementScrollEnd);
-		setScrollPercentageMiddle(elementScrollMiddle);
+		// setScrollPercentageMiddle(elementScrollMiddle);
 	}, []);
 
 	return (
