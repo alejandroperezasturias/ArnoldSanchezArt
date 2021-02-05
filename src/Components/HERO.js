@@ -41,26 +41,32 @@ export default function NAVIGATION() {
 	const [scrollPercentageEnd, setScrollPercentageEnd] = useState(null);
 
 	const { scrollYProgress } = useViewportScroll();
-	const y = useSpring(scrollYProgress, {
+	const yScroll = useSpring(scrollYProgress, {
 		stiffness: 600,
 		damping: 120,
 	});
 
 	const scale = useTransform(
-		y,
+		yScroll,
 		[scrollPercentageStart, scrollPercentageEnd],
 		[1, 1.7]
 	);
 	const opacity = useTransform(
-		y,
+		yScroll,
 		[scrollPercentageStart, scrollPercentageEnd],
 		[1, 0.2]
 	);
 
 	const height = useTransform(
-		y,
+		yScroll,
 		[scrollPercentageStart, scrollPercentageEnd],
-		[60, 280]
+		[30, 200]
+	);
+
+	const y = useTransform(
+		yScroll,
+		[scrollPercentageStart, scrollPercentageEnd],
+		[0, 90]
 	);
 
 	useLayoutEffect(() => {
@@ -106,7 +112,7 @@ export default function NAVIGATION() {
 			<div ref={ref} style={{ zIndex: 0, position: 'relative' }}>
 				<div style={{ minHeight: '10vh' }}></div>
 				<div className={'hero-image'}>
-					<motion.img style={{ scale, opacity }} src={skull}></motion.img>
+					<motion.img style={{ scale, opacity, y }} src={skull}></motion.img>
 				</div>
 				<div style={{ height: '10vh' }}></div>
 			</div>
