@@ -3,7 +3,6 @@ import HERO from './Components/HERO';
 import TATTOO from './Components/TATTOO';
 import ART from './Components/ART';
 import MERCH from './Components/MERCH';
-import NAV from './Components/NAV';
 import { Switch, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
