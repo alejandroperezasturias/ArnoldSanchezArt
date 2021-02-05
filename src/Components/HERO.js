@@ -42,7 +42,7 @@ export default function NAVIGATION() {
 
 	const { scrollYProgress } = useViewportScroll();
 	const yScroll = useSpring(scrollYProgress, {
-		stiffness: 600,
+		stiffness: 500,
 		damping: 120,
 	});
 
@@ -60,7 +60,7 @@ export default function NAVIGATION() {
 	const height = useTransform(
 		yScroll,
 		[scrollPercentageStart, scrollPercentageEnd],
-		[20, 200]
+		[10, 200]
 	);
 
 	const y = useTransform(
@@ -114,7 +114,7 @@ export default function NAVIGATION() {
 				<div className={'hero-image'}>
 					<motion.img style={{ scale, opacity, y }} src={skull}></motion.img>
 				</div>
-				<div style={{ height: '10vh' }}></div>
+				<div style={{ height: '20vh' }}></div>
 			</div>
 
 			<div
