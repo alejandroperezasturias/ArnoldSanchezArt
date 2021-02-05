@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import { AnimatePresence } from 'framer-motion';
-import { Switch, Route, NavLink, useLocation } from 'react-router-dom';
+import { Switch, Route, useLocation } from 'react-router-dom';
 
 import HERO from './Components/HERO';
 import TATTOO from './Components/TATTOO';
