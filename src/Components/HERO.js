@@ -60,7 +60,7 @@ export default function NAVIGATION() {
 	const height = useTransform(
 		yScroll,
 		[scrollPercentageStart, scrollPercentageEnd],
-		[30, 200]
+		[20, 200]
 	);
 
 	const y = useTransform(
