@@ -1,18 +1,22 @@
 import './App.css';
+import React from 'react';
+import { AnimatePresence } from 'framer-motion';
+import { Switch, Route, NavLink, useLocation } from 'react-router-dom';
+
 import HERO from './Components/HERO';
 import TATTOO from './Components/TATTOO';
 import ART from './Components/ART';
 import MERCH from './Components/MERCH';
-import { Switch, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
+import NAV from './Components/NAV';
 
 function App() {
 	const location = useLocation();
 
 	return (
 		<div className="App">
-			<AnimatePresence exitBeforeEnter>
-				<Switch location={location} kye={location.key}>
+			<NAV></NAV>
+			<AnimatePresence exitBeforeEnter initial={false}>
+				<Switch location={location} key={location.key}>
 					<Route path="/" exact>
 						<HERO />
 					</Route>

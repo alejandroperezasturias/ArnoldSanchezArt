@@ -23,13 +23,11 @@ export default function ART() {
 		exit: {
 			opacity: 0,
 			y: 10,
-			transition: {
-				duration: 1,
-			},
+			
 		}
 	};
     return (
-        <motion.div style={{minHeight: "100vh"}}   variants={artVariants} initial='hidden' animate="visible" exit="exit">
+        <motion.div style={{minHeight: "100vh"}} variants={artVariants} initial='hidden' animate="visible" exit="exit">
             <h2>ART</h2>
         </motion.div>
     )

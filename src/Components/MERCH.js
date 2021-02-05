@@ -21,11 +21,9 @@ export default function MERCH() {
 			},
 		},
 		exit: {
-			opacity: 0,
-			y: 10,
-			transition: {
-				duration: 1,
-			},
+            opacity: 0,
+            y:10
+			
 		}
 	};
     return (
