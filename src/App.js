@@ -7,14 +7,12 @@ import HERO from './Components/HERO';
 import TATTOO from './Components/TATTOO';
 import ART from './Components/ART';
 import MERCH from './Components/MERCH';
-import NAV from './Components/NAV';
 
 function App() {
 	const location = useLocation();
 
 	return (
 		<div className="App">
-			{/* <NAV></NAV> */}
 			<AnimatePresence exitBeforeEnter initial={false}>
 				<Switch location={location} key={location.key}>
 					<Route path="/" exact>
