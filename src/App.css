@@ -201,7 +201,7 @@ h1 {
 	}
 }
 
-/*  first Page */
+/*  HERO */
 
 .hero {
 	min-height: 100vh;
@@ -210,7 +210,7 @@ h1 {
 }
 
 .hero-logo {
-	height: 40vh;
+	min-height: 40vh;
 	justify-content: flex-end;
 	--split-spacer: 0.3rem;
 }
@@ -229,7 +229,7 @@ h1 {
 	transform: scale(1);
 }
 
-/* Progress */
+/* MENU HERO */
 
 .hero-scroll-progress {
 	position: relative;
@@ -245,4 +245,39 @@ h1 {
 .hero-scroll-progress:hover {
 	background-color: var(--clr-section, rgb(255, 255, 255));
 	color: var(--clr-section, red);
+}
+
+/* SECTION */
+
+.section-header {
+	min-height: 20vh;
+}
+
+.section-header h2 {
+	font-family: var(--ff-accent);
+	font-weight: var(--fw-100);
+	font-size: var(--fs-600);
+	background: linear-gradient(to right, #727272, var(--clr-neutral-100));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	line-height: normal;
+}
+
+.section-body-navigation-left {
+	position: absolute;
+	top: 50%;
+	left: 10px;
+}
+
+.section-body-navigation-left h3,
+.section-body-navigation-right h3 {
+	text-orientation: upright;
+	writing-mode: vertical-rl;
+	cursor: pointer;
+}
+
+.section-body-navigation-right {
+	position: absolute;
+	top: 50%;
+	right: 10px;
 }

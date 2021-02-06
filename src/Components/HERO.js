@@ -43,30 +43,36 @@ export default function NAVIGATION() {
 	const { scrollYProgress } = useViewportScroll();
 	const yScroll = useSpring(scrollYProgress, {
 		stiffness: 500,
-		damping: 120,
+		damping: 100,
 	});
 
 	const scale = useTransform(
 		yScroll,
 		[scrollPercentageStart, scrollPercentageEnd],
-		[1, 1.7]
+		[1.1, 2.5]
+	);
+
+	const scaleText = useTransform(
+		yScroll,
+		[scrollPercentageStart, scrollPercentageEnd],
+		[0, 2]
 	);
 	const opacity = useTransform(
 		yScroll,
 		[scrollPercentageStart, scrollPercentageEnd],
-		[1, 0.2]
+		[1, 0.1]
 	);
 
 	const height = useTransform(
 		yScroll,
 		[scrollPercentageStart, scrollPercentageEnd],
-		[10, 200]
+		[0, 150]
 	);
 
 	const y = useTransform(
 		yScroll,
 		[scrollPercentageStart, scrollPercentageEnd],
-		[0, 90]
+		[0, 300]
 	);
 
 	useLayoutEffect(() => {
@@ -109,17 +115,17 @@ export default function NAVIGATION() {
 					art
 				</p>
 			</a>
-			<div ref={ref} style={{ zIndex: 0, position: 'relative' }}>
-				<div style={{ minHeight: '10vh' }}></div>
+			<div ref={ref}>
+				<div style={{ minHeight: '12vh' }}></div>
 				<div className={'hero-image'}>
 					<motion.img style={{ scale, opacity, y }} src={skull}></motion.img>
 				</div>
-				<div style={{ height: '20vh' }}></div>
+				<div style={{ height: '40vh' }}></div>
 			</div>
 
 			<div
 				style={{
-					minHeight: '80vh',
+					minHeight: '60vh',
 					alignItems: 'flex-start',
 					justifyContent: 'center',
 					width: '100%',
@@ -130,7 +136,7 @@ export default function NAVIGATION() {
 						style={{ height }}
 						className={'hero-scroll-progress split center-center'}
 					>
-						<motion.h2 style={{ scale }} className={'text-900'}>
+						<motion.h2 style={{ scaleText }} className={'text-900'}>
 							TATTOO
 						</motion.h2>
 					</motion.div>
@@ -140,7 +146,7 @@ export default function NAVIGATION() {
 						style={{ height }}
 						className={'hero-scroll-progress split center-center'}
 					>
-						<motion.h2 style={{ scale }} className={'text-900'}>
+						<motion.h2 style={{ scaleText }} className={'text-900'}>
 							ART
 						</motion.h2>
 					</motion.div>
@@ -150,7 +156,7 @@ export default function NAVIGATION() {
 						style={{ height }}
 						className={'hero-scroll-progress split center-center'}
 					>
-						<motion.h2 style={{ scale }} className={'text-900'}>
+						<motion.h2 style={{ scaleText }} className={'text-900'}>
 							MERCH
 						</motion.h2>
 					</motion.div>

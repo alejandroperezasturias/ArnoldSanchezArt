@@ -1,11 +1,8 @@
-
-import {
-	motion,
-
-} from 'framer-motion';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 export default function MERCH() {
-    const merchVariants = {
+	const merchVariants = {
 		hidden: {
 			opacity: 0,
 			y: 10,
@@ -21,14 +18,64 @@ export default function MERCH() {
 			},
 		},
 		exit: {
-            opacity: 0,
-            y:10
-			
-		}
+			opacity: 0,
+			y: 10,
+			transition: {
+				duration: 1,
+			},
+		},
 	};
-    return (
-        <motion.div style={{minHeight: "100vh"}}  variants={merchVariants} initial='hidden' animate="visible" exit="exit">
-            <h2>MERCH</h2>
-        </motion.div>
-    )
+
+	function changeExitPropRight() {
+		merchVariants['exit'] = {
+			opacity: 0,
+			x: +30,
+			transition: {
+				duration: 1,
+			},
+		};
+	}
+
+	function changeExitPropLeft() {
+		merchVariants['exit'] = {
+			opacity: 0,
+			x: -30,
+			transition: {
+				duration: 1,
+			},
+		};
+	}
+	return (
+		<motion.div
+			style={{ minHeight: '100vh', position: 'relative' }}
+			variants={merchVariants}
+			initial="hidden"
+			animate="visible"
+			exit="exit"
+		>
+			<div className={'section-header split center-center'}>
+				<h2>MERCH</h2>
+			</div>
+			<div className={'section-body split center-center'}>
+				<div className={'section-body-navigation-left'}>
+					<Link
+						to="/ART"
+						onClick={() => changeExitPropRight()}
+						className={'navigation-link'}
+					>
+						<h3>ART</h3>
+					</Link>
+				</div>
+				<div className={'section-body-navigation-right'}>
+					<Link
+						to="/TATTOO"
+						onClick={() => changeExitPropLeft()}
+						className={'navigation-link'}
+					>
+						<h3>TATTOO</h3>
+					</Link>
+				</div>
+			</div>
+		</motion.div>
+	);
 }

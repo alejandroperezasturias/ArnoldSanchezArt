@@ -14,7 +14,7 @@ function App() {
 
 	return (
 		<div className="App">
-			<NAV></NAV>
+			{/* <NAV></NAV> */}
 			<AnimatePresence exitBeforeEnter initial={false}>
 				<Switch location={location} key={location.key}>
 					<Route path="/" exact>
