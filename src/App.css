@@ -131,17 +131,6 @@ h1 {
 	font-family: var(--ff-accent);
 	font-weight: var(--fw-300);
 	font-size: var(--fs-900);
-	background: linear-gradient(to right, #727272, var(--clr-neutral-100));
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	line-height: normal;
-}
-
-.hero-subtitle {
-	background: linear-gradient(to right, #727272, var(--clr-neutral-100));
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	line-height: normal;
 }
 
 .text-900 {
@@ -153,6 +142,13 @@ h1 {
 .text-600 {
 	font-size: var(--fs-600);
 	font-weight: var(--fw-700);
+}
+
+.gradient {
+	background: linear-gradient(to right, #727272, var(--clr-neutral-100));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	line-height: normal;
 }
 
 /* Lay Out */
@@ -249,24 +245,21 @@ h1 {
 
 /* SECTION */
 
+.section {
+	padding: 1rem;
+}
+
 .section-header {
-	min-height: 20vh;
+	display: flex;
+	min-height: 15vh;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .section-header h2 {
 	font-family: var(--ff-accent);
 	font-weight: var(--fw-100);
 	font-size: var(--fs-600);
-	background: linear-gradient(to right, #727272, var(--clr-neutral-100));
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	line-height: normal;
-}
-
-.section-body-navigation-left {
-	position: absolute;
-	top: 50%;
-	left: 10px;
 }
 
 .section-body-navigation-left h3,
@@ -274,6 +267,12 @@ h1 {
 	text-orientation: upright;
 	writing-mode: vertical-rl;
 	cursor: pointer;
+}
+
+.section-body-navigation-left {
+	position: absolute;
+	top: 50%;
+	left: 10px;
 }
 
 .section-body-navigation-right {

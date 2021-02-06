@@ -63,10 +63,11 @@ export default function NAVIGATION() {
 		[1, 0.1]
 	);
 
+	// Plus 0.2 to give it delay so we don't need to hook up any interaction observer
 	const height = useTransform(
 		yScroll,
-		[scrollPercentageStart, scrollPercentageEnd],
-		[0, 150]
+		[scrollPercentageStart + 0.2, scrollPercentageEnd + 0.2],
+		[30, 150]
 	);
 
 	const y = useTransform(
