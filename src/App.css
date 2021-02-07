@@ -235,12 +235,9 @@ h1 {
 	cursor: pointer;
 	transition: background-color 250ms ease-in-out;
 }
+
 .navigation-link {
 	color: var(--clr-neutral-100);
-}
-.hero-scroll-progress:hover {
-	background-color: var(--clr-section, rgb(255, 255, 255));
-	color: var(--clr-section, red);
 }
 
 /* SECTION */
@@ -251,32 +248,12 @@ h1 {
 
 .section-header {
 	display: flex;
-	min-height: 15vh;
+	height: 10vh;
 	align-items: center;
 	justify-content: space-between;
 }
 
 .section-header h2 {
-	font-family: var(--ff-accent);
 	font-weight: var(--fw-100);
 	font-size: var(--fs-600);
-}
-
-.section-body-navigation-left h3,
-.section-body-navigation-right h3 {
-	text-orientation: upright;
-	writing-mode: vertical-rl;
-	cursor: pointer;
-}
-
-.section-body-navigation-left {
-	position: absolute;
-	top: 50%;
-	left: 10px;
-}
-
-.section-body-navigation-right {
-	position: absolute;
-	top: 50%;
-	right: 10px;
 }

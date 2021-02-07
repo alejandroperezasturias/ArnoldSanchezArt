@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import {
 	routeVariants,
 	changeExitPropRight,
 	changeExitPropLeft,
 } from '../Animations/animation';
-import EmblaCarousel from '../Animations/EmblaCarousel';
+import Carousel from '../Animations/Carousel';
+import SectionChangeLink from '../Animations/SectionChangeLink';
 
 export default function ART() {
 	return (
@@ -18,24 +18,20 @@ export default function ART() {
 			className={'section'}
 		>
 			<div className={'section-header '}>
-				<Link
-					to="/TATTOO"
-					onClick={() => changeExitPropRight()}
-					className={'navigation-link'}
-				>
-					<h3 className="gradient">TATTOO</h3>
-				</Link>
+				<SectionChangeLink
+					weGoTo={'/TATTOO'}
+					exitAnimationDirection={changeExitPropRight}
+					title={'TATTOO'}
+				/>
 				<h2 className="gradient">ART</h2>
-				<Link
-					to="/MERCH"
-					onClick={() => changeExitPropLeft()}
-					className={'navigation-link'}
-				>
-					<h3 className="gradient">MERCH</h3>
-				</Link>
+				<SectionChangeLink
+					weGoTo={'/MERCH'}
+					exitAnimationDirection={changeExitPropLeft}
+					title={'MERCH'}
+				/>
 			</div>
 			<div className={'section-body split center-center'}>
-				<EmblaCarousel />
+				<Carousel />
 			</div>
 		</motion.div>
 	);

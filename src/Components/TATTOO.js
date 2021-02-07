@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import {
 	routeVariants,
 	changeExitPropRight,
 	changeExitPropLeft,
 } from '../Animations/animation';
+import SectionChangeLink from '../Animations/SectionChangeLink';
 
 export default function TATTOO() {
 	return (
@@ -16,22 +16,18 @@ export default function TATTOO() {
 			exit="exit"
 			className={'section'}
 		>
-			<div className={'section-header  '}>
-				<Link
-					to="/MERCH"
-					onClick={() => changeExitPropRight()}
-					className={'navigation-link'}
-				>
-					<h3 className="gradient">MERCH</h3>
-				</Link>
+			<div className={'section-header'}>
+				<SectionChangeLink
+					weGoTo={'/MERCH'}
+					exitAnimationDirection={changeExitPropRight}
+					title={'MERCH'}
+				/>
 				<h2 className="gradient">TATTOO</h2>
-				<Link
-					to="/ART"
-					onClick={() => changeExitPropLeft()}
-					className={'navigation-link'}
-				>
-					<h3 className="gradient">ART</h3>
-				</Link>
+				<SectionChangeLink
+					weGoTo={'/ART'}
+					exitAnimationDirection={changeExitPropLeft}
+					title={'ART'}
+				/>
 			</div>
 			<div className={'section-body split center-center'}></div>
 		</motion.div>

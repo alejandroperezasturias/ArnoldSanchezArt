@@ -8,7 +8,6 @@ import {
 	useSpring,
 } from 'framer-motion';
 import { Link } from 'react-router-dom';
-
 const heroVariants = {
 	hidden: {
 		opacity: 0,
@@ -74,6 +73,7 @@ export default function NAVIGATION() {
 		yScroll,
 		[scrollPercentageStart, scrollPercentageEnd],
 		[0, 300]
+		// [0, 600]
 	);
 
 	useLayoutEffect(() => {
@@ -122,6 +122,7 @@ export default function NAVIGATION() {
 					<motion.img style={{ scale, opacity, y }} src={skull}></motion.img>
 				</div>
 				<div style={{ height: '40vh' }}></div>
+				{/* <div style={{ height: '80vh' }}></div> */}
 			</div>
 
 			<div
@@ -136,6 +137,12 @@ export default function NAVIGATION() {
 					<motion.div
 						style={{ height }}
 						className={'hero-scroll-progress split center-center'}
+						whileHover={{
+							backgroundColor: 'white',
+							color: 'red',
+							skewY: 1.09,
+						}}
+						whileTap={{ scale: 1.1 }}
 					>
 						<motion.h2 style={{ scaleText }} className={'text-900'}>
 							TATTOO
@@ -146,6 +153,12 @@ export default function NAVIGATION() {
 					<motion.div
 						style={{ height }}
 						className={'hero-scroll-progress split center-center'}
+						whileHover={{
+							backgroundColor: 'white',
+							color: 'red',
+							skewY: -1.2,
+						}}
+						whileTap={{ scale: 1.1 }}
 					>
 						<motion.h2 style={{ scaleText }} className={'text-900'}>
 							ART
@@ -156,7 +169,14 @@ export default function NAVIGATION() {
 					<motion.div
 						style={{ height }}
 						className={'hero-scroll-progress split center-center'}
+						whileHover={{
+							backgroundColor: 'white',
+							color: 'red',
+							skewY: 1.2,
+						}}
+						whileTap={{ scale: 1.1 }}
 					>
+						>
 						<motion.h2 style={{ scaleText }} className={'text-900'}>
 							MERCH
 						</motion.h2>

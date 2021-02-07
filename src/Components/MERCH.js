@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import {
 	routeVariants,
 	changeExitPropRight,
 	changeExitPropLeft,
 } from '../Animations/animation';
+import SectionChangeLink from '../Animations/SectionChangeLink';
 
 export default function MERCH() {
 	return (
@@ -17,21 +17,17 @@ export default function MERCH() {
 			className={'section'}
 		>
 			<div className={'section-header'}>
-				<Link
-					to="/ART"
-					onClick={() => changeExitPropRight()}
-					className={'navigation-link'}
-				>
-					<h3 className="gradient">ART</h3>
-				</Link>
+				<SectionChangeLink
+					weGoTo={'/ART'}
+					exitAnimationDirection={changeExitPropRight}
+					title={'ART'}
+				/>
 				<h2 className="gradient">MERCH</h2>
-				<Link
-					to="/TATTOO"
-					onClick={() => changeExitPropLeft()}
-					className={'navigation-link'}
-				>
-					<h3 className="gradient">TATTOO</h3>
-				</Link>
+				<SectionChangeLink
+					weGoTo={'/TATTOO'}
+					exitAnimationDirection={changeExitPropLeft}
+					title={'TATTOO'}
+				/>
 			</div>
 		</motion.div>
 	);
