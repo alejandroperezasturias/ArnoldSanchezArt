@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import boxingGloves from '../images/boxing.svg';
 import apple from '../images/apple.svg';
 import eye from '../images/eye.svg';
@@ -8,24 +8,32 @@ const containerCss = {
 	justifyContent: 'flex-end',
 	alignItems: 'center',
 	width: '100%',
-	height: '85vh',
+	height: '90vh',
 };
 const slideCss = {
 	position: 'relative',
-	// minWidth: '40%',
 	left: '500px',
 	transition: '1s ease-in-out',
 };
 
 const Carousel = () => {
+	//  Useref does not cause component to re-render, unlike State
 	const ref = useRef();
 	const ref2 = useRef();
 	const ref3 = useRef();
 
-	window.onwheel = wheelslide;
+	useEffect(() => {
+		window.addEventListener('wheel', wheelslide);
+		window.addEventListener('touchmove', wheelslide);
+		return () => {
+			window.removeEventListener('wheel', wheelslide);
+			window.removeEventListener('touchmove', wheelslide);
+		};
+	}, []);
 
 	function wheelslide(e) {
 		// scrolling downward
+		if (ref === undefined || ref2 === undefined || ref3 === undefined) return;
 		if (e.deltaY > 0) {
 			if (ref.current.style.left === '500px' || ref.current.style.left === '') {
 				ref.current.style.left = '50px';
