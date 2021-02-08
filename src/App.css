@@ -257,3 +257,26 @@ h1 {
 	font-weight: var(--fw-100);
 	font-size: var(--fs-600);
 }
+
+/* CAROUSEL */
+
+.containerCarousel {
+	display: flex;
+	gap: 3rem;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 90vh;
+}
+
+@media (max-width: 60em) {
+	.containerCarousel {
+		gap: 2rem;
+		width: 90%;
+		height: 90vh;
+	}
+	.carousel-slide {
+		transform: scale(1);
+		left: '0px';
+	}
+}
