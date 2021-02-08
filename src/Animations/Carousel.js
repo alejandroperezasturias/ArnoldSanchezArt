@@ -24,10 +24,10 @@ const Carousel = () => {
 
 	useEffect(() => {
 		window.addEventListener('wheel', wheelslide);
-		// window.addEventListener('touchmove', touchSlide);
+		window.addEventListener('touchend', wheelslide);
 		return () => {
 			window.removeEventListener('wheel', wheelslide);
-			// window.removeEventListener('touchmove', touchSlide);
+			window.removeEventListener('touchend', wheelslide);
 		};
 	});
 
