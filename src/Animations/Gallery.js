@@ -12,7 +12,7 @@ export default function Gallery() {
 	console.log(Math.random() * (1.5 - 0.4) + 0.4);
 	console.log(Math.random() * (1.5 - 0.4) + 0.4);
 	return (
-		<div className="art-gallery">
+		<div className="art-gallery" style={{minHeight: '100vh'}}>
 			<div className="art-gallery-larger-images">
 				<motion.div
 					initial="hidden"

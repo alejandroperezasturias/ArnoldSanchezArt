@@ -16,7 +16,7 @@ export default function ART() {
 				initial="hidden"
 				animate="visible"
 				exit="exit"
-				// style={{ minHeight: '100vh', position: 'relative' }}
+				style={{ minHeight: '100vh', position: 'relative' }}
 				className={'section'}
 			>
 				<div className={'section-header '}>

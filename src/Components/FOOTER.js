@@ -122,12 +122,15 @@ export default function FOOTER() {
 					</div>
 				</div>
 			</div>
-			<div className={'split center-center final-footer'}>
+			<div
+				className={' split center-center final-footer'}
+				style={{ '--split-spacer': '2rem' }}
+			>
 				<p className="copywrite">
 					© 2020 Designed By Alex Perez. All Rights Reserved
 				</p>
 				<div>
-					<ul className="footer-social split">
+					<ul className="footer-social">
 						<li>
 							<a
 								style={{ color: 'var(--clr-neutral-100)' }}

@@ -164,11 +164,10 @@ export default function NAVIGATION() {
 
 			<div ref={ref}>
 				<div style={{ minHeight: '12vh' }}></div>
-				<div className={'hero-image'}>
+				<div className={'hero-image'} style={{ minHeight: '12vh' }}>
 					<motion.img style={{ scale, opacity, y }} src={skull}></motion.img>
 				</div>
 				<div style={{ height: '40vh' }}></div>
-				{/* <div style={{ height: '80vh' }}></div> */}
 			</div>
 
 			<div
