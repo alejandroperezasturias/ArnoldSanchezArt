@@ -89,11 +89,6 @@ const Carousel = () => {
 					id={2}
 				></img>
 			</div>
-			<div>
-				<div style={{ position: 'absolute', top: 0, left: 0 }}>
-					<h1>Previous WAS {prevUporDown.current}</h1>
-				</div>
-			</div>
 		</div>
 	);
 };

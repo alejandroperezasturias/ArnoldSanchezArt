@@ -8,29 +8,55 @@ import {
 	useSpring,
 } from 'framer-motion';
 import { Link } from 'react-router-dom';
-const heroVariants = {
-	hidden: {
-		opacity: 0,
-		y: 10,
-		transition: {
-			duration: 1,
-		},
-	},
-	visible: {
-		opacity: 1,
-		y: 0,
-		transition: {
-			duration: 1,
-		},
-	},
-	exit: {
-		opacity: 0,
-		y: 10,
-		transition: {
-			duration: 1,
-		},
-	},
-};
+import {
+	changeExitPropRight,
+	changeExitPropLeft,
+	heroVariants,
+	hoverVariants,
+} from '../Animations/animation';
+import FOOTER from './FOOTER';
+import SectionChangeLink from '../Animations/SectionChangeLink';
+
+export function SectionChangeLinkHero({ weGoTo, height, title, scaleText }) {
+	const [hoverOn, setHoverOn] = useState(false);
+	return (
+		<>
+			<Link to={weGoTo} className={'navigation-link'}>
+				<motion.div
+					style={{ height }}
+					className={'hero-scroll-progress split center-center'}
+					whileTap={{ scale: 1.1 }}
+				>
+					<div style={{ position: 'relative' }}>
+						<motion.h2
+							onHoverStart={() => setHoverOn(true)}
+							onHoverEnd={() => setHoverOn(false)}
+							style={{ scaleText }}
+							className={'text-900'}
+						>
+							{title}
+						</motion.h2>
+						<motion.div
+							variants={hoverVariants}
+							animate={hoverOn ? 'visible' : 'hidden'}
+							style={{
+								position: 'absolute',
+								top: '50%',
+								bottom: 0,
+								left: 0,
+								right: 0,
+								width: '0%',
+								height: '3%',
+								backgroundColor: 'white',
+								pointerEvents: 'none',
+							}}
+						></motion.div>
+					</div>
+				</motion.div>
+			</Link>
+		</>
+	);
+}
 
 export default function NAVIGATION() {
 	const ref = useRef();
@@ -99,6 +125,20 @@ export default function NAVIGATION() {
 			variants={heroVariants}
 			className="text-align-center hero"
 		>
+			<div className={'section-header '} style={{ padding: '0rem 1rem' }}>
+				<SectionChangeLink
+					weGoTo={'/TATTOO'}
+					exitAnimationDirection={changeExitPropRight}
+					title={'TATTOO'}
+					direction={'rtl'}
+				/>
+				<SectionChangeLink
+					weGoTo={'/MERCH'}
+					exitAnimationDirection={changeExitPropLeft}
+					title={'MERCH'}
+					direction={'initial'}
+				/>
+			</div>
 			<a
 				href="http://localhost:3001/"
 				aria-label="acme home page"
@@ -108,14 +148,20 @@ export default function NAVIGATION() {
 					<img src={logo} alt="logo"></img>
 				</div>
 
-				<h1 style={{ scale, color: 'var(--clr-neutral-100)' }}>arnolsegchez</h1>
+				<h1
+					className={'gradient'}
+					style={{ scale, color: 'var(--clr-neutral-100)' }}
+				>
+					arnolsegchez
+				</h1>
 				<p
-					className={'hero-subtitle'}
+					className={'hero-subtitle gradient'}
 					style={{ color: 'var(--clr-neutral-100)' }}
 				>
 					art
 				</p>
 			</a>
+
 			<div ref={ref}>
 				<div style={{ minHeight: '12vh' }}></div>
 				<div className={'hero-image'}>
@@ -133,56 +179,32 @@ export default function NAVIGATION() {
 					width: '100%',
 				}}
 			>
-				<Link to={'/TATTOO'} className={'navigation-link'}>
-					<motion.div
-						style={{ height }}
-						className={'hero-scroll-progress split center-center'}
-						whileHover={{
-							backgroundColor: 'white',
-							color: 'red',
-							skewY: 1.09,
-						}}
-						whileTap={{ scale: 1.1 }}
-					>
-						<motion.h2 style={{ scaleText }} className={'text-900'}>
-							TATTOO
-						</motion.h2>
-					</motion.div>
-				</Link>
-				<Link to={'/ART'} className={'navigation-link'}>
-					<motion.div
-						style={{ height }}
-						className={'hero-scroll-progress split center-center'}
-						whileHover={{
-							backgroundColor: 'white',
-							color: 'red',
-							skewY: -1.2,
-						}}
-						whileTap={{ scale: 1.1 }}
-					>
-						<motion.h2 style={{ scaleText }} className={'text-900'}>
-							ART
-						</motion.h2>
-					</motion.div>
-				</Link>
-				<Link to={'/MERCH'} className={'navigation-link'}>
-					<motion.div
-						style={{ height }}
-						className={'hero-scroll-progress split center-center'}
-						whileHover={{
-							backgroundColor: 'white',
-							color: 'red',
-							skewY: 1.2,
-						}}
-						whileTap={{ scale: 1.1 }}
-					>
-						>
-						<motion.h2 style={{ scaleText }} className={'text-900'}>
-							MERCH
-						</motion.h2>
-					</motion.div>
-				</Link>
+				<SectionChangeLinkHero
+					weGoTo="/TATTOO"
+					height={height}
+					title="TATTOO"
+					scaleText={scaleText}
+				/>
+				<SectionChangeLinkHero
+					weGoTo="/ART"
+					height={height}
+					title="ART"
+					scaleText={scaleText}
+				/>
+				<SectionChangeLinkHero
+					weGoTo="/MERCH"
+					height={height}
+					title="MERCH"
+					scaleText={scaleText}
+				/>
+				<SectionChangeLinkHero
+					weGoTo="/CONTACT"
+					height={height}
+					title="CONTACT"
+					scaleText={scaleText}
+				/>
 			</div>
+			<FOOTER />
 		</motion.div>
 	);
 }
