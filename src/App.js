@@ -14,7 +14,7 @@ function App() {
 	return (
 		<div className="App">
 			<AnimatePresence exitBeforeEnter initial={false}>
-				{/* <ScrollToTop /> */}
+				<ScrollToTop />
 				<Switch location={location} key={location.key}>
 					<Route path="/" exact>
 						<HERO />

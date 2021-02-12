@@ -125,7 +125,15 @@ export default function NAVIGATION() {
 			variants={heroVariants}
 			className="text-align-center hero"
 		>
-			<div className={'section-header '} style={{ padding: '0rem 1rem' }}>
+			<div
+				className={'section-header'}
+				style={{
+					padding: '0rem 1rem',
+					display: 'flex',
+					justifyContent: 'space-between',
+					alignItems: 'center',
+				}}
+			>
 				<SectionChangeLink
 					weGoTo={'/TATTOO'}
 					exitAnimationDirection={changeExitPropRight}
@@ -165,7 +173,11 @@ export default function NAVIGATION() {
 			<div ref={ref}>
 				<div style={{ minHeight: '12vh' }}></div>
 				<div className={'hero-image'} style={{ minHeight: '12vh' }}>
-					<motion.img style={{ scale, opacity, y }} src={skull}></motion.img>
+					<motion.img
+						style={{ scale, opacity, y }}
+						src={skull}
+						alt="Arnold Bembibre Leon Tattoo Skull"
+					></motion.img>
 				</div>
 				<div style={{ height: '40vh' }}></div>
 			</div>

@@ -20,13 +20,35 @@ export const routeVariants = {
 			duration: 1,
 		},
 	},
+	
+};
+
+export const routeVariantsNormal = {
+	hidden: {
+		opacity: 0,
+		transition: {
+			duration: 1,
+		},
+	},
+	visible: {
+		opacity: 1,
+		transition: {
+			duration: 1,
+		},
+	},
+	exit: {
+		opacity: 0,
+		transition: {
+			duration: 1,
+		},
+	},
 };
 
 export const hoverVariants = {
 	hidden: {
 		width: '0%',
-		left: -10,
-		right: -10,
+		// left: -10,
+		// right: -10,
 		transition: {
 			stiffnes: 600,
 			// dumping: 8,
@@ -35,8 +57,8 @@ export const hoverVariants = {
 	},
 	visible: {
 		width: '110%',
-		left: -10,
-		right: -10,
+		// left: -10,
+		// right: -10,
 		transition: {
 			duration: 0.4,
 			stiffnes: 600,
@@ -88,4 +110,15 @@ export function changeExitPropLeft() {
 			duration: 1,
 		},
 	};
+}
+
+
+export function changeExitPropHomet() {
+	 routeVariants['exit'] = {
+		opacity: 0,
+		y: 10,
+		transition: {
+			duration: 1,
+		},
+}
 }

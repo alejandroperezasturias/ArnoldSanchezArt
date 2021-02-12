@@ -30,10 +30,10 @@ export default function Gallery() {
 						},
 					}}
 				>
-					<GalleryImage src={skull} alt={'skull'} />
+					<GalleryImage src={skull} alt={'skull Bembibre Leon Tattoo'} />
 				</motion.div>
 				<ScrollComponent threshold={0.4}>
-					<GalleryImage src={hand} alt={'hand'} />
+					<GalleryImage src={hand} alt={'hand Bembibre Leon Tattoo'} />
 				</ScrollComponent>
 			</div>
 			<div className="art-gallery-shorter-images">
@@ -53,7 +53,7 @@ export default function Gallery() {
 						},
 					}}
 				>
-					<GalleryImage src={apple} alt={'apple'} />
+					<GalleryImage src={apple} alt={'apple Bembibre Leon Tattoo'} />
 				</motion.div>
 				<motion.div
 					initial="hidden"
@@ -71,7 +71,7 @@ export default function Gallery() {
 						},
 					}}
 				>
-					<GalleryImage src={boxingGloves} alt={'boxingGloves'} />
+					<GalleryImage src={boxingGloves} alt={'boxingGloves  Bembibre Leon Tattoo'} />
 				</motion.div>
 
 				<ScrollComponent threshold={1}>

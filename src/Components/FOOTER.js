@@ -92,7 +92,7 @@ export default function FOOTER() {
 					<div style={{ position: 'relative' }}>
 						<a
 							href={'https://www.instagram.com/arnolsegchez/'}
-							aria-label="acme instagram page"
+							aria-label="acme instagram Arnol tattoo page"
 							style={{ lineHeight: 'normal' }}
 						>
 							<motion.h3
@@ -123,16 +123,17 @@ export default function FOOTER() {
 				</div>
 			</div>
 			<div
-				className={' split center-center final-footer'}
+				className={'split center-center final-footer'}
 				style={{ '--split-spacer': '2rem' }}
 			>
-				<p className="copywrite">
+				<p>
 					© 2020 Designed By Alex Perez. All Rights Reserved
 				</p>
 				<div>
 					<ul className="footer-social">
 						<li>
 							<a
+								aria-label="acme instagram Arnol tattoo page"
 								style={{ color: 'var(--clr-neutral-100)' }}
 								href="https://www.instagram.com/arnolsegchez/"
 							>

@@ -8,7 +8,7 @@
 	--fs-400: 0.9rem;
 	--fs-500: 1rem;
 	--fs-600: 1.2rem;
-	--fs-900: 2rem;
+	--fs-900: 1.6rem;
 	--fw-100: 100;
 	--fw-200: 200;
 	--fw-300: 300;
@@ -127,6 +127,11 @@ img {
 
 /* Typography */
 
+p {
+	font-size: var(--fs-400);
+	font-weight: var(--fw-100);
+}
+
 h1 {
 	font-family: var(--ff-accent);
 	font-weight: var(--fw-300);
@@ -136,17 +141,22 @@ h1 {
 .text-900 {
 	font-family: var(--ff-accent);
 	font-size: var(--fs-900);
-	font-weight: var(--fw-400);
+	font-weight: var(--fw-300);
 }
 
 .text-600 {
 	font-size: var(--fs-600);
-	font-weight: var(--fw-700);
+	font-weight: var(--fw-300);
 }
 
 .text-400 {
 	font-size: 1.8rem;
-	font-weight: 100;
+	font-weight: var(--fw-300);
+}
+
+.text-300 {
+	font-size: var(--fs-300);
+	font-weight: var(--fw-300);
 }
 
 .gradient {
@@ -190,6 +200,19 @@ h1 {
 
 .flex-gap-horizontal > * + * {
 	margin: 0rem 0rem 0rem var(--spacer-horizontal, 1rem);
+}
+
+.appointment-button {
+	cursor: pointer;
+	transition: all 200ms ease-in-out;
+	margin-top: 1.5rem;
+	border-radius: 100vw;
+	padding: 0.4rem 1.5rem;
+	border: 1px solid white;
+}
+
+.appointment-button:hover {
+	border: 1px solid #727272;
 }
 
 @media (min-width: 54em) {
@@ -270,7 +293,7 @@ h1 {
 }
 
 .section-header h2 {
-	font-weight: var(--fw-100);
+	font-weight: var(--fw-300);
 	font-size: var(--fs-600);
 }
 
@@ -286,7 +309,7 @@ h1 {
 }
 
 .art-gallery {
-	max-width: 50rem;
+	max-width: 45rem;
 	margin: 0 auto;
 	display: grid;
 	gap: 3em;
@@ -328,4 +351,51 @@ h1 {
 
 .instagram-banner h3 {
 	font-weight: 20;
+}
+
+/* TATTOO */
+
+.tattoo-section-tattoo-photos-laptop {
+	display: none;
+}
+
+.tattoo-section-tattoo-photos-phone {
+	display: flex;
+	/* width: 100%; */
+	justify-content: center;
+	align-items: center;
+}
+
+.tattoo-section-tattoo-photos-phone > * + * {
+	margin-left: 3rem;
+}
+
+.tattoo-section-text {
+	margin-left: 0;
+	padding: 0rem 1.6rem;
+}
+
+.tattoo-section-paragraph {
+	margin-top: 1.5rem;
+}
+
+@media (min-width: 60em) {
+	.tattoo-section-tattoo-photos-phone {
+		display: none !important;
+	}
+	.tattoo-section-tattoo-photos-laptop {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	.tattoo-section-text {
+		flex-basis: 29%;
+		--flow-spacer: 2rem;
+		margin-left: 5rem;
+	}
+
+	.tattoo-section-paragraph {
+		margin-top: 3rem;
+	}
 }
