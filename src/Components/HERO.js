@@ -92,7 +92,7 @@ export default function NAVIGATION() {
 	const height = useTransform(
 		yScroll,
 		[scrollPercentageStart + 0.2, scrollPercentageEnd + 0.2],
-		[30, 150]
+		[38, 150]
 	);
 
 	const y = useTransform(
@@ -152,7 +152,7 @@ export default function NAVIGATION() {
 				aria-label="acme home page"
 				className={'hero-logo split center-center'}
 			>
-				<div>
+				<div style={{ minHeight: '4rem' }}>
 					<img src={logo} alt="logo"></img>
 				</div>
 

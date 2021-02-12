@@ -8,9 +8,6 @@ import ScrollComponent from './ScrollComponent';
 import GalleryImage from './GalleyImage';
 
 export default function Gallery() {
-	console.log(Math.random() * (1.5 - 0.4) + 0.4);
-	console.log(Math.random() * (1.5 - 0.4) + 0.4);
-	console.log(Math.random() * (1.5 - 0.4) + 0.4);
 	return (
 		<div className="art-gallery" style={{minHeight: '100vh'}}>
 			<div className="art-gallery-larger-images">
@@ -21,7 +18,7 @@ export default function Gallery() {
 						visible: {
 							opacity: 1,
 							transition: {
-								duration: Math.random() * (1.5 - 0.4) + 0.4,
+								duration: Math.random() * (1.7 - 0.4) + 0.4,
 								delay: 1,
 							},
 						},
@@ -44,7 +41,7 @@ export default function Gallery() {
 						visible: {
 							opacity: 1,
 							transition: {
-								duration: Math.random() * (1.5 - 0.4) + 0.4,
+								duration: Math.random() * (1.7 - 0.4) + 0.4,
 								delay: 1,
 							},
 						},
@@ -62,7 +59,7 @@ export default function Gallery() {
 						visible: {
 							opacity: 1,
 							transition: {
-								duration: Math.random() * (1.5 - 0.4) + 0.4,
+								duration: Math.random() * (1.7 - 0.4) + 0.4,
 								delay: 1,
 							},
 						},

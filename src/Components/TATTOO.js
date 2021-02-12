@@ -27,7 +27,7 @@ export default function TATTOO() {
 					<div>
 						<SectionChangeLink
 							weGoTo={'/MERCH'}
-							exitAnimationDirection={changeExitPropLeft}
+							exitAnimationDirection={changeExitPropRight}
 							title={'MERCH'}
 							direction={'rtl'}
 						/>
@@ -36,7 +36,7 @@ export default function TATTOO() {
 					<div>
 						<SectionChangeLink
 							weGoTo={'/ART'}
-							exitAnimationDirection={changeExitPropRight}
+							exitAnimationDirection={changeExitPropLeft}
 							title={'ART'}
 							direction={'rtl'}
 						/>

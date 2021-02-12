@@ -3,6 +3,42 @@ import decoration from '../images/decoration.svg';
 import { hoverVariants } from '../Animations/animation';
 import { motion } from 'framer-motion';
 
+export function InstagramLinkFooter({ hoverOn, setHoverOn }) {
+	return (
+		<div style={{ position: 'relative' }}>
+			<a
+				href={'https://www.instagram.com/arnolsegchez/'}
+				aria-label="acme instagram page"
+				style={{ lineHeight: 'normal', overflow: 'hidden' }}
+			>
+				<motion.h3
+					onHoverStart={() => setHoverOn(true)}
+					onHoverEnd={() => setHoverOn(false)}
+					className={'red text-400'}
+				>
+					@arnolsegchez
+				</motion.h3>
+			</a>
+			<motion.div
+				variants={hoverVariants}
+				animate={hoverOn ? 'visible' : 'hidden'}
+				style={{
+					position: 'absolute',
+					top: '50%',
+					transfrom: 'translateY(-50%)',
+					bottom: 0,
+					left: 0,
+					right: 0,
+					width: '0%',
+					height: '0.5%',
+					backgroundColor: 'white',
+					pointerEvents: 'none',
+				}}
+			></motion.div>
+		</div>
+	);
+}
+
 export default function FOOTER() {
 	const [hoverOn, setHoverOn] = useState(false);
 	return (
@@ -24,111 +60,16 @@ export default function FOOTER() {
 					}}
 				>
 					<h3>instagram</h3>
-					<div style={{ position: 'relative' }}>
-						<a
-							href={'https://www.instagram.com/arnolsegchez/'}
-							aria-label="acme instagram page"
-							style={{ lineHeight: 'normal', overflow: 'hidden' }}
-						>
-							<motion.h3
-								onHoverStart={() => setHoverOn(true)}
-								onHoverEnd={() => setHoverOn(false)}
-								className={'red text-400'}
-							>
-								@arnolsegchez
-							</motion.h3>
-						</a>
-						<motion.div
-							variants={hoverVariants}
-							animate={hoverOn ? 'visible' : 'hidden'}
-							style={{
-								position: 'absolute',
-								top: '50%',
-								transfrom: 'translateY(-50%)',
-								bottom: 0,
-								left: 0,
-								right: 0,
-								width: '0%',
-								height: '0.5%',
-								backgroundColor: 'white',
-								pointerEvents: 'none',
-							}}
-						></motion.div>
-					</div>
-
+					<InstagramLinkFooter setHoverOn={setHoverOn} hoverOn={hoverOn} />
 					<h3>instagram</h3>
-					<div style={{ position: 'relative' }}>
-						<a
-							href={'https://www.instagram.com/arnolsegchez/'}
-							aria-label="acme instagram page"
-							style={{ lineHeight: 'normal' }}
-						>
-							<motion.h3
-								onHoverStart={() => setHoverOn(true)}
-								onHoverEnd={() => setHoverOn(false)}
-								className={'red text-400'}
-							>
-								@arnolsegchez
-							</motion.h3>
-						</a>
-						<motion.div
-							variants={hoverVariants}
-							animate={hoverOn ? 'visible' : 'hidden'}
-							style={{
-								position: 'absolute',
-								top: '50%',
-								transfrom: 'translateY(-50%)',
-								bottom: 0,
-								left: 0,
-								right: 0,
-								width: '0%',
-								height: '2%',
-								backgroundColor: 'white',
-								pointerEvents: 'none',
-							}}
-						></motion.div>
-					</div>
-					<h3>instagram</h3>
-					<div style={{ position: 'relative' }}>
-						<a
-							href={'https://www.instagram.com/arnolsegchez/'}
-							aria-label="acme instagram Arnol tattoo page"
-							style={{ lineHeight: 'normal' }}
-						>
-							<motion.h3
-								onHoverStart={() => setHoverOn(true)}
-								onHoverEnd={() => setHoverOn(false)}
-								className={'red text-400'}
-							>
-								@arnolsegchez
-							</motion.h3>
-						</a>
-						<motion.div
-							variants={hoverVariants}
-							animate={hoverOn ? 'visible' : 'hidden'}
-							style={{
-								position: 'absolute',
-								top: '50%',
-								transfrom: 'translateY(-50%)',
-								bottom: 0,
-								left: 0,
-								right: 0,
-								width: '0%',
-								height: '2%',
-								backgroundColor: 'white',
-								pointerEvents: 'none',
-							}}
-						></motion.div>
-					</div>
+					<InstagramLinkFooter setHoverOn={setHoverOn} hoverOn={hoverOn} />
 				</div>
 			</div>
 			<div
 				className={'split center-center final-footer'}
 				style={{ '--split-spacer': '2rem' }}
 			>
-				<p>
-					© 2020 Designed By Alex Perez. All Rights Reserved
-				</p>
+				<p>© 2020 Designed By Alex Perez. All Rights Reserved</p>
 				<div>
 					<ul className="footer-social">
 						<li>
