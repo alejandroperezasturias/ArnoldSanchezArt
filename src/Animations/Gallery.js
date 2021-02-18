@@ -1,8 +1,8 @@
 import boxingGloves from '../images/carousel/gloves.svg';
-import apple from '../images/carousel/apple.svg';
-import eye from '../images/carousel/eye.svg';
-import skull from '../images/carousel/skull.svg';
-import hand from '../images/carousel/hand.svg';
+import apple from '../images/carousel/apple.jpg';
+import eye from '../images/carousel/eye.jpg';
+import skull from '../images/carousel/skull.jpg';
+import hand from '../images/carousel/hand.jpg';
 import { motion } from 'framer-motion';
 import ScrollComponent from './ScrollComponent';
 import GalleryImage from './GalleyImage';

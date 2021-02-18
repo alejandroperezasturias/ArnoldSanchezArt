@@ -46,7 +46,7 @@ export default function TATTOO() {
 				<div className={'split center-center'} style={{ minHeight: '70vh' }}>
 					<div className={'split'}>
 						<div>
-							<img src={ARNOLD} alt="Arnold Bembibre Leon Tattoo"></img>
+							<img style={{minWidth: '350px'}} src={ARNOLD} alt="Arnold Bembibre Leon Tattoo"></img>
 						</div>
 						<div className="tattoo-section-tattoo-photos-laptop">
 							<img src={LEAF} alt="Arnold Bembibre Leon Tattoo Leaf"></img>
