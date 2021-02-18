@@ -7,6 +7,10 @@ import HERO from './Components/HERO';
 import TATTOO from './Components/TATTOO';
 import ART from './Components/ART';
 import MERCH from './Components/MERCH';
+import CHECKOUT from './Components/CHECKOUT';
+import CUSTOMER from './Components/CUSTOMER';
+import SIGNUP from './Components/SIGNUP';
+import LOGIN from './Components/LOGIN';
 
 function App() {
 	const location = useLocation();
@@ -15,7 +19,7 @@ function App() {
 		<div className="App">
 			<AnimatePresence exitBeforeEnter>
 				<ScrollToTop />
-				<Switch location={location} key={location.key}>
+				<Switch location={location} key={location.pathname}>
 					<Route path="/" exact>
 						<HERO />
 					</Route>
@@ -27,6 +31,18 @@ function App() {
 					</Route>
 					<Route path="/MERCH" exact>
 						<MERCH />
+					</Route>
+					<Route path="/CHECKOUT" exact>
+						<CHECKOUT />
+					</Route>
+					<Route path="/CUSTOMER" exact>
+						<CUSTOMER />
+					</Route>
+					<Route path="/LOGIN" exact>
+						<LOGIN />
+					</Route>
+					<Route path="/SIGNUP" exact>
+						<SIGNUP />
 					</Route>
 				</Switch>
 			</AnimatePresence>
