@@ -8,7 +8,7 @@ import {
 } from '../Animations/animation';
 import SectionChangeLink from '../Animations/SectionChangeLink';
 import FOOTER from './FOOTER';
-import ARNOLD from '../images/arnolPhoto.svg';
+import ARNOLD from '../images/arnolPhoto.jpg';
 import LEAF from '../images/leafTattpp.svg';
 import LETTERS from '../images/lettersTattoo.svg';
 
