@@ -1,4 +1,10 @@
-import { useState, useRef, useLayoutEffect } from 'react';
+import {
+	useState,
+	useRef,
+	useLayoutEffect,
+	useEffect,
+	useContext,
+} from 'react';
 import logo from '../images/logo.svg';
 import skull from '../images/skull_3.jpg';
 import {
@@ -16,9 +22,12 @@ import {
 } from '../Animations/animation';
 import FOOTER from './FOOTER';
 import SectionChangeLink from '../Animations/SectionChangeLink';
+import USER from './USER';
+import { AuthContext } from '../App';
 
 export function SectionChangeLinkHero({ weGoTo, height, title, scaleText }) {
 	const [hoverOn, setHoverOn] = useState(false);
+
 	return (
 		<>
 			<Link to={weGoTo} className={'navigation-link'}>
@@ -58,8 +67,14 @@ export function SectionChangeLinkHero({ weGoTo, height, title, scaleText }) {
 	);
 }
 
-export default function NAVIGATION() {
+export default function HERO() {
 	const ref = useRef();
+	const [display, setDisplay] = useState('none');
+	const { user } = useContext(AuthContext);
+
+	useEffect(() => {
+		user?.displayName ? setDisplay('none') : setDisplay('block');
+	}, [user]);
 
 	// Stores the start middle end scrolling position for our container
 	const [scrollPercentageStart, setScrollPercentageStart] = useState(null);
@@ -140,6 +155,17 @@ export default function NAVIGATION() {
 					title={'TATTOO'}
 					direction={'rtl'}
 				/>
+
+				<div style={{ display }}>
+					<SectionChangeLink
+						weGoTo={'/CUSTOMER'}
+						exitAnimationDirection={changeExitPropLeft}
+						title={'LOGIN'}
+						direction={'initial'}
+					/>
+				</div>
+
+				{user && <USER user={user} />}
 				<SectionChangeLink
 					weGoTo={'/MERCH'}
 					exitAnimationDirection={changeExitPropLeft}

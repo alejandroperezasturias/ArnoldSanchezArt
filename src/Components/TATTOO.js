@@ -8,7 +8,7 @@ import {
 } from '../Animations/animation';
 import SectionChangeLink from '../Animations/SectionChangeLink';
 import FOOTER from './FOOTER';
-import ARNOLD from '../images/arnolPhoto.jpg';
+import ARNOLD from '../images/arnol.jpg';
 import LEAF from '../images/leafTattpp.svg';
 import LETTERS from '../images/lettersTattoo.svg';
 
@@ -43,10 +43,21 @@ export default function TATTOO() {
 					</div>
 				</div>
 
-				<div className={'split center-center'} style={{ minHeight: '70vh' }}>
+				<div
+					className={'split center-center tattoo-section'}
+					style={{ minHeight: '70vh' }}
+				>
 					<div className={'split'}>
 						<div>
-							<img style={{minWidth: '350px'}} src={ARNOLD} alt="Arnold Bembibre Leon Tattoo"></img>
+							<img
+								style={{
+									minWidth: '377px',
+									minHeight: '390px',
+									objectFit: 'cover',
+								}}
+								src={ARNOLD}
+								alt="Arnold Bembibre Leon Tattoo"
+							></img>
 						</div>
 						<div className="tattoo-section-tattoo-photos-laptop">
 							<img src={LEAF} alt="Arnold Bembibre Leon Tattoo Leaf"></img>
@@ -85,6 +96,7 @@ export default function TATTOO() {
 				</div>
 
 				<FOOTER />
+
 				<div>
 					<motion.div
 						style={{ position: 'fixed', bottom: 40 }}

@@ -6,7 +6,7 @@ export default function GalleyImage({ src, alt }) {
 		<div style={{ overflow: 'hidden', minHeight:'7rem' }}>
 			<motion.img
 				whileHover={{
-					scale: 1.2,
+					scale: 1.01,
 				}}
 				src={src}
 				alt={alt}

@@ -22,7 +22,7 @@ export default function SectionChangeLink({
 				onHoverStart={() => setHoverOn(true)}
 				onHoverEnd={() => setHoverOn(false)}
 				whileTap={{ scale: 1.1 }}
-				className="gradient"
+				className="gradient text-600"
 			>
 				{title}
 			</motion.h3>
@@ -32,7 +32,7 @@ export default function SectionChangeLink({
 				style={{
 					// position: 'absolute',
 					// top: '50%',
-					transform: 'translateY(-1500%)',
+					transform: 'translateY(-2000%)',
 					// bottom: 0,
 					// left: 0,
 					// right: 0,

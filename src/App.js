@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { Switch, Route, useLocation } from 'react-router-dom';
 import ScrollToTop from './Animations/ScrollToTop';
@@ -11,41 +11,60 @@ import CHECKOUT from './Components/CHECKOUT';
 import CUSTOMER from './Components/CUSTOMER';
 import SIGNUP from './Components/SIGNUP';
 import LOGIN from './Components/LOGIN';
+import FORGOTPASSWORD from './Components/FORGOTPASSWORD';
+import { auth } from './Components/firebase';
+export const AuthContext = React.createContext({});
 
 function App() {
 	const location = useLocation();
+	const [user, setUser] = useState();
+	useEffect(() => {
+		const unlisten = auth.onAuthStateChanged((authUser) => {
+			setUser(authUser);
+		});
+		return unlisten;
+	});
+
+	const authContextValue = {
+		user,
+	};
 
 	return (
 		<div className="App">
-			<AnimatePresence exitBeforeEnter>
-				<ScrollToTop />
-				<Switch location={location} key={location.pathname}>
-					<Route path="/" exact>
-						<HERO />
-					</Route>
-					<Route path="/TATTOO" exact>
-						<TATTOO />
-					</Route>
-					<Route path="/ART" exact>
-						<ART />
-					</Route>
-					<Route path="/MERCH" exact>
-						<MERCH />
-					</Route>
-					<Route path="/CHECKOUT" exact>
-						<CHECKOUT />
-					</Route>
-					<Route path="/CUSTOMER" exact>
-						<CUSTOMER />
-					</Route>
-					<Route path="/LOGIN" exact>
-						<LOGIN />
-					</Route>
-					<Route path="/SIGNUP" exact>
-						<SIGNUP />
-					</Route>
-				</Switch>
-			</AnimatePresence>
+			<AuthContext.Provider value={authContextValue}>
+				<AnimatePresence exitBeforeEnter>
+					<ScrollToTop />
+					<Switch location={location} key={location.pathname}>
+						<Route path="/" exact>
+							<HERO />
+						</Route>
+						<Route path="/TATTOO" exact>
+							<TATTOO />
+						</Route>
+						<Route path="/ART" exact>
+							<ART />
+						</Route>
+						<Route path="/MERCH" exact>
+							<MERCH />
+						</Route>
+						<Route path="/CHECKOUT" exact>
+							<CHECKOUT />
+						</Route>
+						<Route path="/CUSTOMER" exact>
+							<CUSTOMER user={user} />
+						</Route>
+						<Route path="/LOGIN" exact>
+							<LOGIN />
+						</Route>
+						<Route path="/SIGNUP" exact>
+							<SIGNUP />
+						</Route>
+						<Route path="/FORGOTPASSWORD" exact>
+							<FORGOTPASSWORD />
+						</Route>
+					</Switch>
+				</AnimatePresence>
+			</AuthContext.Provider>
 		</div>
 	);
 }

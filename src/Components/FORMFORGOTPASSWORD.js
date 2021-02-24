@@ -6,7 +6,6 @@ import {
 	createMuiTheme,
 	makeStyles,
 } from '@material-ui/core/styles';
-import googleIcon from '../images/google-icon.svg';
 import { motion } from 'framer-motion';
 import { Link as LinkRouter } from 'react-router-dom';
 import { Alert } from '@material-ui/lab';
@@ -20,28 +19,24 @@ export const spanQuantityAnimation = {
 	},
 };
 
-export default function Form({
-	signIn,
-	signInWithEmail,
+export default function FormRecoverPassword({
+	recoverPassword,
 	error,
-	method,
 	setError,
+	success,
 }) {
 	// const classes = useStyles();
 	const [email, setEmail] = useState('');
-	const [name, setName] = useState('');
-	const [password, setPassword] = useState('');
 
 	useEffect(() => {
 		setError('');
-	}, [email, name, password]);
+	}, [email]);
 
 	const darkTheme = createMuiTheme({
 		palette: {
 			type: 'dark',
 		},
 	});
-
 
 	const formStyles = makeStyles((theme) => ({
 		form: {
@@ -96,44 +91,12 @@ export default function Form({
 					<Paper elevation={3} className={formClass.form}>
 						<form
 							onSubmit={(e) => {
-								signInWithEmail(e, email, password, name);
+								recoverPassword(e, email);
 								setEmail('');
-								setName('');
-								setPassword('');
 							}}
 						>
 							<Grid container spacing={3} align="center" direction={'column'}>
-								<Grid item>
-									<Button
-										startIcon={<img alt="google-logo" src={googleIcon}></img>}
-										variant="contained"
-										fullWidth
-										color="primary"
-										onClick={signIn}
-										className={formClass.formButton}
-										style={{
-											padding: '1rem 2rem',
-											backgroundColor: 'black',
-											borderRadius: '100vw',
-										}}
-									>
-										{!method ? 'Log IN' : 'Sign Up'} With Google
-									</Button>
-								</Grid>
-								{method ? (
-									<Grid item>
-										<TextField
-											fullWidth
-											required
-											id="standard-required"
-											label="Name"
-											value={name}
-											onInput={(e) => setName(e.target.value)}
-										/>
-									</Grid>
-								) : (
-									<></>
-								)}
+								<Typography variant="h6">Forgot Password ?</Typography>
 								<Grid item>
 									<TextField
 										fullWidth
@@ -145,18 +108,7 @@ export default function Form({
 										onInput={(e) => setEmail(e.target.value)}
 									/>
 								</Grid>
-								<Grid item>
-									<TextField
-										fullWidth
-										required
-										id="standard-password-input"
-										label="Password"
-										value={password}
-										onInput={(e) => setPassword(e.target.value)}
-										type="password"
-										autoComplete="current-password"
-									/>
-								</Grid>
+
 								<Grid item>
 									<Button
 										type="submit"
@@ -165,42 +117,19 @@ export default function Form({
 										style={{ borderRadius: '100vw' }}
 										className={formClass.formButton}
 									>
-										{!method ? 'Log IN' : 'Sign Up'}
+										Change Password
 									</Button>
 								</Grid>
-								<Grid direction={'column'} container spacing={2} align="center">
-									{!method && (
-										<Grid item>
-											<Typography
-												variant="overline"
-												className={formClass.lowerLinks}
-											>
-												<LinkRouter
-													to="/FORGOTPASSWORD"
-													style={{ color: 'white' }}
-												>
-													Forgot Password?
-												</LinkRouter>
-											</Typography>
-										</Grid>
-									)}
-									<Grid item>
-										<Typography
-											variant="overline"
-											className={formClass.lowerLinks}
-										>
-											{method
-												? 'Do you have an account?'
-												: 'Not Signed in Yet?'}
-											<span> </span>
-											<LinkRouter
-												style={{ color: 'white' }}
-												to={method ? '/LOGIN' : '/SIGNUP'}
-											>
-												{method ? 'Log IN' : 'Sign Up'}
-											</LinkRouter>
-										</Typography>
-									</Grid>
+
+								<Grid item>
+									<Typography
+										variant="overline"
+										className={formClass.lowerLinks}
+									>
+										<LinkRouter style={{ color: 'white' }} to={'/LOGIN'}>
+											Log In
+										</LinkRouter>
+									</Typography>
 								</Grid>
 							</Grid>
 						</form>
@@ -213,6 +142,14 @@ export default function Form({
 							style={{ color: 'white', marginTop: '1rem' }}
 						>
 							{error}
+						</Alert>
+					)}
+					{success && (
+						<Alert
+							severity="success"
+							style={{ color: 'white', marginTop: '1rem' }}
+						>
+							{success}
 						</Alert>
 					)}
 				</div>

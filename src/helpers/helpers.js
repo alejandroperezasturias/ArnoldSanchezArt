@@ -12,9 +12,8 @@ export async function fetchFromAPI(endpointURL, opts) {
 
   const user = auth.currentUser;
   // GetIdToken for JWT AUTH
-  console.log(user)
   const token = user && (await user.getIdToken());
-
+  console.log(body)
   const res = await fetch(`${API}/${endpointURL}`, {
     method,
     ...(body && { body: JSON.stringify(body) }),
@@ -25,4 +24,27 @@ export async function fetchFromAPI(endpointURL, opts) {
   });
 
   return res.json();
+}
+
+
+const formatter = new Intl.NumberFormat('de-DE', {
+  style: "currency",
+  currency: "USD"
+})
+
+export  function formatCurrency(amount) {
+  return formatter.format(amount/1000)
+}
+
+export function timeConverter(UNIX_timestamp){
+  let a = new Date(UNIX_timestamp * 1000);
+  let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  let year = a.getFullYear();
+  let month = months[a.getMonth()];
+  let date = a.getDate();
+  let hour = a.getHours();
+  let min = a.getMinutes();
+  let sec = a.getSeconds();
+  let time = date + '-' + month + '-' + year + ',  ' + hour + ':' + min + ':' + sec ;
+  return time;
 }

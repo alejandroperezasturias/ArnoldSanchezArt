@@ -15,30 +15,21 @@ import FORM from './FORM';
 export default function Login() {
 	const history = useHistory();
 	const [error, setError] = useState();
-	// Print everytime there is a change in auth
-	useEffect(() => {
-		const unsubscribe = auth.onAuthStateChanged((user) => {
-			// detaching the listener
-			if (user) {
-				console.log(user);
-			} else {
-				console.log('User Logged Out');
-			}
-		});
-		return () => unsubscribe(); // unsubscribing from the listener when the component is unmounting.
-	}, []);
 
 	const signInWithGoogle = async () => {
 		try {
 			const credential = await auth.signInWithPopup(
 				new firebase.auth.GoogleAuthProvider()
 			);
-
-			const { uid, email, displayName } = credential.user;
+			console.log(credential.user);
+			const { uid, email, photoURL, displayName } = credential.user;
 
 			db.collection('users')
 				.doc(uid)
-				.set({ email: email, name: displayName }, { merge: true });
+				.set(
+					{ email, name: displayName, displayImage: photoURL },
+					{ merge: true }
+				);
 			history.push('/CUSTOMER');
 			setError();
 		} catch (error) {
@@ -55,9 +46,15 @@ export default function Login() {
 				password
 			);
 			const { uid, email } = credential.user;
-			db.collection('users')
-				.doc(uid)
-				.set({ email: email, name: name }, { merge: true });
+			db.collection('users').doc(uid).set(
+				{
+					email: email,
+					name: name,
+					displayImage:
+						'https://13thdimension.com/wp-content/uploads/2020/02/36f2af1e2e85b403a247f52c78eace8d-580x580.png',
+				},
+				{ merge: true }
+			);
 			setError();
 			history.push('/CUSTOMER');
 		} catch (error) {
@@ -75,31 +72,33 @@ export default function Login() {
 			exit="exit"
 			className={'section'}
 		>
-			<div className={'section-header'}>
-				<div>
-					<SectionChangeLink
-						weGoTo={'/MERCH'}
-						exitAnimationDirection={changeExitPropHomet}
-						title={'MERCH'}
-						direction={'rtl'}
-					/>
-				</div>
-				<div>
-					<SectionChangeLink
-						weGoTo={'/ART'}
-						exitAnimationDirection={changeExitPropHomet}
-						title={'ART'}
-						direction={'rtl'}
-					/>
-				</div>
-				<div>
-					<SectionChangeLink
-						weGoTo={'/TATTOO'}
-						exitAnimationDirection={changeExitPropHomet}
-						title={'TATTOO'}
-						direction={'rtl'}
-					/>
-				</div>
+			<div
+				className={'section-header'}
+				style={{
+					padding: '0rem 1rem',
+					display: 'flex',
+					justifyContent: 'space-between',
+					alignItems: 'center',
+				}}
+			>
+				<SectionChangeLink
+					weGoTo={'/TATTOO'}
+					exitAnimationDirection={changeExitPropHomet}
+					title={'TATTOO'}
+					direction={'rtl'}
+				/>
+				<SectionChangeLink
+					weGoTo={'/ART'}
+					exitAnimationDirection={changeExitPropHomet}
+					title={'ART'}
+					direction={'rtl'}
+				/>
+				<SectionChangeLink
+					weGoTo={'/MERCH'}
+					exitAnimationDirection={changeExitPropHomet}
+					title={'MERCH'}
+					direction={'initial'}
+				/>
 			</div>
 			<div
 				className=" flow-content"
@@ -129,7 +128,7 @@ export default function Login() {
 			</div>
 			<div>
 				<motion.div
-					style={{ position: 'fixed', bottom: 40 }}
+					style={{ position: 'fixed', bottom: 40, padding: '0rem 1rem' }}
 					variants={routeVariantsNormal}
 					initial="hidden"
 					animate="visible"
@@ -143,7 +142,12 @@ export default function Login() {
 					/>
 				</motion.div>
 				<motion.div
-					style={{ position: 'fixed', bottom: 40, right: 16 }}
+					style={{
+						position: 'fixed',
+						bottom: 40,
+						right: 0,
+						padding: '0rem 2rem',
+					}}
 					variants={routeVariantsNormal}
 					initial="hidden"
 					animate="visible"

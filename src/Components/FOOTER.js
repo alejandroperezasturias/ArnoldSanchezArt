@@ -14,7 +14,7 @@ export function InstagramLinkFooter({ hoverOn, setHoverOn }) {
 				<motion.h3
 					onHoverStart={() => setHoverOn(true)}
 					onHoverEnd={() => setHoverOn(false)}
-					className={'red text-400'}
+					className={'red text-600'}
 				>
 					@arnolsegchez
 				</motion.h3>
@@ -59,9 +59,9 @@ export default function FOOTER() {
 						'--flow-spacer': '.4rem',
 					}}
 				>
-					<h3>instagram</h3>
+					<h3 className={'text-600'}>instagram</h3>
 					<InstagramLinkFooter setHoverOn={setHoverOn} hoverOn={hoverOn} />
-					<h3>instagram</h3>
+					<h3 className={'text-600'}>instagram</h3>
 					<InstagramLinkFooter setHoverOn={setHoverOn} hoverOn={hoverOn} />
 				</div>
 			</div>

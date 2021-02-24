@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import firebase from 'firebase/app';
 import { auth } from './firebase';
 import { motion } from 'framer-motion';
 import {
@@ -9,34 +8,22 @@ import {
 	changeExitPropHomet,
 } from '../Animations/animation';
 import SectionChangeLink from '../Animations/SectionChangeLink';
-import FORM from './FORM';
-import { useHistory } from 'react-router-dom';
+import FormRecoverPassword from './FORMFORGOTPASSWORD';
 
-export default function LOGIN() {
-	const history = useHistory();
+export default function Login() {
 	const [error, setError] = useState();
+	const [success, setSuccess] = useState();
 
-	const signInWithGoogle = async () => {
+	const recoverPassword = async (event, email) => {
 		try {
-			await auth.signInWithPopup(
-				new firebase.auth.GoogleAuthProvider()
-			);
-			history.push('/CUSTOMER');
-		} catch (error) {
-			console.error(error);
-			setError(error.message);
-		}
-	};
-
-	const signInWithEmail = async (event, mail, password) => {
-		event.preventDefault();
-		try {
-			await auth.signInWithEmailAndPassword(mail, password);
+			event.preventDefault();
+			await auth.sendPasswordResetEmail(email);
 			setError();
-			history.push('/CUSTOMER');
+			setSuccess('Check your inbox for further instructions');
 		} catch (error) {
 			console.error(error.message);
 			setError(error.message);
+			setSuccess();
 		}
 	};
 
@@ -93,11 +80,10 @@ export default function LOGIN() {
 						alignItems: 'center',
 					}}
 				></div>
-				<FORM
-					signIn={signInWithGoogle}
-					signInWithEmail={signInWithEmail}
+				<FormRecoverPassword
 					error={error}
-					method={null}
+					success={success}
+					recoverPassword={recoverPassword}
 					setError={setError}
 				/>
 			</div>

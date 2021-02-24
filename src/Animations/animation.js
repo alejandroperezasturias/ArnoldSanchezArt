@@ -3,7 +3,32 @@ export const routeVariants = {
 		opacity: 0,
 		y: 10,
 		transition: {
+			duration: 0.5,
+		},
+	},
+	visible: {
+		opacity: 1,
+		y: 0,
+		transition: {
+			duration: 0.5,
+		},
+	},
+	exit: {
+		opacity: 0,
+		y: 10,
+		transition: {
+			duration: 0.5,
+		},
+	},
+};
+
+export const routeVariantsNormal = {
+	hidden: {
+		opacity: 0,
+		y: -20,
+		transition: {
 			duration: 1,
+			ease: 'easeInOut',
 		},
 	},
 	visible: {
@@ -11,35 +36,15 @@ export const routeVariants = {
 		y: 0,
 		transition: {
 			duration: 1,
+			ease: 'easeInOut',
 		},
 	},
 	exit: {
 		opacity: 0,
-		y: 10,
+		y: -20,
 		transition: {
 			duration: 1,
-		},
-	},
-	
-};
-
-export const routeVariantsNormal = {
-	hidden: {
-		opacity: 0,
-		transition: {
-			duration: 1,
-		},
-	},
-	visible: {
-		opacity: 1,
-		transition: {
-			duration: 1,
-		},
-	},
-	exit: {
-		opacity: 0,
-		transition: {
-			duration: 1,
+			ease: 'easeInOut',
 		},
 	},
 };
@@ -73,21 +78,21 @@ export const heroVariants = {
 		opacity: 0,
 		y: 10,
 		transition: {
-			duration: 1,
+			duration: 0.5,
 		},
 	},
 	visible: {
 		opacity: 1,
 		y: 0,
 		transition: {
-			duration: 1,
+			duration: 0.5,
 		},
 	},
 	exit: {
 		opacity: 0,
 		y: 10,
 		transition: {
-			duration: 1,
+			duration: 0.5,
 		},
 	},
 };
@@ -97,7 +102,7 @@ export function changeExitPropRight() {
 		opacity: 0,
 		x: +30,
 		transition: {
-			duration: 1,
+			duration: 0.5,
 		},
 	};
 }
@@ -107,18 +112,17 @@ export function changeExitPropLeft() {
 		opacity: 0,
 		x: -30,
 		transition: {
-			duration: 1,
+			duration: 0.5,
 		},
 	};
 }
 
-
 export function changeExitPropHomet() {
-	 routeVariants['exit'] = {
+	routeVariants['exit'] = {
 		opacity: 0,
 		y: 10,
 		transition: {
-			duration: 1,
+			duration: 0.5,
 		},
-}
+	};
 }
