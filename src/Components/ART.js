@@ -9,6 +9,7 @@ import {
 import Gallery from '../Animations/Gallery';
 import SectionChangeLink from '../Animations/SectionChangeLink';
 import FOOTER from './FOOTER';
+import BURGER from './BURGER'
 
 export default function ART() {
 	return (
@@ -30,7 +31,10 @@ export default function ART() {
 							direction={'rtl'}
 						/>
 					</div>
-					<h2 className="gradient">ART</h2>
+					<div style={{ textAlign: 'center' }}>
+						<h2 className="gradient">ART</h2>
+					</div>
+					<BURGER/>
 					<div>
 						<SectionChangeLink
 							weGoTo={'/MERCH'}

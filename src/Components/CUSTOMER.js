@@ -26,6 +26,7 @@ import {
 	makeStyles,
 } from '@material-ui/core/styles';
 import { AuthContext } from '../App';
+import BURGER from './BURGER'
 
 function SaveCard() {
 	const stripe = useStripe();
@@ -167,6 +168,7 @@ function SaveCard() {
 						direction={'rtl'}
 					/>
 					<USER user={user} />
+					<BURGER/>
 					<SectionChangeLink
 						weGoTo={'/MERCH'}
 						exitAnimationDirection={changeExitPropHomet}

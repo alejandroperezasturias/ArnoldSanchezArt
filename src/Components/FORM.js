@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { Grid, Paper, Button, Typography, Link } from '@material-ui/core';
 import {
@@ -10,6 +10,8 @@ import googleIcon from '../images/google-icon.svg';
 import { motion } from 'framer-motion';
 import { Link as LinkRouter } from 'react-router-dom';
 import { Alert } from '@material-ui/lab';
+import { AuthContext } from '../App';
+
 export const spanQuantityAnimation = {
 	open: {
 		x: ['0%', '3%', '2%', '1%', '0%', '-1%', '-2%', '-3%', '-2%', '-1%', '0%'],
@@ -19,6 +21,8 @@ export const spanQuantityAnimation = {
 		x: '0%',
 	},
 };
+
+
 
 export default function Form({
 	signIn,
@@ -31,6 +35,7 @@ export default function Form({
 	const [email, setEmail] = useState('');
 	const [name, setName] = useState('');
 	const [password, setPassword] = useState('');
+	const { fromCheckout } = useContext(AuthContext);
 
 	useEffect(() => {
 		setError('');
@@ -92,6 +97,16 @@ export default function Form({
 				animate={error ? 'open' : 'close'}
 				variants={spanQuantityAnimation}
 			>
+				<div style={{ minHeight: '4rem' }}>
+					{fromCheckout && (
+						<Alert
+							severity="success"
+							style={{ color: 'white', marginTop: '1rem' }}
+						>
+							Please {!method ? 'log in' : 'sign up'} to proceed to checkout
+						</Alert>
+					)}
+				</div>
 				<Grid>
 					<Paper elevation={3} className={formClass.form}>
 						<form
@@ -216,6 +231,7 @@ export default function Form({
 						</Alert>
 					)}
 				</div>
+				
 			</motion.div>
 		</ThemeProvider>
 	);

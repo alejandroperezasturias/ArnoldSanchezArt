@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState, useContext } from 'react';
 import firebase from 'firebase/app';
 import { auth, db } from './firebase';
 import { motion } from 'framer-motion';
@@ -11,10 +11,12 @@ import {
 import { useHistory } from 'react-router-dom';
 import SectionChangeLink from '../Animations/SectionChangeLink';
 import FORM from './FORM';
+import { AuthContext } from '../App';
 
 export default function Login() {
 	const history = useHistory();
 	const [error, setError] = useState();
+	const { setFromCheckOut } = useContext(AuthContext);
 
 	const signInWithGoogle = async () => {
 		try {
@@ -31,6 +33,7 @@ export default function Login() {
 					{ merge: true }
 				);
 			history.push('/CUSTOMER');
+			setFromCheckOut(false);
 			setError();
 		} catch (error) {
 			console.error(error);
@@ -56,6 +59,7 @@ export default function Login() {
 				{ merge: true }
 			);
 			setError();
+			setFromCheckOut(false);
 			history.push('/CUSTOMER');
 		} catch (error) {
 			console.error(error.message);

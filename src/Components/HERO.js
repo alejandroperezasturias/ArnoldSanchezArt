@@ -24,13 +24,14 @@ import FOOTER from './FOOTER';
 import SectionChangeLink from '../Animations/SectionChangeLink';
 import USER from './USER';
 import { AuthContext } from '../App';
+import BURGER from './BURGER';
 
 export function SectionChangeLinkHero({ weGoTo, height, title, scaleText }) {
 	const [hoverOn, setHoverOn] = useState(false);
 
 	return (
 		<>
-			<Link to={weGoTo} className={'navigation-link'}>
+			<Link to={weGoTo} className={'navigation-link-hero'}>
 				<motion.div
 					style={{ height }}
 					className={'hero-scroll-progress split center-center'}
@@ -166,6 +167,7 @@ export default function HERO() {
 				</div>
 
 				{user && <USER user={user} />}
+				<BURGER />
 				<SectionChangeLink
 					weGoTo={'/MERCH'}
 					exitAnimationDirection={changeExitPropLeft}
@@ -174,7 +176,7 @@ export default function HERO() {
 				/>
 			</div>
 			<a
-				href="http://localhost:3001/"
+				href="http://localhost:3000/"
 				aria-label="acme home page"
 				className={'hero-logo split center-center'}
 			>

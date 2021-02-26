@@ -48,6 +48,10 @@ html {
 	position: relative;
 }
 
+.no-scroll-two {
+	overflow: hidden;
+}
+
 body {
 	overflow-x: hidden;
 	position: relative;
@@ -224,7 +228,8 @@ h1 {
 	font-weight: var(--fw-400);
 }
 
-.appointment-button:hover {
+.appointment-button:hover,
+.btn:hover {
 	border: 1px solid #727272;
 }
 
@@ -281,12 +286,23 @@ h1 {
 	transition: background-color 250ms ease-in-out;
 }
 
-.navigation-link {
+.navigation-link,
+.navigation-link-hero {
 	color: var(--clr-neutral-100);
 	position: relative;
 }
 .navigation-link h3 {
 	color: var(--clr-neutral-100);
+}
+
+.navigation-link {
+	display: none;
+}
+
+@media (min-width: 60em) {
+	.navigation-link {
+		display: block;
+	}
 }
 
 /* SECTION */
@@ -299,7 +315,13 @@ h1 {
 	display: flex;
 	height: 15vh;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: center;
+}
+
+@media (min-width: 60em) {
+	.section-header {
+		justify-content: space-between;
+	}
 }
 
 .section-header h2 {
@@ -472,4 +494,102 @@ h1 {
 	color: 'white' !important;
 }
 
-/*  */
+/*  CARD MERC*/
+
+.merch-card-increase-quantity-wrapper > * + * {
+	margin-left: 2rem;
+}
+
+/* Merch */
+
+.merch-wrapper {
+	flex-direction: column;
+}
+
+.merch-wrapper > * + * {
+	margin: 5rem 0 0 0;
+}
+
+.merchcard-info-wrapper > * + * {
+	margin-top: 1rem;
+}
+@media (min-width: 90em) {
+	.merch-wrapper {
+		flex-direction: row;
+	}
+	.merch-wrapper > * + * {
+		margin: 0rem 0rem 0rem 0rem;
+	}
+	.merchcard-info-wrapper > * + * {
+		margin-top: 2rem;
+	}
+}
+
+/* Burger */
+
+/* Position the Burger Menu where it belongs */
+.burger {
+	z-index: 3;
+	padding: 1.5rem 1.5rem 1.5rem 0;
+	position: absolute;
+	top: 1.5rem;
+	right: 1rem;
+}
+
+@media (min-width: 60em) {
+	.burger {
+		display: none;
+	}
+}
+
+/* Styling the burger menu lines */
+.burger > div {
+	--flow-spacer: 0.36em;
+	width: 3rem;
+	height: 0.15rem;
+	border-radius: 10px;
+	transition: all 0.3s linear;
+	transform-origin: 1px;
+	background: rgb(201, 210, 212);
+	background: linear-gradient(
+		90deg,
+		rgba(201, 210, 212, 1) 0%,
+		rgba(255, 255, 255, 1) 100%
+	);
+}
+
+.about-contact-wrapper {
+	position: fixed;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: center;
+	/* Matching the App padding */
+	padding-right: 3rem;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	background: red;
+	width: 100%;
+	font-size: var(--fs-600);
+	z-index: 2;
+}
+
+.about-contact-wrapper > * + * {
+	margin: var(--br) 0 0 0;
+}
+
+.burger-menu-links {
+	display: block !important;
+	cursor: pointer;
+	z-index: 4;
+	font-size: var(--fs-600);
+	color: var(--clr-neutral-100);
+}
+
+.burger-menu-links h3 {
+	color: white !important;
+	background: initial;
+	-webkit-text-fill-color: initial;
+	font-size: var(--fs-900);
+}

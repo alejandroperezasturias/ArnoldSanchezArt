@@ -29,7 +29,7 @@ export async function fetchFromAPI(endpointURL, opts) {
 
 const formatter = new Intl.NumberFormat('de-DE', {
   style: "currency",
-  currency: "USD"
+  currency: "EUR"
 })
 
 export  function formatCurrency(amount) {

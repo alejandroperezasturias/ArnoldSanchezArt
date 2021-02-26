@@ -9,37 +9,58 @@ import {
 } from '../Animations/animation';
 import SectionChangeLink from '../Animations/SectionChangeLink';
 import FOOTER from './FOOTER';
-import { fetchFromAPI } from '../helpers/helpers';
+import { fetchFromAPI, formatCurrency } from '../helpers/helpers';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { AuthContext } from '../App';
+import { products } from '../helpers/products';
+import SHOPPINGCART from './SHOPPINGCART';
+import BURGER from './BURGER';
 
 export default function MERCH() {
 	const stripe = useStripe();
 	const elements = useElements();
-	const { user } = useContext(AuthContext);
-	const [amount, setAmount] = useState(0);
+	const { user, setShoppingCart, shoppingCart } = useContext(AuthContext);
 	const [paymentIntent, setPaymentIntent] = useState();
 
-	const changeQuantity = (v) => {
-		setAmount((oldQ) => Math.max(0, oldQ + v));
+	// Shopping Cart
+
+	const addToShoppingCart = (id, amount) => {
+		const shoppingCartCopy = [...shoppingCart];
+		const existingItem = shoppingCartCopy.find((entry) => entry.id === id);
+		if (existingItem) {
+			existingItem.amount = existingItem.amount + amount;
+			const existingItemIndex = shoppingCartCopy.findIndex(
+				(entry) => entry.id === id
+			);
+			shoppingCartCopy[existingItemIndex] = existingItem;
+			// shoppingCartCopy = [...shoppingCartCopy, 1];
+			setShoppingCart(shoppingCartCopy);
+		} else {
+			setShoppingCart((items) => {
+				return [...items, { id: id, amount }];
+			});
+		}
+	};
+
+	const deleteFromShoppingCart = (id) => {
+		const existingItem = shoppingCart.find((entry) => entry.id === id);
+		console.log(existingItem);
+		if (!existingItem) return;
+		const shoppingCartCopy = [...shoppingCart];
+		setShoppingCart(shoppingCartCopy.filter((entry) => entry.id !== id));
 	};
 
 	const createPaymentIntent = async (event) => {
 		// Clamp amount to Stripe min/max
-		const validAmonut = Math.min(Math.max(amount, 1), 9999999);
-		setAmount(validAmonut);
+		// const validAmonut = Math.min(Math.max(amount, 1), 9999999);
+		// setAmount(validAmonut);
 
 		// Make the API Request
 		const pi = await fetchFromAPI('payments', {
-			body: { price: 'price_1IO4EVK1UQqe4VM9h1hsTXlG', quantity: validAmonut },
+			body: { price: 'price_1IO4EVK1UQqe4VM9h1hsTXlG', quantity: 2 },
 		});
 		setPaymentIntent(pi);
 	};
-
-	useEffect(() => {
-		console.log(paymentIntent);
-		console.log(user);
-	}, [paymentIntent]);
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
@@ -80,7 +101,11 @@ export default function MERCH() {
 						title={'ART'}
 						direction={'rtl'}
 					/>
-					<h2 className="gradient">MERCH</h2>
+					<div style={{ textAlign: 'center', marginTop: '5rem' }}>
+						<h2 className="gradient">MERCH</h2>
+						<SHOPPINGCART deleteFromShoppingCart={deleteFromShoppingCart} />
+					</div>
+					<BURGER />
 					<SectionChangeLink
 						weGoTo={'/TATTOO'}
 						exitAnimationDirection={changeExitPropLeft}
@@ -88,44 +113,40 @@ export default function MERCH() {
 						direction={'initial'}
 					/>
 				</div>
+
 				<div className="split center-center">
-					<div className={'section-body xl-space'}>
-						<div>
-							<p>PRICE: 333</p>
-							<h3>cool stickers</h3>
-							<button
-								onClick={() => {
-									changeQuantity(-1);
-								}}
-							>
-								-
-							</button>
-							<span>{amount}</span>
-							<button
-								onClick={() => {
-									changeQuantity(1);
-								}}
-							>
-								+
-							</button>
-							<img
-								src={
-									'https://images.unsplash.com/photo-1612902376658-d4d46558ee04?ixid=MXwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'
-								}
-								width="250px"
-								alt="product"
-							></img>
-						</div>
-						<div style={{ minHeight: '20rem' }}></div>
-						<button onClick={createPaymentIntent} disabled={paymentIntent}>
-							Ready to Pay
-						</button>
-						<form onSubmit={handleSubmit} style={{ backgroundColor: 'white' }}>
-							<CardElement />
-							<button type="submit">Pay</button>
-						</form>
+					<div
+						className={'merch-wrapper'}
+						style={{
+							justifyContent: 'space-between',
+							alignItems: 'center',
+							width: '70%',
+							marginTop: '10rem',
+							display: 'flex',
+						}}
+					>
+						{products.map((product) => {
+							return (
+								<MerchCard
+									key={product.price_id}
+									price={product.price}
+									name={product.name}
+									price_id={product.price_id}
+									image={product.image}
+									addToShoppingCart={addToShoppingCart}
+								/>
+							);
+						})}
 					</div>
 				</div>
+				<div style={{ minHeight: '40rem' }}></div>
+				<button onClick={createPaymentIntent} disabled={paymentIntent}>
+					Ready to Pay
+				</button>
+				<form onSubmit={handleSubmit} style={{ backgroundColor: 'white' }}>
+					<CardElement />
+					<button type="submit">Pay</button>
+				</form>
 				<div>
 					<motion.div
 						style={{ position: 'fixed', bottom: 40 }}
@@ -159,5 +180,67 @@ export default function MERCH() {
 				<FOOTER />
 			</motion.div>
 		</>
+	);
+}
+
+export function MerchCard({ price, name, price_id, addToShoppingCart, image }) {
+	const [amount, setAmount] = useState(0);
+	const changeQuantity = (v) => {
+		setAmount((oldQ) => Math.max(0, oldQ + v));
+	};
+	return (
+		<div
+			id={price_id}
+			className={'center-center split'}
+			style={{ '--split-spacer': '3rem' }}
+		>
+			<img src={image} width="250px" alt="arnol tattoo bembibre product"></img>
+			<div className="merchcard-info-wrapper">
+				<h3>{name}</h3>
+				<p>{formatCurrency(price * 1000)}</p>
+				<div className={'merch-card-increase-quantity-wrapper'}>
+					<button
+						className="btn gradient"
+						onClick={() => {
+							changeQuantity(-1);
+						}}
+						style={{
+							padding: '.3rem .3rem',
+							width: '40px',
+							height: '40px',
+							borderRadius: '100%',
+						}}
+					>
+						-
+					</button>
+					<span>{amount}</span>
+					<button
+						style={{
+							padding: '.3rem .3rem',
+							width: '40px',
+							height: '40px',
+							borderRadius: '100%',
+						}}
+						className="btn gradient"
+						onClick={() => {
+							changeQuantity(1);
+						}}
+					>
+						+
+					</button>
+				</div>
+
+				<button
+					onClick={() => {
+						addToShoppingCart(price_id, amount);
+						setAmount(0);
+					}}
+					disabled={amount === 0}
+					className="btn gradient"
+				>
+					ADD TO CART
+				</button>
+			</div>
+		</div>
 	);
 }

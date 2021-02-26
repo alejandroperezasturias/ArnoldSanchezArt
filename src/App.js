@@ -18,6 +18,7 @@ export const AuthContext = React.createContext({});
 function App() {
 	const location = useLocation();
 	const [user, setUser] = useState();
+	const [fromCheckout, setFromCheckOut] = useState(false)
 	useEffect(() => {
 		const unlisten = auth.onAuthStateChanged((authUser) => {
 			setUser(authUser);
@@ -25,9 +26,17 @@ function App() {
 		return unlisten;
 	});
 
+	const [shoppingCart, setShoppingCart]= useState([])
+
 	const authContextValue = {
 		user,
+		setShoppingCart,
+		shoppingCart,
+		setFromCheckOut,
+		fromCheckout
 	};
+
+
 
 	return (
 		<div className="App">

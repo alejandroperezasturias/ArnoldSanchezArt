@@ -11,6 +11,7 @@ import FOOTER from './FOOTER';
 import ARNOLD from '../images/arnol.jpg';
 import LEAF from '../images/leafTattpp.svg';
 import LETTERS from '../images/lettersTattoo.svg';
+import BURGER from './BURGER';
 
 export default function TATTOO() {
 	return (
@@ -32,7 +33,10 @@ export default function TATTOO() {
 							direction={'rtl'}
 						/>
 					</div>
-					<h2 className="gradient">TATTOO</h2>
+					<div style={{ textAlign: 'center' }}>
+						<h2 className="gradient">TATTOO</h2>
+					</div>
+					<BURGER />
 					<div>
 						<SectionChangeLink
 							weGoTo={'/ART'}
@@ -45,7 +49,7 @@ export default function TATTOO() {
 
 				<div
 					className={'split center-center tattoo-section'}
-					style={{ minHeight: '70vh' }}
+					style={{ minHeight: '80vh' }}
 				>
 					<div className={'split'}>
 						<div>
@@ -96,7 +100,6 @@ export default function TATTOO() {
 				</div>
 
 				<FOOTER />
-
 				<div>
 					<motion.div
 						style={{ position: 'fixed', bottom: 40 }}

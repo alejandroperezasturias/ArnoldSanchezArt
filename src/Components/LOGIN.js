@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import firebase from 'firebase/app';
 import { auth } from './firebase';
 import { motion } from 'framer-motion';
@@ -11,16 +11,17 @@ import {
 import SectionChangeLink from '../Animations/SectionChangeLink';
 import FORM from './FORM';
 import { useHistory } from 'react-router-dom';
-
+import { AuthContext } from '../App';
+import BURGER from './BURGER'
 export default function LOGIN() {
 	const history = useHistory();
 	const [error, setError] = useState();
+	const { setFromCheckOut } = useContext(AuthContext);
 
 	const signInWithGoogle = async () => {
 		try {
-			await auth.signInWithPopup(
-				new firebase.auth.GoogleAuthProvider()
-			);
+			await auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+			setFromCheckOut(false);
 			history.push('/CUSTOMER');
 		} catch (error) {
 			console.error(error);
@@ -34,6 +35,7 @@ export default function LOGIN() {
 			await auth.signInWithEmailAndPassword(mail, password);
 			setError();
 			history.push('/CUSTOMER');
+			setFromCheckOut(false);
 		} catch (error) {
 			console.error(error.message);
 			setError(error.message);
@@ -66,6 +68,7 @@ export default function LOGIN() {
 						direction={'rtl'}
 					/>
 				</div>
+				<BURGER />
 				<div>
 					<SectionChangeLink
 						weGoTo={'/TATTOO'}
