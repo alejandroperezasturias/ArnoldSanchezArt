@@ -13,7 +13,6 @@ export async function fetchFromAPI(endpointURL, opts) {
   const user = auth.currentUser;
   // GetIdToken for JWT AUTH
   const token = user && (await user.getIdToken());
-  console.log(body)
   const res = await fetch(`${API}/${endpointURL}`, {
     method,
     ...(body && { body: JSON.stringify(body) }),

@@ -1,26 +1,21 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { motion } from 'framer-motion';
 import {
 	routeVariants,
 	changeExitPropRight,
-	changeExitPropLeft,
-	routeVariantsNormal,
-	changeExitPropHomet,
+	changeExitPropLeft
 } from '../Animations/animation';
 import SectionChangeLink from '../Animations/SectionChangeLink';
 import FOOTER from './FOOTER';
-import { fetchFromAPI, formatCurrency } from '../helpers/helpers';
-import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import { formatCurrency } from '../helpers/helpers';
 import { AuthContext } from '../App';
 import { products } from '../helpers/products';
 import SHOPPINGCART from './SHOPPINGCART';
 import BURGER from './BURGER';
+import FloatingLinks from './FLOATINGLINKS'
 
 export default function MERCH() {
-	const stripe = useStripe();
-	const elements = useElements();
-	const { user, setShoppingCart, shoppingCart } = useContext(AuthContext);
-	const [paymentIntent, setPaymentIntent] = useState();
+	const { shoppingCart, setShoppingCart, deleteFromShoppingCart} = useContext(AuthContext);
 
 	// Shopping Cart
 
@@ -33,7 +28,6 @@ export default function MERCH() {
 				(entry) => entry.id === id
 			);
 			shoppingCartCopy[existingItemIndex] = existingItem;
-			// shoppingCartCopy = [...shoppingCartCopy, 1];
 			setShoppingCart(shoppingCartCopy);
 		} else {
 			setShoppingCart((items) => {
@@ -42,47 +36,7 @@ export default function MERCH() {
 		}
 	};
 
-	const deleteFromShoppingCart = (id) => {
-		const existingItem = shoppingCart.find((entry) => entry.id === id);
-		console.log(existingItem);
-		if (!existingItem) return;
-		const shoppingCartCopy = [...shoppingCart];
-		setShoppingCart(shoppingCartCopy.filter((entry) => entry.id !== id));
-	};
-
-	const createPaymentIntent = async (event) => {
-		// Clamp amount to Stripe min/max
-		// const validAmonut = Math.min(Math.max(amount, 1), 9999999);
-		// setAmount(validAmonut);
-
-		// Make the API Request
-		const pi = await fetchFromAPI('payments', {
-			body: { price: 'price_1IO4EVK1UQqe4VM9h1hsTXlG', quantity: 2 },
-		});
-		setPaymentIntent(pi);
-	};
-
-	const handleSubmit = async (event) => {
-		event.preventDefault();
-
-		const cardElement = elements.getElement(CardElement);
-
-		// Confirm Card Payment
-		const {
-			paymentIntent: updatedPaymentIntent,
-			error,
-		} = await stripe.confirmCardPayment(paymentIntent.client_secret, {
-			payment_method: { card: cardElement },
-			receipt_email: user.email,
-		});
-
-		if (error) {
-			console.error(error.payment_intent);
-			error.payment_intent && setPaymentIntent(error.payment_intent);
-		} else {
-			setPaymentIntent(updatedPaymentIntent);
-		}
-	};
+	
 
 	return (
 		<>
@@ -139,44 +93,7 @@ export default function MERCH() {
 						})}
 					</div>
 				</div>
-				<div style={{ minHeight: '40rem' }}></div>
-				<button onClick={createPaymentIntent} disabled={paymentIntent}>
-					Ready to Pay
-				</button>
-				<form onSubmit={handleSubmit} style={{ backgroundColor: 'white' }}>
-					<CardElement />
-					<button type="submit">Pay</button>
-				</form>
-				<div>
-					<motion.div
-						style={{ position: 'fixed', bottom: 40 }}
-						variants={routeVariantsNormal}
-						initial="hidden"
-						animate="visible"
-						exit="exit"
-					>
-						<SectionChangeLink
-							weGoTo={'/'}
-							exitAnimationDirection={changeExitPropHomet}
-							title={'HOME'}
-							direction={'rtl'}
-						/>
-					</motion.div>
-					<motion.div
-						style={{ position: 'fixed', bottom: 40, right: 16 }}
-						variants={routeVariantsNormal}
-						initial="hidden"
-						animate="visible"
-						exit="exit"
-					>
-						<SectionChangeLink
-							weGoTo={'/CONTACT'}
-							exitAnimationDirection={changeExitPropRight}
-							title={'CONTACT'}
-							direction={'initial'}
-						/>
-					</motion.div>
-				</div>
+				<FloatingLinks/>
 				<FOOTER />
 			</motion.div>
 		</>

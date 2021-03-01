@@ -12,6 +12,7 @@ import ARNOLD from '../images/arnol.jpg';
 import LEAF from '../images/leafTattpp.svg';
 import LETTERS from '../images/lettersTattoo.svg';
 import BURGER from './BURGER';
+import FloatingLinks from './FLOATINGLINKS';
 
 export default function TATTOO() {
 	return (
@@ -64,8 +65,22 @@ export default function TATTOO() {
 							></img>
 						</div>
 						<div className="tattoo-section-tattoo-photos-laptop">
-							<img src={LEAF} alt="Arnold Bembibre Leon Tattoo Leaf"></img>
-							<img src={LETTERS} alt="Arnold Bembibre Leon Letters Leaf"></img>
+							<img
+								style={{
+									minWidth: '100px',
+									objectFit: 'cover',
+								}}
+								src={LEAF}
+								alt="Arnold Bembibre Leon Tattoo Leaf"
+							></img>
+							<img
+								style={{
+									minWidth: '100px',
+									objectFit: 'cover',
+								}}
+								src={LETTERS}
+								alt="Arnold Bembibre Leon Letters Leaf"
+							></img>
 						</div>
 					</div>
 					<div className="flow-content tattoo-section-text">
@@ -100,36 +115,7 @@ export default function TATTOO() {
 				</div>
 
 				<FOOTER />
-				<div>
-					<motion.div
-						style={{ position: 'fixed', bottom: 40 }}
-						variants={routeVariantsNormal}
-						initial="hidden"
-						animate="visible"
-						exit="exit"
-					>
-						<SectionChangeLink
-							weGoTo={'/'}
-							exitAnimationDirection={changeExitPropHomet}
-							title={'HOME'}
-							direction={'rtl'}
-						/>
-					</motion.div>
-					<motion.div
-						style={{ position: 'fixed', bottom: 40, right: 16 }}
-						variants={routeVariantsNormal}
-						initial="hidden"
-						animate="visible"
-						exit="exit"
-					>
-						<SectionChangeLink
-							weGoTo={'/CONTACT'}
-							exitAnimationDirection={changeExitPropRight}
-							title={'CONTACT'}
-							direction={'initial'}
-						/>
-					</motion.div>
-				</div>
+				<FloatingLinks />
 			</motion.div>
 		</>
 	);

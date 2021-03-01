@@ -4,8 +4,6 @@ import { auth } from './firebase';
 import { motion } from 'framer-motion';
 import {
 	routeVariants,
-	changeExitPropRight,
-	routeVariantsNormal,
 	changeExitPropHomet,
 } from '../Animations/animation';
 import SectionChangeLink from '../Animations/SectionChangeLink';
@@ -13,6 +11,8 @@ import FORM from './FORM';
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../App';
 import BURGER from './BURGER'
+import FloatingLinks from './FLOATINGLINKS'
+
 export default function LOGIN() {
 	const history = useHistory();
 	const [error, setError] = useState();
@@ -104,36 +104,7 @@ export default function LOGIN() {
 					setError={setError}
 				/>
 			</div>
-			<div>
-				<motion.div
-					style={{ position: 'fixed', bottom: 40 }}
-					variants={routeVariantsNormal}
-					initial="hidden"
-					animate="visible"
-					exit="exit"
-				>
-					<SectionChangeLink
-						weGoTo={'/'}
-						exitAnimationDirection={changeExitPropHomet}
-						title={'HOME'}
-						direction={'rtl'}
-					/>
-				</motion.div>
-				<motion.div
-					style={{ position: 'fixed', bottom: 40, right: 16 }}
-					variants={routeVariantsNormal}
-					initial="hidden"
-					animate="visible"
-					exit="exit"
-				>
-					<SectionChangeLink
-						weGoTo={'/CONTACT'}
-						exitAnimationDirection={changeExitPropRight}
-						title={'CONTACT'}
-						direction={'initial'}
-					/>
-				</motion.div>
-			</div>
+			<FloatingLinks/>
 			<div style={{ minHeight: '5rem' }}></div>
 		</motion.div>
 	);

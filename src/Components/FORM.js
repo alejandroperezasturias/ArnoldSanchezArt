@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import TextField from '@material-ui/core/TextField';
-import { Grid, Paper, Button, Typography, Link } from '@material-ui/core';
+import { Grid, Paper, Button, Typography } from '@material-ui/core';
 import {
 	ThemeProvider,
 	createMuiTheme,
@@ -144,6 +144,7 @@ export default function Form({
 											label="Name"
 											value={name}
 											onInput={(e) => setName(e.target.value)}
+											variant="outlined"
 										/>
 									</Grid>
 								) : (
@@ -158,6 +159,7 @@ export default function Form({
 										type="email"
 										value={email}
 										onInput={(e) => setEmail(e.target.value)}
+										variant="outlined"
 									/>
 								</Grid>
 								<Grid item>
@@ -170,6 +172,7 @@ export default function Form({
 										onInput={(e) => setPassword(e.target.value)}
 										type="password"
 										autoComplete="current-password"
+										variant="outlined"
 									/>
 								</Grid>
 								<Grid item>

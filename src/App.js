@@ -13,6 +13,7 @@ import SIGNUP from './Components/SIGNUP';
 import LOGIN from './Components/LOGIN';
 import FORGOTPASSWORD from './Components/FORGOTPASSWORD';
 import { auth } from './Components/firebase';
+import { products } from './helpers/products';
 export const AuthContext = React.createContext({});
 
 function App() {
@@ -28,15 +29,45 @@ function App() {
 
 	const [shoppingCart, setShoppingCart]= useState([])
 
+
+	const [trolly, setTrolly] = useState([]);
+	useEffect(() => {
+		let listProducts = [];
+		shoppingCart.forEach((entry) => {
+			if (!entry.id) return;
+			const item = products.find((i) => entry.id === i.price_id);
+			const newItem = { ...item, amount: entry.amount };
+			listProducts = [...listProducts, newItem];
+			
+		});
+		setTrolly(listProducts);
+	}, [shoppingCart]);
+
+
+	const deleteFromShoppingCart = (id) => {
+		const existingItem = shoppingCart.find((entry) => entry.id === id);
+		if (!existingItem) return;
+		const shoppingCartCopy = [...shoppingCart];
+		setShoppingCart(shoppingCartCopy.filter((entry) => entry.id !== id));
+	};
+
+	const totalCents = trolly.reduce((sum, entry) => {
+		const item = products.find((i) => entry.price_id === i.price_id);
+		return sum + item.price * entry.amount;
+	}, 0);
+
+
 	const authContextValue = {
 		user,
 		setShoppingCart,
 		shoppingCart,
 		setFromCheckOut,
-		fromCheckout
+		fromCheckout,
+		totalCents,
+		trolly,	
+		deleteFromShoppingCart
+		
 	};
-
-
 
 	return (
 		<div className="App">

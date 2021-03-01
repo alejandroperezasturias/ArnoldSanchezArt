@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import TextField from '@material-ui/core/TextField';
-import { Grid, Paper, Button, Typography, Link } from '@material-ui/core';
+import { Grid, Paper, Button, Typography } from '@material-ui/core';
 import {
 	ThemeProvider,
 	createMuiTheme,
@@ -105,6 +105,7 @@ export default function FormRecoverPassword({
 										label="Email"
 										type="email"
 										value={email}
+										variant="outlined"
 										onInput={(e) => setEmail(e.target.value)}
 									/>
 								</Grid>

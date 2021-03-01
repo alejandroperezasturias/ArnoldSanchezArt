@@ -1,21 +1,14 @@
-import {
-	useState,
-	useContext,
-	useEffect,
-	useRef,
-	useLayoutEffect,
-} from 'react';
-import { titleAnim } from '../Animations/animation';
+import { useState, useContext, useRef, useLayoutEffect } from 'react';
 import { motion, useCycle } from 'framer-motion';
 import { AuthContext } from '../App';
-import { products } from '../helpers/products';
 import { formatCurrency } from '../helpers/helpers';
 import { useHistory } from 'react-router-dom';
+import TrollyItem from './TROLLYITEM';
 
 const sidebar = {
 	open: (height) => ({
 		// circle(radius, placements)
-		clipPath: `circle(${height + 110}px  at 0% 0%)`,
+		clipPath: `circle(${height + 300}px  at 100% 100%)`,
 		background: 'white',
 		transition: {
 			// type: 'spring',
@@ -43,28 +36,11 @@ const sidebar = {
 export default function SHOPPINGCART({ deleteFromShoppingCart }) {
 	const [isOpen, toggleOpen] = useCycle(false, true);
 	const containerRef = useRef(null);
-	const { height, width } = useDimensions(containerRef);
-	console.log(width);
-	const [trolly, setTrolly] = useState([]);
-	const { shoppingCart, user, setFromCheckOut } = useContext(AuthContext);
+	const { height } = useDimensions(containerRef);
+	const { user, setFromCheckOut, trolly, totalCents } = useContext(AuthContext);
 	const history = useHistory();
 
-	useEffect(() => {
-		let listProducts = [];
-		shoppingCart.forEach((entry) => {
-			if (!entry.id) return;
-			const item = products.find((i) => entry.id === i.price_id);
-			const newItem = { ...item, amount: entry.amount };
-			listProducts = [...listProducts, newItem];
-			console.log(newItem);
-		});
-		setTrolly(listProducts);
-	}, [shoppingCart]);
-
-	const totalCents = trolly.reduce((sum, entry) => {
-		const item = products.find((i) => entry.price_id === i.price_id);
-		return sum + item.price * entry.amount;
-	}, 0);
+	console.log(trolly);
 
 	const toCeckOut = () => {
 		if (user) {
@@ -119,7 +95,6 @@ export default function SHOPPINGCART({ deleteFromShoppingCart }) {
 					style={{
 						backgroundColor: 'white',
 						color: 'black',
-						borderRadius: '1rem',
 						textAlign: 'left',
 						position: 'absolute',
 						borderRadius: '0rem 0rem 1rem 1rem ',
@@ -134,7 +109,7 @@ export default function SHOPPINGCART({ deleteFromShoppingCart }) {
 					{trolly.map((item) => {
 						return (
 							<TrollyItem
-								key={item.price_id}
+								key={item.name}
 								price_id={item.price_id}
 								name={item.name}
 								amount={item.amount}
@@ -146,9 +121,11 @@ export default function SHOPPINGCART({ deleteFromShoppingCart }) {
 					<hr></hr>
 					<div>
 						<div hidden={trolly.length === 0}>
-							<p style={{ fontSize: 'var(--fs-300)' }}>
-								Total: {formatCurrency(totalCents * 1000)}{' '}
-							</p>
+							{totalCents && (
+								<p style={{ fontSize: 'var(--fs-300)' }}>
+									Total: {formatCurrency(totalCents * 1000)}{' '}
+								</p>
+							)}
 							<p style={{ fontSize: 'var(--fs-300)' }}></p>
 						</div>
 						<div style={{ marginTop: '.5rem' }}>
@@ -207,36 +184,3 @@ export const useDimensions = (ref) => {
 
 	return dimensions;
 };
-
-export function TrollyItem({
-	price,
-	amount,
-	name,
-	price_id,
-	deleteFromShoppingCart,
-}) {
-	return (
-		<motion.div key={price_id} variants={titleAnim}>
-			<p> {name}</p>
-			<p style={{ fontSize: 'var(	--fs-200)' }}>Items: {amount}</p>
-
-			<p style={{ fontSize: 'var(	--fs-200)' }}>
-				Price: {formatCurrency(price * amount * 1000)}
-			</p>
-			<button
-				className={'btn text'}
-				style={{
-					backgroundColor: 'red',
-					padding: '.2rem .5rem',
-					fontSize: 'var(	--fs-300)',
-					marginTop: '0.5rem',
-				}}
-				onClick={() => {
-					deleteFromShoppingCart(price_id);
-				}}
-			>
-				Delete
-			</button>
-		</motion.div>
-	);
-}

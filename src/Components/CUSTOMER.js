@@ -4,7 +4,7 @@ import {
 	formatCurrency,
 	timeConverter,
 } from '../helpers/helpers';
-import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+// import {  useStripe, useElements } from '@stripe/react-stripe-js';
 import { AuthCheck } from 'reactfire';
 import LOGIN from './LOGIN';
 import { auth, db } from './firebase';
@@ -12,8 +12,6 @@ import { motion } from 'framer-motion';
 import {
 	routeVariants,
 	changeExitPropHomet,
-	routeVariantsNormal,
-	changeExitPropRight,
 } from '../Animations/animation';
 import SectionChangeLink from '../Animations/SectionChangeLink';
 import USER from './USER';
@@ -27,16 +25,17 @@ import {
 } from '@material-ui/core/styles';
 import { AuthContext } from '../App';
 import BURGER from './BURGER'
+import FloatingLinks from './FLOATINGLINKS'
 
 function SaveCard() {
-	const stripe = useStripe();
-	const elements = useElements();
+	// const stripe = useStripe();
+	// const elements = useElements();
 	const [user2, setUser2] = useState();
-	const [setupIntent, setSetupIntent] = useState();
+	// const [setupIntent, setSetupIntent] = useState();
 	const [wallet, setWallet] = useState([]);
 	const [paymentIntents, setPaymentIntents] = useState([]);
 	const [selectCreditCart, setSelectedCreditCart] = useState();
-	const [loading, setLoading] = useState(false);
+	// const [loading, setLoading] = useState(false);
 	const { user } = useContext(AuthContext);
 
 	const getUserInfoFromDB = (user) => {
@@ -69,9 +68,9 @@ function SaveCard() {
 		setSelectedCreditCart(selectedCard[0]);
 	};
 
-	const cancelSetupIntent = () => {
-		setSetupIntent();
-	};
+	// const cancelSetupIntent = () => {
+	// 	setSetupIntent();
+	// };
 
 	useEffect(() => {
 		getWallet();
@@ -80,47 +79,47 @@ function SaveCard() {
 	}, [user]);
 
 	// Create the setup intent
-	const createSetupIntent = async () => {
-		setLoading(true);
-		const si = await fetchFromAPI('wallet');
-		si && setLoading(false);
-		setSetupIntent(si);
-	};
+	// const createSetupIntent = async () => {
+	// 	setLoading(true);
+	// 	const si = await fetchFromAPI('wallet');
+	// 	si && setLoading(false);
+	// 	setSetupIntent(si);
+	// };
 
 	// Handle the submission of card details
-	const handleSubmit = async (event) => {
-		event.preventDefault();
+	// const handleSubmit = async (event) => {
+	// 	event.preventDefault();
 
-		const cardElement = elements.getElement(CardElement);
+	// 	const cardElement = elements.getElement(CardElement);
 
-		// Confirm Card Setup
-		const {
-			setupIntent: updatedSetupIntent,
-			error,
-		} = await stripe.confirmCardSetup(setupIntent.client_secret, {
-			payment_method: { card: cardElement },
-		});
+	// 	// Confirm Card Setup
+	// 	const {
+	// 		setupIntent: updatedSetupIntent,
+	// 		error,
+	// 	} = await stripe.confirmCardSetup(setupIntent.client_secret, {
+	// 		payment_method: { card: cardElement },
+	// 	});
 
-		if (error) {
-			alert(error.message);
-			console.log(error);
-		} else {
-			setSetupIntent();
-			await getWallet();
+	// 	if (error) {
+	// 		alert(error.message);
+	// 		console.log(error);
+	// 	} else {
+	// 		setSetupIntent();
+	// 		await getWallet();
 
-			alert('Success! Card added to your wallet');
-		}
-	};
+	// 		alert('Success! Card added to your wallet');
+	// 	}
+	// };
 
 	// Handle delete credit card
-	const deleteCreditCard = async () => {
-		const success = await fetchFromAPI('detach', {
-			method: 'DELETE',
-			body: selectCreditCart.id,
-		});
-		success && getWallet();
-		success && console.log(success);
-	};
+	// const deleteCreditCard = async () => {
+	// 	const success = await fetchFromAPI('detach', {
+	// 		method: 'DELETE',
+	// 		body: selectCreditCart.id,
+	// 	});
+	// 	success && getWallet();
+	// 	success && console.log(success);
+	// };
 
 	const logOut = async () => {
 		await auth.signOut();
@@ -190,6 +189,7 @@ function SaveCard() {
 								<img
 									style={{ borderRadius: '50%', maxHeight: '140px' }}
 									src={user2?.displayImage}
+									alt="user-avatar"
 								></img>
 							)}
 						</div>
@@ -349,36 +349,7 @@ function SaveCard() {
 						</div>
 					</div>
 				</div>
-				<div>
-					<motion.div
-						style={{ position: 'fixed', bottom: 40 }}
-						variants={routeVariantsNormal}
-						initial="hidden"
-						animate="visible"
-						exit="exit"
-					>
-						<SectionChangeLink
-							weGoTo={'/'}
-							exitAnimationDirection={changeExitPropHomet}
-							title={'HOME'}
-							direction={'rtl'}
-						/>
-					</motion.div>
-					<motion.div
-						style={{ position: 'fixed', bottom: 40, right: 16 }}
-						variants={routeVariantsNormal}
-						initial="hidden"
-						animate="visible"
-						exit="exit"
-					>
-						<SectionChangeLink
-							weGoTo={'/CONTACT'}
-							exitAnimationDirection={changeExitPropRight}
-							title={'CONTACT'}
-							direction={'initial'}
-						/>
-					</motion.div>
-				</div>
+				<FloatingLinks/>
 				<div
 					className={'split center-center final-footer xl-space'}
 					style={{ '--split-spacer': '2rem' }}

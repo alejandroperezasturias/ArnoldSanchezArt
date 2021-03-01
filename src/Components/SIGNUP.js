@@ -4,14 +4,13 @@ import { auth, db } from './firebase';
 import { motion } from 'framer-motion';
 import {
 	routeVariants,
-	changeExitPropRight,
-	routeVariantsNormal,
 	changeExitPropHomet,
 } from '../Animations/animation';
 import { useHistory } from 'react-router-dom';
 import SectionChangeLink from '../Animations/SectionChangeLink';
 import FORM from './FORM';
 import { AuthContext } from '../App';
+import FloatingLinks from './FLOATINGLINKS';
 
 export default function Login() {
 	const history = useHistory();
@@ -130,41 +129,7 @@ export default function Login() {
 					setError={setError}
 				/>
 			</div>
-			<div>
-				<motion.div
-					style={{ position: 'fixed', bottom: 40, padding: '0rem 1rem' }}
-					variants={routeVariantsNormal}
-					initial="hidden"
-					animate="visible"
-					exit="exit"
-				>
-					<SectionChangeLink
-						weGoTo={'/'}
-						exitAnimationDirection={changeExitPropHomet}
-						title={'HOME'}
-						direction={'rtl'}
-					/>
-				</motion.div>
-				<motion.div
-					style={{
-						position: 'fixed',
-						bottom: 40,
-						right: 0,
-						padding: '0rem 2rem',
-					}}
-					variants={routeVariantsNormal}
-					initial="hidden"
-					animate="visible"
-					exit="exit"
-				>
-					<SectionChangeLink
-						weGoTo={'/CONTACT'}
-						exitAnimationDirection={changeExitPropRight}
-						title={'CONTACT'}
-						direction={'initial'}
-					/>
-				</motion.div>
-			</div>
+			<FloatingLinks/>
 			<div style={{ minHeight: '5rem' }}></div>
 		</motion.div>
 	);
