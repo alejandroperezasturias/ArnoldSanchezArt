@@ -542,6 +542,33 @@ h1 {
 	}
 }
 
+/* login signup form */
+
+.login-signup-wrapper {
+	min-height: 75vh;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	width: 90%;
+	margin: auto;
+}
+
+.form-wrapper {
+	width: 100%;
+	margin: auto;
+}
+
+@media (min-width: 60em) {
+	.login-signup-wrapper {
+		width: 90%;
+		justify-content: center;
+	}
+	.form-wrapper {
+		width: 40%;
+		margin: auto;
+	}
+}
+
 /* Styling the burger menu lines */
 .burger > div {
 	--flow-spacer: 0.36em;

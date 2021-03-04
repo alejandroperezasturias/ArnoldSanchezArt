@@ -2,16 +2,13 @@ import { useState, useContext } from 'react';
 import firebase from 'firebase/app';
 import { auth } from './firebase';
 import { motion } from 'framer-motion';
-import {
-	routeVariants,
-	changeExitPropHomet,
-} from '../Animations/animation';
+import { routeVariants, changeExitPropHomet } from '../Animations/animation';
 import SectionChangeLink from '../Animations/SectionChangeLink';
 import FORM from './FORM';
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../App';
-import BURGER from './BURGER'
-import FloatingLinks from './FLOATINGLINKS'
+import BURGER from './BURGER';
+import FloatingLinks from './FLOATINGLINKS';
 
 export default function LOGIN() {
 	const history = useHistory();
@@ -78,24 +75,7 @@ export default function LOGIN() {
 					/>
 				</div>
 			</div>
-			<div
-				className=" flow-content"
-				style={{
-					minHeight: '75vh',
-					display: 'flex',
-					justifyContent: 'center',
-					alignItems: 'center',
-				}}
-			>
-				<div
-					style={{
-						// backgroundColor: 'white'
-						borderRadius: '1rem',
-						display: 'flex',
-						justifyContent: 'center',
-						alignItems: 'center',
-					}}
-				></div>
+			<div className="login-signup-wrapper">
 				<FORM
 					signIn={signInWithGoogle}
 					signInWithEmail={signInWithEmail}
@@ -104,7 +84,7 @@ export default function LOGIN() {
 					setError={setError}
 				/>
 			</div>
-			<FloatingLinks/>
+			<FloatingLinks />
 			<div style={{ minHeight: '5rem' }}></div>
 		</motion.div>
 	);

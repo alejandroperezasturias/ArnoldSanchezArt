@@ -96,6 +96,7 @@ export default function Form({
 				initial="close"
 				animate={error ? 'open' : 'close'}
 				variants={spanQuantityAnimation}
+				className="form-wrapper"
 			>
 				<div style={{ minHeight: '4rem' }}>
 					{fromCheckout && (
@@ -120,7 +121,7 @@ export default function Form({
 							<Grid container spacing={3} align="center" direction={'column'}>
 								<Grid item>
 									<Button
-										startIcon={<img alt="google-logo" src={googleIcon}></img>}
+										startIcon={<img alt="google-logo" style={{minHeight: '32px', minWidth:'31px'}} src={googleIcon}></img>}
 										variant="contained"
 										fullWidth
 										color="primary"

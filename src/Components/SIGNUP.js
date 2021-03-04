@@ -2,10 +2,7 @@ import { useState, useContext } from 'react';
 import firebase from 'firebase/app';
 import { auth, db } from './firebase';
 import { motion } from 'framer-motion';
-import {
-	routeVariants,
-	changeExitPropHomet,
-} from '../Animations/animation';
+import { routeVariants, changeExitPropHomet } from '../Animations/animation';
 import { useHistory } from 'react-router-dom';
 import SectionChangeLink from '../Animations/SectionChangeLink';
 import FORM from './FORM';
@@ -103,24 +100,7 @@ export default function Login() {
 					direction={'initial'}
 				/>
 			</div>
-			<div
-				className=" flow-content"
-				style={{
-					minHeight: '75vh',
-					display: 'flex',
-					justifyContent: 'center',
-					alignItems: 'center',
-				}}
-			>
-				<div
-					style={{
-						// backgroundColor: 'white'
-						borderRadius: '1rem',
-						display: 'flex',
-						justifyContent: 'center',
-						alignItems: 'center',
-					}}
-				></div>
+			<div className="login-signup-wrapper">
 				<FORM
 					signIn={signInWithGoogle}
 					signInWithEmail={signInWithEmail}
@@ -129,7 +109,7 @@ export default function Login() {
 					setError={setError}
 				/>
 			</div>
-			<FloatingLinks/>
+			<FloatingLinks />
 			<div style={{ minHeight: '5rem' }}></div>
 		</motion.div>
 	);
