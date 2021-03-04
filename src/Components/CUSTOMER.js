@@ -142,106 +142,108 @@ function SaveCard() {
 	console.log(paymentIntents);
 
 	return (
-		<motion.div
-			style={{ minHeight: '90vh', position: 'relative' }}
-			variants={routeVariants}
-			initial="hidden"
-			animate="visible"
-			exit="exit"
-			className={'section'}
-		>
-			<AuthCheck fallback={<LOGIN />}>
-				<div
-					className={'section-header'}
-					style={{
-						padding: '0rem 1rem',
-						display: 'flex',
-						justifyContent: 'space-between',
-						alignItems: 'center',
-					}}
-				>
-					<SectionChangeLink
-						weGoTo={'/TATTOO'}
-						exitAnimationDirection={changeExitPropHomet}
-						title={'TATTOO'}
-						direction={'rtl'}
-					/>
-					<USER user={user} />
-					<BURGER />
-					<SectionChangeLink
-						weGoTo={'/MERCH'}
-						exitAnimationDirection={changeExitPropHomet}
-						title={'MERCH'}
-						direction={'initial'}
-					/>
-				</div>
-				<div
-					style={{
-						display: 'flex',
-						justifyContent: 'center',
-						alignItems: 'center',
-						minHeight: '50vh',
-					}}
-				>
-					<div className={'user-dsh flow-content'}>
-						<div
-							className={'split center-center'}
-							style={{ minHeight: '150px' }}
-						>
-							{user2?.displayImage && (
-								<img
-									style={{
-										borderRadius: '50%',
-										maxHeight: '140px',
-										minHeight: '80px',
-									}}
-									src={user2.displayImage}
-									alt="user-avatar"
-								></img>
-							)}
-						</div>
-						<div
-							className={'split user-dsh-wrapper'}
-							style={{
-								display: 'flex',
-								justifyContent: 'space-around',
-								alignItems: 'flex-start',
-								position: 'relative',
-							}}
-						>
-							<div className={'flow-content'}>
-								<div>
-									<p className={'text-400'}>Your Orders</p>
-								</div>
-								{loading && <CircularProgress color="secondary" />}
-								<div style={{ minWidth: '17rem' }}></div>
-								{!loading && (
-									<div>
-										<ol
-											className="flow-content"
-											style={{
-												'--flow-spacer': '.5rem',
-												maxHeight: '20vh',
-												minHeight: '20vh',
-												overflowY: 'scroll',
-											}}
-										>
-											{paymentIntents.map((paymentSource) => {
-												return paymentSource.status === 'succeeded' ? (
-													<li>
-														{paymentSource.currency}
-														{'  '}
-														{formatCurrency(paymentSource.amount)} -{' '}
-														{timeConverter(paymentSource.created)}
-													</li>
-												) : (
-													<></>
-												);
-											})}
-										</ol>
-									</div>
+		<>
+			<BURGER />
+			<motion.div
+				style={{ minHeight: '90vh', position: 'relative' }}
+				variants={routeVariants}
+				initial="hidden"
+				animate="visible"
+				exit="exit"
+				className={'section'}
+			>
+				<AuthCheck fallback={<LOGIN />}>
+					<div
+						className={'section-header'}
+						style={{
+							padding: '0rem 1rem',
+							display: 'flex',
+							justifyContent: 'space-between',
+							alignItems: 'center',
+						}}
+					>
+						<SectionChangeLink
+							weGoTo={'/TATTOO'}
+							exitAnimationDirection={changeExitPropHomet}
+							title={'TATTOO'}
+							direction={'rtl'}
+						/>
+						<USER user={user} />
+
+						<SectionChangeLink
+							weGoTo={'/MERCH'}
+							exitAnimationDirection={changeExitPropHomet}
+							title={'MERCH'}
+							direction={'initial'}
+						/>
+					</div>
+					<div
+						style={{
+							display: 'flex',
+							justifyContent: 'center',
+							alignItems: 'center',
+							minHeight: '50vh',
+						}}
+					>
+						<div className={'user-dsh flow-content'}>
+							<div
+								className={'split center-center'}
+								style={{ minHeight: '150px' }}
+							>
+								{user2?.displayImage && (
+									<img
+										style={{
+											borderRadius: '50%',
+											maxHeight: '140px',
+											minHeight: '80px',
+										}}
+										src={user2.displayImage}
+										alt="user-avatar"
+									></img>
 								)}
-								{/* <div>
+							</div>
+							<div
+								className={'split user-dsh-wrapper'}
+								style={{
+									display: 'flex',
+									justifyContent: 'space-around',
+									alignItems: 'flex-start',
+									position: 'relative',
+								}}
+							>
+								<div className={'flow-content'}>
+									<div>
+										<p className={'text-400'}>Your Orders</p>
+									</div>
+									{loading && <CircularProgress color="secondary" />}
+									<div style={{ minWidth: '17rem' }}></div>
+									{!loading && (
+										<div>
+											<ol
+												className="flow-content"
+												style={{
+													'--flow-spacer': '.5rem',
+													maxHeight: '20vh',
+													minHeight: '20vh',
+													overflowY: 'scroll',
+												}}
+											>
+												{paymentIntents.map((paymentSource) => {
+													return paymentSource.status === 'succeeded' ? (
+														<li>
+															{paymentSource.currency}
+															{'  '}
+															{formatCurrency(paymentSource.amount)} -{' '}
+															{timeConverter(paymentSource.created)}
+														</li>
+													) : (
+														<></>
+													);
+												})}
+											</ol>
+										</div>
+									)}
+									{/* <div>
 									<button
 										className={'gradient btn'}
 										onClick={createSetupIntent}
@@ -282,115 +284,118 @@ function SaveCard() {
 										</div>
 									</form>
 								)} */}
-							</div>
-							<div
-								className={'bars split center-center'}
-								style={{
-									'--split-spacer': '0.5rem',
-									margin: 0,
-									position: 'absolute',
-									top: '50%',
-									left: '50%',
-									/* bring your own prefixes */
-									transform: 'translate(-50%, -50%)',
-								}}
-							>
-								<hr width="1" size="250"></hr>
-								<hr width="1" size="150"></hr>
-								<hr width="1" size="50"></hr>
-							</div>
-							<div>
-								<div className={'flow-content'}>
-									<div>
-										<h3 className={'text-400'}>Retrieve all Payment Sources</h3>
-									</div>
-									<div>
-										<ThemeProvider theme={darkTheme}>
-											<FormControl className={classes.formControl}>
-												<InputLabel htmlFor="credit-cards-users">
-													Your Credit Cards
-												</InputLabel>
-												<Select
-													native
-													value={`${selectCreditCart?.card.brand}***** **** **** ${selectCreditCart?.card.last4} expires ${selectCreditCart?.card.exp_month}/${selectCreditCart?.card.exp_year}`}
-													onChange={(e) => getTheSelectedCreditCard(e)}
-													inputProps={{
-														name: 'Credit Cards',
-														id: 'credit-cards-users',
-													}}
-												>
-													<option aria-label="None" value="" />
-													{wallet.map((paymentSource) => (
-														<CreditCard
-															key={paymentSource.id}
-															paymentSource={paymentSource}
-														/>
-													))}
-												</Select>
-											</FormControl>
-										</ThemeProvider>
-									</div>
 								</div>
-
-								<div style={{ minHeight: '3.8rem' }}>
-									{selectCreditCart && (
+								<div
+									className={'bars split center-center'}
+									style={{
+										'--split-spacer': '0.5rem',
+										margin: 0,
+										position: 'absolute',
+										top: '50%',
+										left: '50%',
+										/* bring your own prefixes */
+										transform: 'translate(-50%, -50%)',
+									}}
+								>
+									<hr width="1" size="250"></hr>
+									<hr width="1" size="150"></hr>
+									<hr width="1" size="50"></hr>
+								</div>
+								<div>
+									<div className={'flow-content'}>
 										<div>
-											<h3
-												style={{ marginBottom: '1rem', marginTop: '2rem' }}
-												className={'text-400'}
-											>
-												Delete
+											<h3 className={'text-400'}>
+												Retrieve all Payment Sources
 											</h3>
+										</div>
+										<div>
+											<ThemeProvider theme={darkTheme}>
+												<FormControl className={classes.formControl}>
+													<InputLabel htmlFor="credit-cards-users">
+														Your Credit Cards
+													</InputLabel>
+													<Select
+														native
+														value={`${selectCreditCart?.card.brand}***** **** **** ${selectCreditCart?.card.last4} expires ${selectCreditCart?.card.exp_month}/${selectCreditCart?.card.exp_year}`}
+														onChange={(e) => getTheSelectedCreditCard(e)}
+														inputProps={{
+															name: 'Credit Cards',
+															id: 'credit-cards-users',
+														}}
+													>
+														<option aria-label="None" value="" />
+														{wallet.map((paymentSource) => (
+															<CreditCard
+																key={paymentSource.id}
+																paymentSource={paymentSource}
+															/>
+														))}
+													</Select>
+												</FormControl>
+											</ThemeProvider>
+										</div>
+									</div>
+
+									<div style={{ minHeight: '3.8rem' }}>
+										{selectCreditCart && (
 											<div>
-												<p className={'text-300'}>
-													{selectCreditCart.card.brand} **** **** ****{' '}
-													{selectCreditCart.card.last4} expires{' '}
-													{selectCreditCart.card.exp_month}/
-													{selectCreditCart.card.exp_year}
-												</p>
-												{/* <button
+												<h3
+													style={{ marginBottom: '1rem', marginTop: '2rem' }}
+													className={'text-400'}
+												>
+													Delete
+												</h3>
+												<div>
+													<p className={'text-300'}>
+														{selectCreditCart.card.brand} **** **** ****{' '}
+														{selectCreditCart.card.last4} expires{' '}
+														{selectCreditCart.card.exp_month}/
+														{selectCreditCart.card.exp_year}
+													</p>
+													{/* <button
 													aria-label="Close"
 													className={'btn gradient'}
 													onClick={deleteCreditCard}
 												>
 													<span aria-hidden="true">×</span>
 												</button> */}
+												</div>
 											</div>
-										</div>
-									)}
+										)}
+									</div>
 								</div>
 							</div>
-						</div>
-						<div>
-							<button className={'gradient btn'} onClick={logOut}>
-								Log out
-							</button>
+							<div>
+								<button className={'gradient btn'} onClick={logOut}>
+									Log out
+								</button>
+							</div>
 						</div>
 					</div>
-				</div>
-				<FloatingLinks />
+					<FloatingLinks />
 
-				<div
-					className={'split center-center final-footer xl-space'}
-					style={{ '--split-spacer': '2rem' }}
-				>
-					<p>© 2020 Designed By Alex Perez. All Rights Reserved</p>
-					<div>
-						<ul className="footer-social">
-							<li>
-								<a
-									aria-label="acme instagram Arnol tattoo page"
-									style={{ color: 'var(--clr-neutral-100)' }}
-									href="https://www.instagram.com/arnolsegchez/"
-								>
-									IG
-								</a>
-							</li>
-						</ul>
+					<div
+						className={'split center-center final-footer xl-space'}
+						style={{ '--split-spacer': '2rem' }}
+					>
+						<p>© 2020 Designed By Alex Perez. All Rights Reserved</p>
+						<div>
+							<ul className="footer-social">
+								<li>
+									<a
+										aria-label="acme instagram Arnol tattoo page"
+										style={{ color: 'var(--clr-neutral-100)' }}
+										href="https://www.instagram.com/arnolsegchez/"
+									>
+										IG
+									</a>
+								</li>
+							</ul>
+						</div>
 					</div>
-				</div>
-			</AuthCheck>
-		</motion.div>
+				</AuthCheck>
+			</motion.div>
+		</>
 	);
 }
 

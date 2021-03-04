@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import {
 	routeVariants,
 	changeExitPropRight,
-	changeExitPropLeft
+	changeExitPropLeft,
 } from '../Animations/animation';
 import SectionChangeLink from '../Animations/SectionChangeLink';
 import FOOTER from './FOOTER';
@@ -12,10 +12,12 @@ import { AuthContext } from '../App';
 import { products } from '../helpers/products';
 import SHOPPINGCART from './SHOPPINGCART';
 import BURGER from './BURGER';
-import FloatingLinks from './FLOATINGLINKS'
+import FloatingLinks from './FLOATINGLINKS';
 
 export default function MERCH() {
-	const { shoppingCart, setShoppingCart, deleteFromShoppingCart} = useContext(AuthContext);
+	const { shoppingCart, setShoppingCart, deleteFromShoppingCart } = useContext(
+		AuthContext
+	);
 
 	// Shopping Cart
 
@@ -37,15 +39,16 @@ export default function MERCH() {
 	};
 	return (
 		<>
+			<BURGER />
 			<motion.div
-				style={{ minHeight: '100vh' }}
+				style={{ minHeight: '50vh' }}
 				variants={routeVariants}
 				initial="hidden"
 				animate="visible"
 				exit="exit"
 				className={'section'}
 			>
-				<div className={'section-header'} style={{marginTop: '2.5rem'}}>
+				<div className={'section-header'} style={{ marginTop: '2.5rem' }}>
 					<SectionChangeLink
 						weGoTo={'/ART'}
 						exitAnimationDirection={changeExitPropRight}
@@ -56,7 +59,6 @@ export default function MERCH() {
 						<h2 className="gradient">MERCH</h2>
 						<SHOPPINGCART deleteFromShoppingCart={deleteFromShoppingCart} />
 					</div>
-					<BURGER />
 					<SectionChangeLink
 						weGoTo={'/TATTOO'}
 						exitAnimationDirection={changeExitPropLeft}
@@ -90,8 +92,8 @@ export default function MERCH() {
 						})}
 					</div>
 				</div>
-				<div style={{minHeight:'10rem'}}></div>
-				<FloatingLinks/>
+				<div style={{ minHeight: '10rem' }}></div>
+				<FloatingLinks />
 				<FOOTER />
 			</motion.div>
 		</>
@@ -109,7 +111,12 @@ export function MerchCard({ price, name, price_id, addToShoppingCart, image }) {
 			className={'center-center split'}
 			style={{ '--split-spacer': '3rem' }}
 		>
-			<img src={image} width="250px" style={{minHeight:"250px", objectFit:'cover'}}  alt="arnol tattoo bembibre product"></img>
+			<img
+				src={image}
+				width="250px"
+				style={{ minHeight: '250px', objectFit: 'cover' }}
+				alt="arnol tattoo bembibre product"
+			></img>
 			<div className="merchcard-info-wrapper">
 				<h3>{name}</h3>
 				<p>{formatCurrency(price * 1000)}</p>

@@ -63,7 +63,7 @@ export default function Login() {
 				</div>
 			</div>
 			<div
-				className=" flow-content"
+				className="login-signup-wrapper"
 				style={{
 					minHeight: '75vh',
 					display: 'flex',
@@ -71,15 +71,7 @@ export default function Login() {
 					alignItems: 'center',
 				}}
 			>
-				<div
-					style={{
-						// backgroundColor: 'white'
-						borderRadius: '1rem',
-						display: 'flex',
-						justifyContent: 'center',
-						alignItems: 'center',
-					}}
-				></div>
+				
 				<FormRecoverPassword
 					error={error}
 					success={success}

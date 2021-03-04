@@ -524,20 +524,6 @@ h1 {
 	}
 }
 
-/* Burger */
-
-/* Position the Burger Menu where it belongs */
-.burger {
-	z-index: 3;
-	padding: 2rem 1.5rem 0rem 0;
-}
-
-@media (min-width: 60em) {
-	.burger {
-		display: none;
-	}
-}
-
 /* login signup form */
 
 .login-signup-wrapper {
@@ -556,12 +542,26 @@ h1 {
 
 @media (min-width: 60em) {
 	.login-signup-wrapper {
-		width: 90%;
+		width: 80%;
 		justify-content: center;
 	}
 	.form-wrapper {
 		width: 40%;
 		margin: auto;
+	}
+}
+
+/* Burger */
+
+/* Position the Burger Menu where it belongs */
+.burger {
+	z-index: 3;
+	padding: 2rem 1.5rem 0rem 0;
+}
+
+@media (min-width: 60em) {
+	.burger {
+		display: none;
 	}
 }
 
@@ -599,7 +599,7 @@ h1 {
 }
 
 .about-contact-wrapper > * + * {
-	margin: var(--br) 0 0 0;
+	margin: 1rem 0 0 0;
 }
 
 .burger-menu-links {

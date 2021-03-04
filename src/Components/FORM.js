@@ -50,11 +50,8 @@ export default function Form({
 
 	const formStyles = makeStyles((theme) => ({
 		form: {
-			padding: '2rem 1rem',
+			padding: '1.5rem 0.8rem',
 			fontFamily: 'poppins, sans-serif',
-			[theme.breakpoints.up('sm')]: {
-				padding: '2rem 1rem',
-			},
 			[theme.breakpoints.up('md')]: {
 				padding: '2rem 2rem',
 			},
@@ -108,7 +105,7 @@ export default function Form({
 						</Alert>
 					)}
 				</div>
-				<Grid>
+				<Grid >
 					<Paper elevation={3} className={formClass.form}>
 						<form
 							onSubmit={(e) => {
