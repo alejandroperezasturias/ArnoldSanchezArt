@@ -90,6 +90,7 @@ export default function MERCH() {
 						})}
 					</div>
 				</div>
+				<div style={{minHeight:'10rem'}}></div>
 				<FloatingLinks/>
 				<FOOTER />
 			</motion.div>
@@ -108,7 +109,7 @@ export function MerchCard({ price, name, price_id, addToShoppingCart, image }) {
 			className={'center-center split'}
 			style={{ '--split-spacer': '3rem' }}
 		>
-			<img src={image} width="250px" alt="arnol tattoo bembibre product"></img>
+			<img src={image} width="250px" style={{minHeight:"250px", objectFit:'cover'}}  alt="arnol tattoo bembibre product"></img>
 			<div className="merchcard-info-wrapper">
 				<h3>{name}</h3>
 				<p>{formatCurrency(price * 1000)}</p>
