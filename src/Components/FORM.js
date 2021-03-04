@@ -127,6 +127,8 @@ export default function Form({
 										color="primary"
 										onClick={signIn}
 										className={formClass.formButton}
+										style={{padding: '1rem 0rem'}}
+										
 										
 									>
 										{!method ? 'Log IN' : 'Sign Up'} With Google

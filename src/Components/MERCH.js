@@ -38,7 +38,7 @@ export default function MERCH() {
 	return (
 		<>
 			<motion.div
-				style={{ minHeight: '100vh', position: 'relative' }}
+				style={{ minHeight: '100vh' }}
 				variants={routeVariants}
 				initial="hidden"
 				animate="visible"

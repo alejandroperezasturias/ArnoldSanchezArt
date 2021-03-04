@@ -4,15 +4,13 @@ import {
 	formatCurrency,
 	timeConverter,
 } from '../helpers/helpers';
+import CircularProgress from '@material-ui/core/CircularProgress';
 // import {  useStripe, useElements } from '@stripe/react-stripe-js';
 import { AuthCheck } from 'reactfire';
 import LOGIN from './LOGIN';
 import { auth, db } from './firebase';
 import { motion } from 'framer-motion';
-import {
-	routeVariants,
-	changeExitPropHomet,
-} from '../Animations/animation';
+import { routeVariants, changeExitPropHomet } from '../Animations/animation';
 import SectionChangeLink from '../Animations/SectionChangeLink';
 import USER from './USER';
 import Select from '@material-ui/core/Select';
@@ -24,8 +22,8 @@ import {
 	makeStyles,
 } from '@material-ui/core/styles';
 import { AuthContext } from '../App';
-import BURGER from './BURGER'
-import FloatingLinks from './FLOATINGLINKS'
+import BURGER from './BURGER';
+import FloatingLinks from './FLOATINGLINKS';
 
 function SaveCard() {
 	// const stripe = useStripe();
@@ -34,6 +32,7 @@ function SaveCard() {
 	// const [setupIntent, setSetupIntent] = useState();
 	const [wallet, setWallet] = useState([]);
 	const [paymentIntents, setPaymentIntents] = useState([]);
+	const [loading, setLoading] = useState(false);
 	const [selectCreditCart, setSelectedCreditCart] = useState();
 	// const [loading, setLoading] = useState(false);
 	const { user } = useContext(AuthContext);
@@ -56,10 +55,12 @@ function SaveCard() {
 
 	const getPaymentIntents = async () => {
 		if (user) {
+			setLoading(true);
 			const paymentIntents = await fetchFromAPI('clienthistory', {
 				method: 'GET',
 			});
 			setPaymentIntents(paymentIntents);
+			setLoading(false);
 		}
 	};
 
@@ -127,7 +128,6 @@ function SaveCard() {
 
 	const useStyles = makeStyles((theme) => ({
 		formControl: {
-			margin: theme.spacing(1),
 			width: '15rem',
 		},
 	}));
@@ -167,7 +167,7 @@ function SaveCard() {
 						direction={'rtl'}
 					/>
 					<USER user={user} />
-					<BURGER/>
+					<BURGER />
 					<SectionChangeLink
 						weGoTo={'/MERCH'}
 						exitAnimationDirection={changeExitPropHomet}
@@ -183,11 +183,18 @@ function SaveCard() {
 						minHeight: '50vh',
 					}}
 				>
-					<div className={'user-dsh flow-content '}>
-						<div style={{ minHeight: '150px' }}>
+					<div className={'user-dsh flow-content'}>
+						<div
+							className={'split center-center'}
+							style={{ minHeight: '150px' }}
+						>
 							{user2?.displayImage && (
 								<img
-									style={{ borderRadius: '50%', maxHeight: '140px' }}
+									style={{
+										borderRadius: '50%',
+										maxHeight: '140px',
+										minHeight: '80px',
+									}}
 									src={user2.displayImage}
 									alt="user-avatar"
 								></img>
@@ -198,20 +205,24 @@ function SaveCard() {
 							style={{
 								display: 'flex',
 								justifyContent: 'space-around',
-								alignItems: 'center',
+								alignItems: 'flex-start',
+								position: 'relative',
 							}}
 						>
 							<div className={'flow-content'}>
-								{paymentIntents && (
-									<div style={{ minWidth: '17rem' }}>
-										<div style={{ marginBottom: '1rem' }}>
-											<p className={'text-400'}>Your Orders</p>
-										</div>
-										<ul
+								<div>
+									<p className={'text-400'}>Your Orders</p>
+								</div>
+								{loading && <CircularProgress color="secondary" />}
+								<div style={{ minWidth: '17rem' }}></div>
+								{!loading && (
+									<div>
+										<ol
 											className="flow-content"
 											style={{
 												'--flow-spacer': '.5rem',
-												maxHeight: '15vh',
+												maxHeight: '20vh',
+												minHeight: '20vh',
 												overflowY: 'scroll',
 											}}
 										>
@@ -227,7 +238,7 @@ function SaveCard() {
 													<></>
 												);
 											})}
-										</ul>
+										</ol>
 									</div>
 								)}
 								{/* <div>
@@ -276,43 +287,51 @@ function SaveCard() {
 								className={'bars split center-center'}
 								style={{
 									'--split-spacer': '0.5rem',
+									margin: 0,
+									position: 'absolute',
+									top: '50%',
+									left: '50%',
+									/* bring your own prefixes */
+									transform: 'translate(-50%, -50%)',
 								}}
 							>
 								<hr width="1" size="250"></hr>
 								<hr width="1" size="150"></hr>
 								<hr width="1" size="50"></hr>
 							</div>
-
 							<div>
-								<div style={{ textAlign: 'center' }}>
-									<h3 style={{ marginBottom: '1rem' }} className={'text-400'}>
-										Retrieve all Payment Sources
-									</h3>
-									<ThemeProvider theme={darkTheme}>
-										<FormControl className={classes.formControl}>
-											<InputLabel htmlFor="credit-cards-users">
-												Your Credit Cards
-											</InputLabel>
-											<Select
-												native
-												value={`${selectCreditCart?.card.brand}***** **** **** ${selectCreditCart?.card.last4} expires ${selectCreditCart?.card.exp_month}/${selectCreditCart?.card.exp_year}`}
-												onChange={(e) => getTheSelectedCreditCard(e)}
-												inputProps={{
-													name: 'Credit Cards',
-													id: 'credit-cards-users',
-												}}
-											>
-												<option aria-label="None" value="" />
-												{wallet.map((paymentSource) => (
-													<CreditCard
-														key={paymentSource.id}
-														paymentSource={paymentSource}
-													/>
-												))}
-											</Select>
-										</FormControl>
-									</ThemeProvider>
+								<div className={'flow-content'}>
+									<div>
+										<h3 className={'text-400'}>Retrieve all Payment Sources</h3>
+									</div>
+									<div>
+										<ThemeProvider theme={darkTheme}>
+											<FormControl className={classes.formControl}>
+												<InputLabel htmlFor="credit-cards-users">
+													Your Credit Cards
+												</InputLabel>
+												<Select
+													native
+													value={`${selectCreditCart?.card.brand}***** **** **** ${selectCreditCart?.card.last4} expires ${selectCreditCart?.card.exp_month}/${selectCreditCart?.card.exp_year}`}
+													onChange={(e) => getTheSelectedCreditCard(e)}
+													inputProps={{
+														name: 'Credit Cards',
+														id: 'credit-cards-users',
+													}}
+												>
+													<option aria-label="None" value="" />
+													{wallet.map((paymentSource) => (
+														<CreditCard
+															key={paymentSource.id}
+															paymentSource={paymentSource}
+														/>
+													))}
+												</Select>
+											</FormControl>
+										</ThemeProvider>
+									</div>
 								</div>
+
 								<div style={{ minHeight: '3.8rem' }}>
 									{selectCreditCart && (
 										<div>
@@ -343,13 +362,14 @@ function SaveCard() {
 							</div>
 						</div>
 						<div>
-							<button className={' gradient btn'} onClick={logOut}>
+							<button className={'gradient btn'} onClick={logOut}>
 								Log out
 							</button>
 						</div>
 					</div>
 				</div>
-				<FloatingLinks/>
+				<FloatingLinks />
+
 				<div
 					className={'split center-center final-footer xl-space'}
 					style={{ '--split-spacer': '2rem' }}

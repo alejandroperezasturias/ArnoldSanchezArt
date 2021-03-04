@@ -29,6 +29,7 @@ export default function BURGER() {
 		<>
 			<div
 				className="burger flow-content"
+				style={{position:'absolute', top:0, right:0}}
 				onClick={() => {
 					toggleOpen();
 				}}

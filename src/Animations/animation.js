@@ -132,11 +132,7 @@ export const burgerAnimation = {
 		opacity: 0,
 		x: '-100%',
 		transition: {
-			delay: 0.05,
-			duration: 0.2,
-			when: 'afterChildren',
-			staggerChildren: 0.09,
-			staggerDirection: -1,
+			duration: 0.07,
 		},
 	},
 	open: {
@@ -186,7 +182,7 @@ export const lineTwoBurger = {
 };
 
 export const lineThreeBurger = {
-	open: { rotate: -45, translateY: 12 },
+	open: { rotate: -45, translateY: 10 },
 	close: {
 		rotate: 0,
 		translateY: 0,

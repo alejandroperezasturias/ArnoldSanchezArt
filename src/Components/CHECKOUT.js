@@ -227,7 +227,7 @@ export default function CHECKOUT() {
 					className="flow-content"
 					style={{ flex: '1', minHeight: '100%', minWidth: { widthTrolly } }}
 				>
-					<h3 className={'text-600'}>arnolsanchez</h3>
+					<h3 className={'text-600'}>arnolsanchez store</h3>
 					<motion.div
 						variants={{
 							close: {
