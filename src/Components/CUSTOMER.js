@@ -188,7 +188,7 @@ function SaveCard() {
 							{user2?.displayImage && (
 								<img
 									style={{ borderRadius: '50%', maxHeight: '140px' }}
-									src={user2?.displayImage}
+									src={user2.displayImage}
 									alt="user-avatar"
 								></img>
 							)}

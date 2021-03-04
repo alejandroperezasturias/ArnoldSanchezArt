@@ -21,17 +21,33 @@ export const spanQuantityAnimation = {
 	},
 };
 
-export default function CheckoutForm({ setReadyToPay, error, addressReady }) {
-	const [email, setEmail] = useState('');
-	const [name, setName] = useState('');
-	const [address, setAddress] = useState('');
-	const [zip, setZip] = useState('');
-	const [city, setCity] = useState('');
-	const [country, setCountry] = useState('');
+export default function CheckoutForm({
+	setReadyToPay,
+	error,
+	addressReady,
+	addressDetails,
+	setAddressDetails,
+	// email,
+	// setEmail,
+	// name,
+	// setName,
+	// address,
+	// setAddress,
+	// zip,
+	// setZip,
+	// city,
+	// setCity,
+	// country,
+	// setCountry,
+}) {
 	const { user } = useContext(AuthContext);
 
 	useEffect(() => {
-		user && setEmail(user.email);
+		// user && setEmail(user.email);
+		user &&
+			setAddressDetails((prev) => {
+				return { ...prev, email: user.email };
+			});
 	}, [user]);
 
 	const darkTheme = createMuiTheme({
@@ -98,7 +114,7 @@ export default function CheckoutForm({ setReadyToPay, error, addressReady }) {
 					<Paper elevation={3} className={formClass.form}>
 						<form
 							onSubmit={(e) => {
-								setReadyToPay(e, email, name, address, zip, city, country);
+								setReadyToPay(e);
 								// signInWithEmail(e, email, password, name);
 								// setEmail('');
 								// setName('');
@@ -117,9 +133,13 @@ export default function CheckoutForm({ setReadyToPay, error, addressReady }) {
 										id="standard-disabled"
 										label="Email"
 										type="email"
-										value={email}
+										value={addressDetails.email}
 										variant="outlined"
-										onInput={(e) => setEmail(e.target.value)}
+										onInput={(e) =>
+											setAddressDetails((prev) => {
+												return { ...prev, email: e.target.value };
+											})
+										}
 										size="small"
 									/>
 								</Grid>
@@ -130,9 +150,13 @@ export default function CheckoutForm({ setReadyToPay, error, addressReady }) {
 										required
 										id="standard-required"
 										label="Name"
-										value={name}
+										value={addressDetails.name}
 										variant="outlined"
-										onInput={(e) => setName(e.target.value)}
+										onInput={(e) =>
+											setAddressDetails((prev) => {
+												return { ...prev, name: e.target.value };
+											})
+										}
 										size="small"
 									/>
 								</Grid>
@@ -143,8 +167,12 @@ export default function CheckoutForm({ setReadyToPay, error, addressReady }) {
 										required
 										id="standard-address-input"
 										label="Country"
-										value={country}
-										onInput={(e) => setCountry(e.target.value)}
+										value={addressDetails.state}
+										onInput={(e) =>
+											setAddressDetails((prev) => {
+												return { ...prev, state: e.target.value };
+											})
+										}
 										type="country"
 										variant="outlined"
 										autoComplete="country"
@@ -158,8 +186,12 @@ export default function CheckoutForm({ setReadyToPay, error, addressReady }) {
 										required
 										id="standard-address-input"
 										label="Address"
-										value={address}
-										onInput={(e) => setAddress(e.target.value)}
+										value={addressDetails.line1}
+										onInput={(e) =>
+											setAddressDetails((prev) => {
+												return { ...prev, line1: e.target.value };
+											})
+										}
 										type="address"
 										variant="outlined"
 										autoComplete="street-address"
@@ -181,8 +213,12 @@ export default function CheckoutForm({ setReadyToPay, error, addressReady }) {
 											InputProps={{ style: { fontSize: 12 } }}
 											id="standard-address-input"
 											label="City"
-											value={city}
-											onInput={(e) => setCity(e.target.value)}
+											value={addressDetails.city}
+											onInput={(e) =>
+												setAddressDetails((prev) => {
+													return { ...prev, city: e.target.value };
+												})
+											}
 											type="city"
 											autoComplete="city-address"
 											size="small"
@@ -195,8 +231,12 @@ export default function CheckoutForm({ setReadyToPay, error, addressReady }) {
 											InputProps={{ style: { fontSize: 12 } }}
 											id="standard-address-input"
 											label="ZIP"
-											value={zip}
-											onInput={(e) => setZip(e.target.value)}
+											value={addressDetails.postal_code}
+											onInput={(e) =>
+												setAddressDetails((prev) => {
+													return { ...prev, postal_code: e.target.value };
+												})
+											}
 											type="ZIP"
 											autoComplete="ZIP"
 											size="small"

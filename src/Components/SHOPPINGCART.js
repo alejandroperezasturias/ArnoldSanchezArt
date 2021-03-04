@@ -20,7 +20,7 @@ const sidebar = {
 		},
 	}),
 	close: {
-		clipPath: 'circle(20% at 50% 46%)',
+		clipPath: 'circle(32% at 50% 50%)',
 		background: 'white',
 		transition: {
 			type: 'spring',
@@ -39,8 +39,6 @@ export default function SHOPPINGCART({ deleteFromShoppingCart }) {
 	const { height } = useDimensions(containerRef);
 	const { user, setFromCheckOut, trolly, totalCents } = useContext(AuthContext);
 	const history = useHistory();
-
-	console.log(trolly);
 
 	const toCeckOut = () => {
 		if (user) {
@@ -64,27 +62,31 @@ export default function SHOPPINGCART({ deleteFromShoppingCart }) {
 				style={{
 					width: '10rem',
 					borderRadius: '1rem',
-					padding: '0.5rem 1rem',
-					margin: 0,
+					padding: '2rem 1rem',
 					display: 'flex',
 					alignItems: 'center',
 					justifyContent: 'center',
+					marginTop: '1.5rem',
 				}}
 			>
 				<div
 					onClick={() => toggleOpen()}
 					style={{
+						
 						backgroundColor: 'white',
-						width: '50px',
-						height: '50px',
+						width: '80px',
+						height: '80px',
 						textAlign: 'left',
 						display: 'flex',
 						alignItems: 'center',
 						justifyContent: 'center',
 						cursor: 'pointer',
+						flexDirection: 'column'
+
 					}}
 				>
 					<SvgTrolly />
+					<span style={{color: 'black', fontSize: 'var(--fs-300)', marginTop: '.2rem', fontWeight:"var(--fw-300)"}}>{formatCurrency(totalCents * 1000)}</span>
 				</div>
 			</motion.div>
 			<motion.div>
@@ -156,9 +158,9 @@ export function SvgTrolly() {
 			fill="none"
 			viewBox="0 0 24 24"
 			stroke="currentColor"
-			width="30px"
+			width="25px"
 			color="black"
-			whileTap={{ scale: 1.1 }}
+			whileTap={{ scale: 1.2 }}
 		>
 			<path
 				strokeLinecap="round"

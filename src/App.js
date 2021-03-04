@@ -14,6 +14,7 @@ import LOGIN from './Components/LOGIN';
 import FORGOTPASSWORD from './Components/FORGOTPASSWORD';
 import { auth } from './Components/firebase';
 import { products } from './helpers/products';
+import SuccessPage from './Components/SUCCEDPAGE'
 export const AuthContext = React.createContext({});
 
 function App() {
@@ -101,6 +102,9 @@ function App() {
 						</Route>
 						<Route path="/FORGOTPASSWORD" exact>
 							<FORGOTPASSWORD />
+						</Route>
+						<Route path="/SUCCESSPAYMENT" exact>
+							<SuccessPage />
 						</Route>
 					</Switch>
 				</AnimatePresence>

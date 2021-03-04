@@ -593,3 +593,10 @@ h1 {
 	-webkit-text-fill-color: initial;
 	font-size: var(--fs-900);
 }
+
+.StripeElement {
+	padding: 1rem 2rem;
+	border-radius: 100vw;
+	width: 100%;
+	background-color: #424242;
+}

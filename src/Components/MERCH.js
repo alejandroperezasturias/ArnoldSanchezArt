@@ -35,9 +35,6 @@ export default function MERCH() {
 			});
 		}
 	};
-
-	
-
 	return (
 		<>
 			<motion.div
@@ -48,7 +45,7 @@ export default function MERCH() {
 				exit="exit"
 				className={'section'}
 			>
-				<div className={'section-header'}>
+				<div className={'section-header'} style={{marginTop: '2.5rem'}}>
 					<SectionChangeLink
 						weGoTo={'/ART'}
 						exitAnimationDirection={changeExitPropRight}
@@ -101,9 +98,9 @@ export default function MERCH() {
 }
 
 export function MerchCard({ price, name, price_id, addToShoppingCart, image }) {
-	const [amount, setAmount] = useState(0);
+	const [amount, setAmount] = useState(1);
 	const changeQuantity = (v) => {
-		setAmount((oldQ) => Math.max(0, oldQ + v));
+		setAmount((oldQ) => Math.max(1, oldQ + v));
 	};
 	return (
 		<div
@@ -150,7 +147,7 @@ export function MerchCard({ price, name, price_id, addToShoppingCart, image }) {
 				<button
 					onClick={() => {
 						addToShoppingCart(price_id, amount);
-						setAmount(0);
+						setAmount(1);
 					}}
 					disabled={amount === 0}
 					className="btn gradient"
