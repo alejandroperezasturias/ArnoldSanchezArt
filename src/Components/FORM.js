@@ -56,7 +56,7 @@ export default function Form({
 				padding: '2rem 2rem',
 			},
 			[theme.breakpoints.up('lg')]: {
-				padding: '4rem 4rem',
+				padding: '2rem 2rem',
 			},
 		},
 		formButton: {
