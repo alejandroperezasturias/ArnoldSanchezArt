@@ -66,7 +66,7 @@ export default function Form({
 			fontSize: '0.8rem',
 			fontFamily: 'poppins, sans-serif',
 			[theme.breakpoints.up('sm')]: {
-				fontSize: '0.8rem',
+				fontSize: '0.3rem',
 			},
 			[theme.breakpoints.up('md')]: {
 				fontSize: '.8rem',
@@ -126,11 +126,7 @@ export default function Form({
 										color="primary"
 										onClick={signIn}
 										className={formClass.formButton}
-										style={{
-											padding: '1rem 2rem',
-											backgroundColor: 'black',
-											borderRadius: '100vw',
-										}}
+										
 									>
 										{!method ? 'Log IN' : 'Sign Up'} With Google
 									</Button>
