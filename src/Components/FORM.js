@@ -77,6 +77,7 @@ export default function Form({
 			fontFamily: 'poppins, sans-serif',
 			[theme.breakpoints.up('sm')]: {
 				fontSize: '0.6rem',
+				padding: '1rem 2rem',
 			},
 			[theme.breakpoints.up('md')]: {
 				fontSize: '.6rem',
@@ -106,7 +107,7 @@ export default function Form({
 					)}
 				</div>
 				<Grid >
-					<Paper elevation={3} className={formClass.form}>
+					<Paper elevation={3} className={formClass.form} style={{width: '100%'}}>
 						<form
 							onSubmit={(e) => {
 								signInWithEmail(e, email, password, name);
@@ -115,7 +116,7 @@ export default function Form({
 								setPassword('');
 							}}
 						>
-							<Grid container spacing={3} align="center" direction={'column'}>
+							<Grid container spacing={3} align="center" direction={'column'} >
 								<Grid item>
 									<Button
 										startIcon={<img alt="google-logo" style={{minHeight: '32px', minWidth:'31px'}} src={googleIcon}></img>}
@@ -125,8 +126,6 @@ export default function Form({
 										onClick={signIn}
 										className={formClass.formButton}
 										style={{padding: '1rem 0rem'}}
-										
-										
 									>
 										{!method ? 'Log IN' : 'Sign Up'} With Google
 									</Button>
@@ -134,7 +133,7 @@ export default function Form({
 								{method ? (
 									<Grid item>
 										<TextField
-											fullWidth
+											fluid
 											required
 											id="standard-required"
 											label="Name"
