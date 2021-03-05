@@ -41,7 +41,7 @@ export default function LOGIN() {
 
 	return (
 		<motion.div
-			style={{ minHeight: '90vh', position: 'relative' }}
+			style={{ position: 'relative' }}
 			variants={routeVariants}
 			initial="hidden"
 			animate="visible"
@@ -65,7 +65,7 @@ export default function LOGIN() {
 						direction={'rtl'}
 					/>
 				</div>
-				<BURGER />
+
 				<div>
 					<SectionChangeLink
 						weGoTo={'/TATTOO'}
@@ -85,7 +85,7 @@ export default function LOGIN() {
 				/>
 			</div>
 			<FloatingLinks />
-			<div style={{ minHeight: '5rem' }}></div>
+			<BURGER />
 		</motion.div>
 	);
 }

@@ -8,7 +8,7 @@ import SectionChangeLink from '../Animations/SectionChangeLink';
 import FORM from './FORM';
 import { AuthContext } from '../App';
 import FloatingLinks from './FLOATINGLINKS';
-
+import BURGER from './BURGER';
 export default function Login() {
 	const history = useHistory();
 	const [error, setError] = useState();
@@ -110,7 +110,7 @@ export default function Login() {
 				/>
 			</div>
 			<FloatingLinks />
-			<div style={{ minHeight: '5rem' }}></div>
+			<BURGER />
 		</motion.div>
 	);
 }

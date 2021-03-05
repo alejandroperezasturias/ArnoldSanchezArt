@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import TextField from '@material-ui/core/TextField';
-import { Grid, Paper, Button, Typography } from '@material-ui/core';
+import { Grid, Paper, Button, Typography, Divider } from '@material-ui/core';
 import {
 	ThemeProvider,
 	createMuiTheme,
@@ -21,8 +21,6 @@ export const spanQuantityAnimation = {
 		x: '0%',
 	},
 };
-
-
 
 export default function Form({
 	signIn,
@@ -47,44 +45,43 @@ export default function Form({
 		},
 	});
 
-
 	const formStyles = makeStyles((theme) => ({
 		form: {
-			padding: '1.5rem 0.8rem',
-			fontFamily: 'poppins, sans-serif',
-			[theme.breakpoints.up('md')]: {
-				padding: '2rem 2rem',
-			},
-			[theme.breakpoints.up('lg')]: {
-				padding: '2rem 2rem',
-			},
+			// padding: '1.5rem 0.8rem',
+			// fontFamily: 'poppins, sans-serif',
+			// [theme.breakpoints.up('md')]: {
+			// 	padding: '2rem 2rem',
+			// },
+			// [theme.breakpoints.up('lg')]: {
+			// 	padding: '2rem 2rem',
+			// },
 		},
 		formButton: {
-			fontSize: '0.8rem',
-			fontFamily: 'poppins, sans-serif',
-			[theme.breakpoints.up('sm')]: {
-				fontSize: '0.3rem',
-			},
-			[theme.breakpoints.up('md')]: {
-				fontSize: '.8rem',
-			},
-			[theme.breakpoints.up('lg')]: {
-				fontSize: '.9rem',
-			},
+			// fontSize: '0.8rem',
+			// fontFamily: 'poppins, sans-serif',
+			// [theme.breakpoints.up('sm')]: {
+			// 	fontSize: '0.3rem',
+			// },
+			// [theme.breakpoints.up('md')]: {
+			// 	fontSize: '.8rem',
+			// },
+			// [theme.breakpoints.up('lg')]: {
+			// 	fontSize: '.9rem',
+			// },
 		},
 		lowerLinks: {
-			fontSize: '0.6rem',
-			fontFamily: 'poppins, sans-serif',
-			[theme.breakpoints.up('sm')]: {
-				fontSize: '0.6rem',
-				padding: '1rem 2rem',
-			},
-			[theme.breakpoints.up('md')]: {
-				fontSize: '.6rem',
-			},
-			[theme.breakpoints.up('lg')]: {
-				fontSize: '.7rem',
-			},
+			// fontSize: '0.6rem',
+			// fontFamily: 'poppins, sans-serif',
+			// [theme.breakpoints.up('sm')]: {
+			// 	fontSize: '0.6rem',
+			// 	padding: '1rem 2rem',
+			// },
+			// [theme.breakpoints.up('md')]: {
+			// 	fontSize: '.6rem',
+			// },
+			// [theme.breakpoints.up('lg')]: {
+			// 	fontSize: '.7rem',
+			// },
 		},
 	}));
 	const formClass = formStyles();
@@ -106,8 +103,16 @@ export default function Form({
 						</Alert>
 					)}
 				</div>
-				<Grid >
-					<Paper elevation={3} className={formClass.form} style={{width: '100%'}}>
+				<div>
+					<div
+						className={formClass.form}
+						style={{
+							width: '100%',
+							background: '#424242',
+							padding: '3rem 2rem',
+							borderRadius: '1rem',
+						}}
+					>
 						<form
 							onSubmit={(e) => {
 								signInWithEmail(e, email, password, name);
@@ -116,24 +121,33 @@ export default function Form({
 								setPassword('');
 							}}
 						>
-							<Grid container spacing={3} align="center" direction={'column'} >
-								<Grid item>
+							<div
+								className="flow-content"
+								style={{ '--flow-spacer': '1rem', textAlign: 'center' }}
+							>
+								<div>
 									<Button
-										startIcon={<img alt="google-logo" style={{minHeight: '32px', minWidth:'31px'}} src={googleIcon}></img>}
+										startIcon={
+											<img
+												alt="google-logo"
+												style={{ minHeight: '32px', minWidth: '31px' }}
+												src={googleIcon}
+											></img>
+										}
 										variant="contained"
 										fullWidth
 										color="primary"
 										onClick={signIn}
 										className={formClass.formButton}
-										style={{padding: '1rem 0rem'}}
+										style={{ padding: '1rem 0rem' }}
 									>
 										{!method ? 'Log IN' : 'Sign Up'} With Google
 									</Button>
-								</Grid>
+								</div>
 								{method ? (
-									<Grid item>
+									<div>
 										<TextField
-											fluid
+											fullWidth
 											required
 											id="standard-required"
 											label="Name"
@@ -141,11 +155,11 @@ export default function Form({
 											onInput={(e) => setName(e.target.value)}
 											variant="outlined"
 										/>
-									</Grid>
+									</div>
 								) : (
 									<></>
 								)}
-								<Grid item>
+								<div>
 									<TextField
 										fullWidth
 										required
@@ -156,8 +170,8 @@ export default function Form({
 										onInput={(e) => setEmail(e.target.value)}
 										variant="outlined"
 									/>
-								</Grid>
-								<Grid item>
+								</div>
+								<div>
 									<TextField
 										fullWidth
 										required
@@ -169,8 +183,8 @@ export default function Form({
 										autoComplete="current-password"
 										variant="outlined"
 									/>
-								</Grid>
-								<Grid item>
+								</div>
+								<div>
 									<Button
 										type="submit"
 										variant="contained"
@@ -180,45 +194,41 @@ export default function Form({
 									>
 										{!method ? 'Log IN' : 'Sign Up'}
 									</Button>
-								</Grid>
-								<Grid direction={'column'} container spacing={2} align="center">
-									{!method && (
-										<Grid item>
-											<Typography
-												variant="overline"
-												className={formClass.lowerLinks}
-											>
-												<LinkRouter
-													to="/FORGOTPASSWORD"
-													style={{ color: 'white' }}
-												>
-													Forgot Password?
-												</LinkRouter>
-											</Typography>
-										</Grid>
-									)}
-									<Grid item>
+								</div>
+								{!method && (
+									<div>
 										<Typography
 											variant="overline"
 											className={formClass.lowerLinks}
 										>
-											{method
-												? 'Do you have an account?'
-												: 'Not Signed in Yet?'}
-											<span> </span>
 											<LinkRouter
+												to="/FORGOTPASSWORD"
 												style={{ color: 'white' }}
-												to={method ? '/LOGIN' : '/SIGNUP'}
 											>
-												{method ? 'Log IN' : 'Sign Up'}
+												Forgot Password?
 											</LinkRouter>
 										</Typography>
-									</Grid>
-								</Grid>
-							</Grid>
+									</div>
+								)}
+								<div item>
+									<Typography
+										variant="overline"
+										className={formClass.lowerLinks}
+									>
+										{method ? 'Do you have an account?' : 'Not Signed in Yet?'}
+										<span> </span>
+										<LinkRouter
+											style={{ color: 'white' }}
+											to={method ? '/LOGIN' : '/SIGNUP'}
+										>
+											{method ? 'Log IN' : 'Sign Up'}
+										</LinkRouter>
+									</Typography>
+								</div>
+							</div>
 						</form>
-					</Paper>
-				</Grid>
+					</div>
+				</div>
 				<div style={{ minHeight: '4rem' }}>
 					{error && (
 						<Alert
@@ -229,7 +239,6 @@ export default function Form({
 						</Alert>
 					)}
 				</div>
-				
 			</motion.div>
 		</ThemeProvider>
 	);
