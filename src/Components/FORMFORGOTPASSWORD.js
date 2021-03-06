@@ -38,64 +38,35 @@ export default function FormRecoverPassword({
 		},
 	});
 
-	const formStyles = makeStyles((theme) => ({
-		form: {
-			fontFamily: 'poppins, sans-serif',
-			padding: '1.5rem 0.8rem',
-			[theme.breakpoints.up('md')]: {
-				padding: '2rem 2rem',
-			},
-			[theme.breakpoints.up('lg')]: {
-				padding: '4rem 4rem',
-			},
-		},
-		formButton: {
-			fontSize: '0.8rem',
-			fontFamily: 'poppins, sans-serif',
-			[theme.breakpoints.up('sm')]: {
-				fontSize: '0.8rem',
-			},
-			[theme.breakpoints.up('md')]: {
-				fontSize: '.8rem',
-			},
-			[theme.breakpoints.up('lg')]: {
-				fontSize: '.9rem',
-			},
-		},
-		lowerLinks: {
-			fontSize: '0.6rem',
-			fontFamily: 'poppins, sans-serif',
-			[theme.breakpoints.up('sm')]: {
-				fontSize: '0.6rem',
-			},
-			[theme.breakpoints.up('md')]: {
-				fontSize: '.6rem',
-			},
-			[theme.breakpoints.up('lg')]: {
-				fontSize: '.7rem',
-			},
-		},
-	}));
-	const formClass = formStyles();
 	return (
 		<ThemeProvider theme={darkTheme}>
 			<motion.div
 				initial="close"
 				animate={error ? 'open' : 'close'}
 				variants={spanQuantityAnimation}
-				style={{width: '100%'}}
+				className="form-wrapper"
 			>
-				<Grid>
-					<Paper elevation={3} className={formClass.form}>
+				<div>
+					<div
+						style={{
+							width: '100%',
+							background: '#424242',
+							padding: '3rem 2rem',
+							borderRadius: '1rem',
+						}}
+					>
 						<form
 							onSubmit={(e) => {
 								recoverPassword(e, email);
 								setEmail('');
 							}}
 						>
-							<Grid container spacing={3} align="center" direction={'column'}>
+							<div
+								className="flow-content"
+								style={{ '--flow-spacer': '1rem', textAlign: 'center' }}
+							>
 								<Typography variant="h6">Forgot Password ?</Typography>
-								<Grid item>
+								<div>
 									<TextField
 										fullWidth
 										required
@@ -106,34 +77,30 @@ export default function FormRecoverPassword({
 										variant="outlined"
 										onInput={(e) => setEmail(e.target.value)}
 									/>
-								</Grid>
+								</div>
 
-								<Grid item>
+								<div>
 									<Button
 										type="submit"
 										variant="contained"
 										fullWidth
 										style={{ borderRadius: '100vw' }}
-										className={formClass.formButton}
 									>
 										Change Password
 									</Button>
-								</Grid>
+								</div>
 
-								<Grid item>
-									<Typography
-										variant="overline"
-										className={formClass.lowerLinks}
-									>
+								<div>
+									<Typography variant="overline">
 										<LinkRouter style={{ color: 'white' }} to={'/LOGIN'}>
 											Log In
 										</LinkRouter>
 									</Typography>
-								</Grid>
-							</Grid>
+								</div>
+							</div>
 						</form>
-					</Paper>
-				</Grid>
+					</div>
+				</div>
 				<div style={{ minHeight: '4rem' }}>
 					{error && (
 						<Alert

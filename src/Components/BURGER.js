@@ -57,6 +57,24 @@ export default function BURGER() {
 				variants={burgerAnimation}
 			>
 				<SectionChangeLink
+					weGoTo={'/'}
+					exitAnimationDirection={changeExitPropHomet}
+					title={'HOME'}
+					direction={'rtl'}
+					burgerMenuLinks={'burger-menu-links'}
+					variants={titleAnim}
+					toggleOpen={toggleOpen}
+				/>
+				<SectionChangeLink
+					weGoTo={'/MERCH'}
+					exitAnimationDirection={changeExitPropHomet}
+					title={'MERCH'}
+					direction={'rtl'}
+					burgerMenuLinks={'burger-menu-links'}
+					variants={titleAnim}
+					toggleOpen={toggleOpen}
+				/>
+				<SectionChangeLink
 					weGoTo={'/ART'}
 					exitAnimationDirection={changeExitPropHomet}
 					title={'ART'}
@@ -74,15 +92,7 @@ export default function BURGER() {
 					variants={titleAnim}
 					toggleOpen={toggleOpen}
 				/>
-				<SectionChangeLink
-					weGoTo={'/MERCH'}
-					exitAnimationDirection={changeExitPropHomet}
-					title={'MERCH'}
-					direction={'rtl'}
-					burgerMenuLinks={'burger-menu-links'}
-					variants={titleAnim}
-					toggleOpen={toggleOpen}
-				/>
+				
 				<SectionChangeLink
 					weGoTo={'/CONTACT'}
 					exitAnimationDirection={changeExitPropHomet}
@@ -92,15 +102,7 @@ export default function BURGER() {
 					variants={titleAnim}
 					toggleOpen={toggleOpen}
 				/>
-				<SectionChangeLink
-					weGoTo={'/'}
-					exitAnimationDirection={changeExitPropHomet}
-					title={'HOME'}
-					direction={'rtl'}
-					burgerMenuLinks={'burger-menu-links'}
-					variants={titleAnim}
-					toggleOpen={toggleOpen}
-				/>
+				
 				{!user && (
 					<SectionChangeLink
 						weGoTo={'/LOGIN'}

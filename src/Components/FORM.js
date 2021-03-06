@@ -45,46 +45,6 @@ export default function Form({
 		},
 	});
 
-	const formStyles = makeStyles((theme) => ({
-		form: {
-			// padding: '1.5rem 0.8rem',
-			// fontFamily: 'poppins, sans-serif',
-			// [theme.breakpoints.up('md')]: {
-			// 	padding: '2rem 2rem',
-			// },
-			// [theme.breakpoints.up('lg')]: {
-			// 	padding: '2rem 2rem',
-			// },
-		},
-		formButton: {
-			// fontSize: '0.8rem',
-			// fontFamily: 'poppins, sans-serif',
-			// [theme.breakpoints.up('sm')]: {
-			// 	fontSize: '0.3rem',
-			// },
-			// [theme.breakpoints.up('md')]: {
-			// 	fontSize: '.8rem',
-			// },
-			// [theme.breakpoints.up('lg')]: {
-			// 	fontSize: '.9rem',
-			// },
-		},
-		lowerLinks: {
-			// fontSize: '0.6rem',
-			// fontFamily: 'poppins, sans-serif',
-			// [theme.breakpoints.up('sm')]: {
-			// 	fontSize: '0.6rem',
-			// 	padding: '1rem 2rem',
-			// },
-			// [theme.breakpoints.up('md')]: {
-			// 	fontSize: '.6rem',
-			// },
-			// [theme.breakpoints.up('lg')]: {
-			// 	fontSize: '.7rem',
-			// },
-		},
-	}));
-	const formClass = formStyles();
 	return (
 		<ThemeProvider theme={darkTheme}>
 			<motion.div
@@ -105,7 +65,6 @@ export default function Form({
 				</div>
 				<div>
 					<div
-						className={formClass.form}
 						style={{
 							width: '100%',
 							background: '#424242',
@@ -138,7 +97,6 @@ export default function Form({
 										fullWidth
 										color="primary"
 										onClick={signIn}
-										className={formClass.formButton}
 										style={{ padding: '1rem 0rem' }}
 									>
 										{!method ? 'Log IN' : 'Sign Up'} With Google
@@ -190,17 +148,13 @@ export default function Form({
 										variant="contained"
 										fullWidth
 										style={{ borderRadius: '100vw' }}
-										className={formClass.formButton}
 									>
 										{!method ? 'Log IN' : 'Sign Up'}
 									</Button>
 								</div>
 								{!method && (
 									<div>
-										<Typography
-											variant="overline"
-											className={formClass.lowerLinks}
-										>
+										<Typography variant="overline">
 											<LinkRouter
 												to="/FORGOTPASSWORD"
 												style={{ color: 'white' }}
@@ -211,10 +165,7 @@ export default function Form({
 									</div>
 								)}
 								<div item>
-									<Typography
-										variant="overline"
-										className={formClass.lowerLinks}
-									>
+									<Typography variant="overline">
 										{method ? 'Do you have an account?' : 'Not Signed in Yet?'}
 										<span> </span>
 										<LinkRouter

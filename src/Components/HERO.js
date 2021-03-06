@@ -90,7 +90,7 @@ export default function HERO() {
 	const scale = useTransform(
 		yScroll,
 		[scrollPercentageStart, scrollPercentageEnd],
-		[1.1, 2.5]
+		[1.1, 2.8]
 	);
 
 	const scaleText = useTransform(
@@ -114,7 +114,7 @@ export default function HERO() {
 	const y = useTransform(
 		yScroll,
 		[scrollPercentageStart, scrollPercentageEnd],
-		[0, 300]
+		[0, 400]
 		// [0, 600]
 	);
 
@@ -199,7 +199,7 @@ export default function HERO() {
 			</a>
 
 			<div ref={ref}>
-				<div style={{ minHeight: '12vh' }}></div>
+				<div style={{ minHeight: '20vh' }}></div>
 				<div className={'hero-image'} style={{ minHeight: '12vh' }}>
 					<motion.img
 						style={{ scale, opacity, y }}
@@ -207,7 +207,7 @@ export default function HERO() {
 						alt="Arnold Bembibre Leon Tattoo Skull"
 					></motion.img>
 				</div>
-				<div style={{ height: '40vh' }}></div>
+				<div style={{ height: '65vh' }}></div>
 			</div>
 
 			<div
