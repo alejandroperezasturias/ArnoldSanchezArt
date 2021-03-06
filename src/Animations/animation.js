@@ -166,8 +166,7 @@ export const lineOneBurger = {
 	close: {
 		rotate: 0,
 		translateY: 0,
-
-		transition: { duration: 0.1 },
+		transition: { duration: 0.07 },
 	},
 };
 
@@ -176,8 +175,7 @@ export const lineTwoBurger = {
 	close: {
 		x: '0%',
 		opacity: 1,
-
-		transition: { duration: 0.1 },
+		transition: { duration: 0.05 },
 	},
 };
 
@@ -186,7 +184,6 @@ export const lineThreeBurger = {
 	close: {
 		rotate: 0,
 		translateY: 0,
-
-		transition: { duration: 0.1 },
+		transition: { duration: 0.07 },
 	},
 };

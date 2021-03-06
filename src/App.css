@@ -527,7 +527,7 @@ h1 {
 /* login signup form */
 
 .login-signup-wrapper {
-	min-height: 75vh;
+	min-height: 50vh;
 	display: flex;
 	align-items: flex-start;
 	justify-content: center;
@@ -538,6 +538,9 @@ h1 {
 .form-wrapper {
 	width: 100%;
 	margin: auto;
+	/* display: flex;
+	align-items: center;
+	justify-content: center; */
 }
 
 @media (min-width: 60em) {

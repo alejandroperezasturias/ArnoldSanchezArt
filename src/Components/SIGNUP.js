@@ -74,12 +74,7 @@ export default function Login() {
 		>
 			<div
 				className={'section-header'}
-				style={{
-					padding: '0rem 1rem',
-					display: 'flex',
-					justifyContent: 'space-between',
-					alignItems: 'center',
-				}}
+				
 			>
 				<SectionChangeLink
 					weGoTo={'/TATTOO'}
@@ -87,12 +82,7 @@ export default function Login() {
 					title={'TATTOO'}
 					direction={'rtl'}
 				/>
-				<SectionChangeLink
-					weGoTo={'/ART'}
-					exitAnimationDirection={changeExitPropHomet}
-					title={'ART'}
-					direction={'rtl'}
-				/>
+				<h2 className="gradient">Sign Up</h2>
 				<SectionChangeLink
 					weGoTo={'/MERCH'}
 					exitAnimationDirection={changeExitPropHomet}

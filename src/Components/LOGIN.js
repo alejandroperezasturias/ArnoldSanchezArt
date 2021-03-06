@@ -57,15 +57,7 @@ export default function LOGIN() {
 						direction={'rtl'}
 					/>
 				</div>
-				<div>
-					<SectionChangeLink
-						weGoTo={'/ART'}
-						exitAnimationDirection={changeExitPropHomet}
-						title={'ART'}
-						direction={'rtl'}
-					/>
-				</div>
-
+				<h2 className="gradient">Log In</h2>
 				<div>
 					<SectionChangeLink
 						weGoTo={'/TATTOO'}
@@ -86,6 +78,7 @@ export default function LOGIN() {
 			</div>
 			<FloatingLinks />
 			<BURGER />
+			
 		</motion.div>
 	);
 }
