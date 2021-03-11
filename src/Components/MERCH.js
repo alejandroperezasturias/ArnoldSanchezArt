@@ -71,11 +71,12 @@ export default function MERCH() {
 					<div
 						className={'merch-wrapper'}
 						style={{
-							justifyContent: 'space-between',
+							justifyContent: 'center',
 							alignItems: 'center',
 							width: '70%',
 							marginTop: '10rem',
 							display: 'flex',
+							minHeight: '40vh',
 						}}
 					>
 						{products.map((product) => {
@@ -87,6 +88,7 @@ export default function MERCH() {
 									price_id={product.price_id}
 									image={product.image}
 									addToShoppingCart={addToShoppingCart}
+									description={product.description}
 								/>
 							);
 						})}
@@ -100,7 +102,14 @@ export default function MERCH() {
 	);
 }
 
-export function MerchCard({ price, name, price_id, addToShoppingCart, image }) {
+export function MerchCard({
+	price,
+	name,
+	price_id,
+	addToShoppingCart,
+	image,
+	description,
+}) {
 	const [amount, setAmount] = useState(1);
 	const changeQuantity = (v) => {
 		setAmount((oldQ) => Math.max(1, oldQ + v));
@@ -118,11 +127,24 @@ export function MerchCard({ price, name, price_id, addToShoppingCart, image }) {
 				alt="arnol tattoo bembibre product"
 			></img>
 			<div className="merchcard-info-wrapper">
-				<h3>{name}</h3>
-				<p>{formatCurrency(price * 1000)}</p>
+				<h2 className={'text-600'}>{name}</h2>
+				<div>
+					{description.map((item) => (
+						<li className={'text-100'} key={Math.random()}>
+							{item}
+						</li>
+					))}
+				</div>
+				<p>
+					{formatCurrency(price * 1000)}
+					{'  '}
+					<span style={{ fontSize: 'var(--fs-300)' }}>
+						incluye gastos de envio
+					</span>
+				</p>
 				<div className={'merch-card-increase-quantity-wrapper'}>
 					<button
-						className="btn gradient"
+						className="btn"
 						onClick={() => {
 							changeQuantity(-1);
 						}}
@@ -143,7 +165,7 @@ export function MerchCard({ price, name, price_id, addToShoppingCart, image }) {
 							height: '40px',
 							borderRadius: '100%',
 						}}
-						className="btn gradient"
+						className="btn"
 						onClick={() => {
 							changeQuantity(1);
 						}}
@@ -158,7 +180,7 @@ export function MerchCard({ price, name, price_id, addToShoppingCart, image }) {
 						setAmount(1);
 					}}
 					disabled={amount === 0}
-					className="btn gradient"
+					className="btn"
 				>
 					ADD TO CART
 				</button>

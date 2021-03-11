@@ -182,7 +182,7 @@ function SaveCard() {
 							display: 'flex',
 							justifyContent: 'center',
 							alignItems: 'center',
-							minHeight: '50vh',
+							minHeight: '85vh',
 						}}
 					>
 						<div className={'user-dsh flow-content'}>
@@ -209,6 +209,7 @@ function SaveCard() {
 									justifyContent: 'space-around',
 									alignItems: 'flex-start',
 									position: 'relative',
+									minHeight: '30vh'
 								}}
 							>
 								<div className={'flow-content'}>
@@ -233,7 +234,7 @@ function SaveCard() {
 														<li>
 															{paymentSource.currency}
 															{'  '}
-															{formatCurrency(paymentSource.amount)} -{' '}
+															{formatCurrency(paymentSource.amount * 10)} -{' '}
 															{timeConverter(paymentSource.created)}
 														</li>
 													) : (
@@ -365,7 +366,7 @@ function SaveCard() {
 									</div>
 								</div>
 							</div>
-							<div>
+							<div >
 								<button className={'gradient btn'} onClick={logOut}>
 									Log out
 								</button>

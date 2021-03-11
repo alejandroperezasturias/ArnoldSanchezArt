@@ -14,13 +14,13 @@ import LOGIN from './Components/LOGIN';
 import FORGOTPASSWORD from './Components/FORGOTPASSWORD';
 import { auth } from './Components/firebase';
 import { products } from './helpers/products';
-import SuccessPage from './Components/SUCCEDPAGE'
+import SuccessPage from './Components/SUCCESS';
 export const AuthContext = React.createContext({});
 
 function App() {
 	const location = useLocation();
 	const [user, setUser] = useState();
-	const [fromCheckout, setFromCheckOut] = useState(false)
+	const [fromCheckout, setFromCheckOut] = useState(false);
 	useEffect(() => {
 		const unlisten = auth.onAuthStateChanged((authUser) => {
 			setUser(authUser);
@@ -28,8 +28,7 @@ function App() {
 		return unlisten;
 	});
 
-	const [shoppingCart, setShoppingCart]= useState([])
-
+	const [shoppingCart, setShoppingCart] = useState([]);
 
 	const [trolly, setTrolly] = useState([]);
 	useEffect(() => {
@@ -39,11 +38,9 @@ function App() {
 			const item = products.find((i) => entry.id === i.price_id);
 			const newItem = { ...item, amount: entry.amount };
 			listProducts = [...listProducts, newItem];
-			
 		});
 		setTrolly(listProducts);
 	}, [shoppingCart]);
-
 
 	const deleteFromShoppingCart = (id) => {
 		const existingItem = shoppingCart.find((entry) => entry.id === id);
@@ -57,7 +54,6 @@ function App() {
 		return sum + item.price * entry.amount;
 	}, 0);
 
-
 	const authContextValue = {
 		user,
 		setShoppingCart,
@@ -65,17 +61,19 @@ function App() {
 		setFromCheckOut,
 		fromCheckout,
 		totalCents,
-		trolly,	
-		deleteFromShoppingCart
-		
+		trolly,
+		deleteFromShoppingCart,
 	};
 
 	return (
 		<div className="App">
 			<AuthContext.Provider value={authContextValue}>
+				<ScrollToTop />
 				<AnimatePresence exitBeforeEnter>
-					<ScrollToTop />
 					<Switch location={location} key={location.pathname}>
+						<Route path="/SUCCESS" exact>
+							<SuccessPage />
+						</Route>
 						<Route path="/" exact>
 							<HERO />
 						</Route>
@@ -102,9 +100,6 @@ function App() {
 						</Route>
 						<Route path="/FORGOTPASSWORD" exact>
 							<FORGOTPASSWORD />
-						</Route>
-						<Route path="/SUCCESSPAYMENT" exact>
-							<SuccessPage />
 						</Route>
 					</Switch>
 				</AnimatePresence>

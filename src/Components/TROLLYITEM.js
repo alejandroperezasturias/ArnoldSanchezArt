@@ -27,7 +27,7 @@ export default function TrollyItem({
 					padding: '.2rem .5rem',
 					fontSize: 'var(	--fs-300)',
 					marginTop: '0.5rem',
-                    border: 'none 0px !important',
+                    border: '0px !important',
 				}}
 				onClick={() => {
 					deleteFromShoppingCart(price_id);

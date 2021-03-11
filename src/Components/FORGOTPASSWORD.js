@@ -9,6 +9,7 @@ import {
 } from '../Animations/animation';
 import SectionChangeLink from '../Animations/SectionChangeLink';
 import FormRecoverPassword from './FORMFORGOTPASSWORD';
+import BURGER from './BURGER'
 
 export default function Login() {
 	const [error, setError] = useState();
@@ -110,6 +111,7 @@ export default function Login() {
 				</motion.div>
 			</div>
 			<div style={{ minHeight: '5rem' }}></div>
+			<BURGER/>
 		</motion.div>
 	);
 }

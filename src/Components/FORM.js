@@ -1,11 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import TextField from '@material-ui/core/TextField';
-import { Grid, Paper, Button, Typography, Divider } from '@material-ui/core';
-import {
-	ThemeProvider,
-	createMuiTheme,
-	makeStyles,
-} from '@material-ui/core/styles';
+import { Button, Typography } from '@material-ui/core';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import googleIcon from '../images/google-icon.svg';
 import { motion } from 'framer-motion';
 import { Link as LinkRouter } from 'react-router-dom';

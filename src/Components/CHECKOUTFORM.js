@@ -1,13 +1,12 @@
 import { useState, useEffect, useContext } from 'react';
 import TextField from '@material-ui/core/TextField';
-import { Grid, Paper, Button, Typography } from '@material-ui/core';
+import { Button, Typography } from '@material-ui/core';
 import {
 	ThemeProvider,
 	createMuiTheme,
 	makeStyles,
 } from '@material-ui/core/styles';
 import { motion } from 'framer-motion';
-import { Link as LinkRouter } from 'react-router-dom';
 import { Alert } from '@material-ui/lab';
 import { AuthContext } from '../App';
 
@@ -27,20 +26,15 @@ export default function CheckoutForm({
 	addressReady,
 	addressDetails,
 	setAddressDetails,
-	// email,
-	// setEmail,
-	// name,
-	// setName,
-	// address,
-	// setAddress,
-	// zip,
-	// setZip,
-	// city,
-	// setCity,
-	// country,
-	// setCountry,
 }) {
 	const { user } = useContext(AuthContext);
+	const [formError, setFormError] = useState(false);
+	// 5numbers no more no less
+	const regex = /\b\d{5}\b/;
+
+	const validPostalCode = (postal_code) => {
+		return regex.test(postal_code);
+	};
 
 	useEffect(() => {
 		// user && setEmail(user.email);
@@ -57,20 +51,6 @@ export default function CheckoutForm({
 	});
 
 	const formStyles = makeStyles((theme) => ({
-		form: {
-			padding: '4rem 2rem',
-			fontSize: '0.2rem',
-			fontFamily: 'poppins, sans-serif',
-			[theme.breakpoints.up('sm')]: {
-				padding: '2rem 1rem',
-			},
-			[theme.breakpoints.up('md')]: {
-				padding: '2rem 1rem',
-			},
-			[theme.breakpoints.up('lg')]: {
-				padding: '2rem 2rem',
-			},
-		},
 		formButton: {
 			fontSize: '0.8rem',
 			fontFamily: 'poppins, sans-serif',
@@ -84,23 +64,6 @@ export default function CheckoutForm({
 				fontSize: '.9rem',
 			},
 		},
-		lowerLinks: {
-			fontSize: '0.6rem',
-			fontFamily: 'poppins, sans-serif',
-			[theme.breakpoints.up('sm')]: {
-				fontSize: '0.6rem',
-			},
-			[theme.breakpoints.up('md')]: {
-				fontSize: '.6rem',
-			},
-			[theme.breakpoints.up('lg')]: {
-				fontSize: '.7rem',
-			},
-		},
-		resize: {
-			fontSize: '.7rem',
-			lineHeight: 2,
-		},
 	}));
 	const formClass = formStyles();
 	return (
@@ -109,23 +72,57 @@ export default function CheckoutForm({
 				initial="close"
 				animate={error ? 'open' : 'close'}
 				variants={spanQuantityAnimation}
+				// className="form-wrapper"
 			>
-				<Grid>
-					<Paper elevation={3} className={formClass.form}>
+				<div>
+					{formError && (
+						<Alert
+							severity="error"
+							style={{
+								color: 'white',
+								marginBottom: '1rem',
+								textAlign: 'center',
+							}}
+						>
+							{formError}
+						</Alert>
+					)}
+				</div>
+				<div>
+					<div
+						style={{
+							width: '100%',
+							background: '#424242',
+							padding: '3rem 2rem',
+							borderRadius: '1rem',
+						}}
+					>
 						<form
 							onSubmit={(e) => {
-								setReadyToPay(e);
+								if (validPostalCode(addressDetails.postal_code)) {
+									setReadyToPay(e);
+									setFormError();
+								} else {
+									console.log(validPostalCode(addressDetails.postal_code));
+									console.log(typeof addressDetails.postal_code);
+									e.preventDefault();
+									setFormError('Codigo Postal no Valido');
+								}
+
 								// signInWithEmail(e, email, password, name);
 								// setEmail('');
 								// setName('');
 								// setPassword('');
 							}}
 						>
-							<Grid container spacing={3} align="center" direction={'column'}>
+							<div
+								className="flow-content"
+								style={{ '--flow-spacer': '1rem', textAlign: 'center' }}
+							>
 								<Typography variant="h6" style={{ marginBottom: '2rem' }}>
-									Where do we send the order?
+									Danos tu Direccion
 								</Typography>
-								<Grid item>
+								<div>
 									<TextField
 										InputProps={{ style: { fontSize: 12 } }}
 										fullWidth
@@ -142,8 +139,8 @@ export default function CheckoutForm({
 										}
 										size="small"
 									/>
-								</Grid>
-								<Grid item>
+								</div>
+								<div>
 									<TextField
 										InputProps={{ style: { fontSize: 12 } }}
 										fullWidth
@@ -159,8 +156,8 @@ export default function CheckoutForm({
 										}
 										size="small"
 									/>
-								</Grid>
-								<Grid item>
+								</div>
+								<div>
 									<TextField
 										fullWidth
 										InputProps={{ style: { fontSize: 12 } }}
@@ -178,8 +175,8 @@ export default function CheckoutForm({
 										autoComplete="country"
 										size="small"
 									/>
-								</Grid>
-								<Grid item>
+								</div>
+								<div>
 									<TextField
 										fullWidth
 										InputProps={{ style: { fontSize: 12 } }}
@@ -198,16 +195,12 @@ export default function CheckoutForm({
 										multiline
 										size="small"
 									/>
-								</Grid>
+								</div>
 
-								<Grid
-									container
-									direction={'row'}
-									spacing={1}
-									justify="center"
-									alignItems="center"
+								<div
+									style={{ display: 'flex', justifyContent: 'space-around' }}
 								>
-									<Grid item>
+									<div>
 										<TextField
 											required
 											InputProps={{ style: { fontSize: 12 } }}
@@ -224,8 +217,8 @@ export default function CheckoutForm({
 											size="small"
 											variant="outlined"
 										/>
-									</Grid>
-									<Grid item>
+									</div>
+									<div>
 										<TextField
 											required
 											InputProps={{ style: { fontSize: 12 } }}
@@ -242,9 +235,9 @@ export default function CheckoutForm({
 											size="small"
 											variant="outlined"
 										/>
-									</Grid>
-								</Grid>
-								<Grid item style={{ marginTop: '2rem' }}>
+									</div>
+								</div>
+								<div style={{ marginTop: '2rem' }}>
 									<Button
 										type="submit"
 										variant="contained"
@@ -255,20 +248,10 @@ export default function CheckoutForm({
 									>
 										Ready to pay
 									</Button>
-								</Grid>
-							</Grid>
+								</div>
+							</div>
 						</form>
-					</Paper>
-				</Grid>
-				<div style={{ minHeight: '4rem' }}>
-					{error && (
-						<Alert
-							severity="error"
-							style={{ color: 'white', marginTop: '1rem', textAlign: 'center' }}
-						>
-							{error}
-						</Alert>
-					)}
+					</div>
 				</div>
 			</motion.div>
 		</ThemeProvider>

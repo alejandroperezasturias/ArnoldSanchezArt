@@ -13,13 +13,18 @@ import FloatingLinks from './FLOATINGLINKS';
 export default function LOGIN() {
 	const history = useHistory();
 	const [error, setError] = useState();
-	const { setFromCheckOut } = useContext(AuthContext);
+	const { setFromCheckOut, fromCheckout } = useContext(AuthContext);
 
 	const signInWithGoogle = async () => {
 		try {
 			await auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-			setFromCheckOut(false);
-			history.push('/CUSTOMER');
+			setError();
+			if (fromCheckout) {
+				history.push('/CHECKOUT');
+				setFromCheckOut(false);
+			} else {
+				history.push('/CUSTOMER');
+			}
 		} catch (error) {
 			console.error(error);
 			setError(error.message);
@@ -31,8 +36,12 @@ export default function LOGIN() {
 		try {
 			await auth.signInWithEmailAndPassword(mail, password);
 			setError();
-			history.push('/CUSTOMER');
-			setFromCheckOut(false);
+			if (fromCheckout) {
+				history.push('/CHECKOUT');
+				setFromCheckOut(false);
+			} else {
+				history.push('/CUSTOMER');
+			}
 		} catch (error) {
 			console.error(error.message);
 			setError(error.message);
@@ -78,7 +87,6 @@ export default function LOGIN() {
 			</div>
 			<FloatingLinks />
 			<BURGER />
-			
 		</motion.div>
 	);
 }

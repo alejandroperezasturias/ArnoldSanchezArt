@@ -4,6 +4,7 @@ import { AuthContext } from '../App';
 import { formatCurrency } from '../helpers/helpers';
 import { useHistory } from 'react-router-dom';
 import TrollyItem from './TROLLYITEM';
+import { changeExitPropHomet } from '../Animations/animation';
 
 const sidebar = {
 	open: (height) => ({
@@ -40,11 +41,13 @@ export default function SHOPPINGCART({ deleteFromShoppingCart }) {
 	const { user, setFromCheckOut, trolly, totalCents } = useContext(AuthContext);
 	const history = useHistory();
 
-	const toCeckOut = () => {
+	const toCheckOut = () => {
 		if (user) {
+			changeExitPropHomet()
 			history.push('./checkout');
 			setFromCheckOut(false);
 		} else {
+			changeExitPropHomet()
 			history.push('./login');
 			setFromCheckOut(true);
 		}
@@ -111,7 +114,7 @@ export default function SHOPPINGCART({ deleteFromShoppingCart }) {
 					{trolly.map((item) => {
 						return (
 							<TrollyItem
-								key={item.name}
+								key={item.price_id}
 								price_id={item.price_id}
 								name={item.name}
 								amount={item.amount}
@@ -133,12 +136,12 @@ export default function SHOPPINGCART({ deleteFromShoppingCart }) {
 						<div style={{ marginTop: '.5rem' }}>
 							<button
 								hidden={trolly.length === 0}
-								onClick={toCeckOut}
+								onClick={toCheckOut}
 								className={'btn text'}
 								style={{
 									backgroundColor: '#7BAFAF',
-									padding: '.2rem .5rem',
-									fontSize: 'var(	--fs-300)',
+									padding: '.4rem .7rem',
+									fontSize: 'var(	--fs-400)',
 								}}
 							>
 								Check Out
@@ -177,7 +180,6 @@ export const useDimensions = (ref) => {
 	// We want to use layout affect as it is synchroniously does not wait for the browser to be fully painted to fire
 	useLayoutEffect(() => {
 		const rect = ref.current.getBoundingClientRect();
-		console.log(rect);
 		setDimensions({
 			width: rect.width,
 			height: rect.height,

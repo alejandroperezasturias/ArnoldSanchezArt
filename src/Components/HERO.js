@@ -101,7 +101,7 @@ export default function HERO() {
 	const opacity = useTransform(
 		yScroll,
 		[scrollPercentageStart, scrollPercentageEnd],
-		[1, 0.1]
+		[1, 0.3]
 	);
 
 	// Plus 0.2 to give it delay so we don't need to hook up any interaction observer
@@ -114,7 +114,7 @@ export default function HERO() {
 	const y = useTransform(
 		yScroll,
 		[scrollPercentageStart, scrollPercentageEnd],
-		[0, 400]
+		[0, 500]
 		// [0, 600]
 	);
 
@@ -178,7 +178,7 @@ export default function HERO() {
 			<a
 				href="http://localhost:3000/"
 				aria-label="acme home page"
-				className={'hero-logo split center-center'}
+				className={'hero-logo  center-center'}
 			>
 				<div style={{ minHeight: '4rem' }}>
 					<img src={logo} alt="logo"></img>

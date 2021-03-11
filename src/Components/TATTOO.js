@@ -3,8 +3,6 @@ import {
 	routeVariants,
 	changeExitPropRight,
 	changeExitPropLeft,
-	routeVariantsNormal,
-	changeExitPropHomet,
 } from '../Animations/animation';
 import SectionChangeLink from '../Animations/SectionChangeLink';
 import FOOTER from './FOOTER';
@@ -64,6 +62,7 @@ export default function TATTOO() {
 								alt="Arnold Bembibre Leon Tattoo"
 							></img>
 						</div>
+						
 						<div className="tattoo-section-tattoo-photos-laptop">
 							<img
 								style={{
@@ -103,7 +102,7 @@ export default function TATTOO() {
 							<p>Attention to detail and perfectionism define the artist</p>
 						</div>
 						<div>
-							<button className="gradient appointment-button">
+							<button className="btn">
 								APPOINTMENT
 							</button>
 						</div>
