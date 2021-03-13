@@ -90,7 +90,7 @@ export default function HERO() {
 	const scale = useTransform(
 		yScroll,
 		[scrollPercentageStart, scrollPercentageEnd],
-		[1.1, 1.8]
+		[1.1, 2]
 	);
 
 	const scaleText = useTransform(
@@ -114,7 +114,7 @@ export default function HERO() {
 	const y = useTransform(
 		yScroll,
 		[scrollPercentageStart, scrollPercentageEnd],
-		[50, 200],
+		[50, 150],
 		{ clamp: false }
 		// [0, 600]
 	);
@@ -200,7 +200,7 @@ export default function HERO() {
 					art
 				</p>
 			</a>
-			<div style={{ minHeight: '5vh' }}></div>
+			<div style={{ minHeight: '7vh' }}></div>
 			<div ref={ref}>
 				<div style={{ minHeight: '15vh' }}></div>
 				<div className={'hero-image'} style={{ minHeight: '12vh' }}>
