@@ -90,7 +90,7 @@ export default function HERO() {
 	const scale = useTransform(
 		yScroll,
 		[scrollPercentageStart, scrollPercentageEnd],
-		[1.1, 2.8]
+		[1.1, 1.8]
 	);
 
 	const scaleText = useTransform(
@@ -101,7 +101,7 @@ export default function HERO() {
 	const opacity = useTransform(
 		yScroll,
 		[scrollPercentageStart, scrollPercentageEnd],
-		[1, 0.3]
+		[1, 0.8]
 	);
 
 	// Plus 0.2 to give it delay so we don't need to hook up any interaction observer
@@ -114,7 +114,8 @@ export default function HERO() {
 	const y = useTransform(
 		yScroll,
 		[scrollPercentageStart, scrollPercentageEnd],
-		[0, 500]
+		[0, 100],
+		{ clamp: false }
 		// [0, 600]
 	);
 
@@ -199,7 +200,7 @@ export default function HERO() {
 			</a>
 
 			<div ref={ref}>
-				<div style={{ minHeight: '20vh' }}></div>
+				<div style={{ minHeight: '15vh' }}></div>
 				<div className={'hero-image'} style={{ minHeight: '12vh' }}>
 					<motion.img
 						style={{ scale, opacity, y }}
@@ -207,7 +208,7 @@ export default function HERO() {
 						alt="Arnold Bembibre Leon Tattoo Skull"
 					></motion.img>
 				</div>
-				<div style={{ height: '65vh' }}></div>
+				<div style={{ height: '20vh' }}></div>
 			</div>
 
 			<div

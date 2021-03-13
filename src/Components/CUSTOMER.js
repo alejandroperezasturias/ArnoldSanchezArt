@@ -139,20 +139,18 @@ function SaveCard() {
 		},
 	});
 
-	console.log(paymentIntents);
-
 	return (
 		<>
-			<BURGER />
-			<motion.div
-				style={{ minHeight: '90vh', position: 'relative' }}
-				variants={routeVariants}
-				initial="hidden"
-				animate="visible"
-				exit="exit"
-				className={'section'}
-			>
-				<AuthCheck fallback={<LOGIN />}>
+			<AuthCheck fallback={<LOGIN />}>
+				<BURGER />
+				<motion.div
+					style={{ minHeight: '90vh', position: 'relative' }}
+					variants={routeVariants}
+					initial="hidden"
+					animate="visible"
+					exit="exit"
+					className={'section'}
+				>
 					<div
 						className={'section-header'}
 						style={{
@@ -209,7 +207,7 @@ function SaveCard() {
 									justifyContent: 'space-around',
 									alignItems: 'flex-start',
 									position: 'relative',
-									minHeight: '30vh'
+									minHeight: '30vh',
 								}}
 							>
 								<div className={'flow-content'}>
@@ -230,8 +228,9 @@ function SaveCard() {
 												}}
 											>
 												{paymentIntents.map((paymentSource) => {
+													// console.log(paymentSource);
 													return paymentSource.status === 'succeeded' ? (
-														<li>
+														<li key={paymentSource.id}>
 															{paymentSource.currency}
 															{'  '}
 															{formatCurrency(paymentSource.amount * 10)} -{' '}
@@ -366,7 +365,7 @@ function SaveCard() {
 									</div>
 								</div>
 							</div>
-							<div >
+							<div>
 								<button className={'gradient btn'} onClick={logOut}>
 									Log out
 								</button>
@@ -394,8 +393,8 @@ function SaveCard() {
 							</ul>
 						</div>
 					</div>
-				</AuthCheck>
-			</motion.div>
+				</motion.div>
+			</AuthCheck>
 		</>
 	);
 }
@@ -411,7 +410,7 @@ function CreditCard({ paymentSource }) {
 
 export default function CUSTOMER() {
 	return (
-		<Suspense fallback={'loading User'}>
+		<Suspense fallback={<CircularProgress color="secondary" />}>
 			<SaveCard />
 		</Suspense>
 	);

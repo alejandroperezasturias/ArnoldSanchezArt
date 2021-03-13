@@ -21,12 +21,13 @@ function App() {
 	const location = useLocation();
 	const [user, setUser] = useState();
 	const [fromCheckout, setFromCheckOut] = useState(false);
+
 	useEffect(() => {
 		const unlisten = auth.onAuthStateChanged((authUser) => {
 			setUser(authUser);
 		});
 		return unlisten;
-	});
+	}, []);
 
 	const [shoppingCart, setShoppingCart] = useState([]);
 
