@@ -114,7 +114,7 @@ export default function HERO() {
 	const y = useTransform(
 		yScroll,
 		[scrollPercentageStart, scrollPercentageEnd],
-		[0, 100],
+		[50, 200],
 		{ clamp: false }
 		// [0, 600]
 	);
@@ -158,16 +158,18 @@ export default function HERO() {
 					direction={'rtl'}
 				/>
 
-				<div style={{ display }}>
-					<SectionChangeLink
-						weGoTo={'/CUSTOMER'}
-						exitAnimationDirection={changeExitPropLeft}
-						title={'LOGIN'}
-						direction={'initial'}
-					/>
-				</div>
-
-				{user && <USER user={user} />}
+				{user === null ? (
+					<div>
+						<SectionChangeLink
+							weGoTo={'/CUSTOMER'}
+							exitAnimationDirection={changeExitPropLeft}
+							title={'LOGIN'}
+							direction={'initial'}
+						/>
+					</div>
+				) : (
+					<USER user={user}></USER>
+				)}
 				<BURGER />
 				<SectionChangeLink
 					weGoTo={'/MERCH'}
