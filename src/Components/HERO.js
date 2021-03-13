@@ -200,7 +200,7 @@ export default function HERO() {
 					art
 				</p>
 			</a>
-
+			<div style={{ minHeight: '5vh' }}></div>
 			<div ref={ref}>
 				<div style={{ minHeight: '15vh' }}></div>
 				<div className={'hero-image'} style={{ minHeight: '12vh' }}>
