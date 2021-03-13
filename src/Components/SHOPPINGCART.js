@@ -9,7 +9,7 @@ import { changeExitPropHomet } from '../Animations/animation';
 const sidebar = {
 	open: (height) => ({
 		// circle(radius, placements)
-		clipPath: `circle(${height + 300}px  at 100% 100%)`,
+		clipPath: `circle(300%  at 50% 50%)`,
 		background: 'white',
 		transition: {
 			// type: 'spring',
@@ -21,15 +21,16 @@ const sidebar = {
 		},
 	}),
 	close: {
-		clipPath: 'circle(32% at 50% 50%)',
+		clipPath: 'circle(40% at 50% 50%)',
 		background: 'white',
 		transition: {
 			type: 'spring',
-			stiffness: 700,
-			damping: 50,
-			when: 'afterChildren',
-			staggerChildren: 0.09,
-			staggerDirection: -1,
+			stiffness: 3000,
+			damping: 100,
+			// when: 'afterChildren',
+			// staggerChildren: 0.09,
+			// staggerDirection: -1,
+			// duration: 0,
 		},
 	},
 };
@@ -43,11 +44,11 @@ export default function SHOPPINGCART({ deleteFromShoppingCart }) {
 
 	const toCheckOut = () => {
 		if (user) {
-			changeExitPropHomet()
+			changeExitPropHomet();
 			history.push('./checkout');
 			setFromCheckOut(false);
 		} else {
-			changeExitPropHomet()
+			changeExitPropHomet();
 			history.push('./login');
 			setFromCheckOut(true);
 		}
@@ -59,23 +60,25 @@ export default function SHOPPINGCART({ deleteFromShoppingCart }) {
 			animate={isOpen ? 'open' : 'close'}
 			custom={height}
 			variants={sidebar}
-			style={{ width: '10rem', borderRadius: '1rem 1rem 0rem 0rem' }}
+			style={{
+				width: '10rem',
+				borderRadius: isOpen ? '1rem 1rem 0rem 0rem' : '1rem',
+			}}
 		>
 			<motion.div
 				style={{
 					width: '10rem',
 					borderRadius: '1rem',
-					padding: '2rem 1rem',
+					padding: '2rem 2rem',
 					display: 'flex',
 					alignItems: 'center',
 					justifyContent: 'center',
-					marginTop: '1.5rem',
+					// marginTop: '1.5rem',
 				}}
 			>
 				<div
 					onClick={() => toggleOpen()}
 					style={{
-						
 						backgroundColor: 'white',
 						width: '80px',
 						height: '80px',
@@ -84,71 +87,85 @@ export default function SHOPPINGCART({ deleteFromShoppingCart }) {
 						alignItems: 'center',
 						justifyContent: 'center',
 						cursor: 'pointer',
-						flexDirection: 'column'
-
+						flexDirection: 'column',
 					}}
 				>
 					<SvgTrolly />
-					<span style={{color: 'black', fontSize: 'var(--fs-300)', marginTop: '.2rem', fontWeight:"var(--fw-300)"}}>{formatCurrency(totalCents * 1000)}</span>
+					<span
+						style={{
+							color: 'black',
+
+							marginTop: '.2rem',
+						}}
+						className="text-400"
+					>
+						{formatCurrency(totalCents * 1000)}
+					</span>
 				</div>
 			</motion.div>
-			<motion.div>
-				<div
-					id="shopping-cart "
-					className="flow-content"
-					ref={containerRef}
-					style={{
-						backgroundColor: 'white',
-						color: 'black',
-						textAlign: 'left',
-						position: 'absolute',
-						borderRadius: '0rem 0rem 1rem 1rem ',
-						width: '10rem',
-						padding: '1rem',
-					}}
-				>
-					<div>
-						<h3 style={{ fontWeight: 'var(--fw-300)' }}>Your Cart</h3>
-					</div>
+			<motion.div ref={containerRef}>
+				{isOpen && (
+					<div
+						id="shopping-cart "
+						className="flow-content"
+						style={{
+							backgroundColor: 'white',
+							color: 'black',
+							textAlign: 'left',
+							position: 'absolute',
+							borderRadius: '0rem 0rem 1rem 1rem ',
+							width: '10rem',
+							padding: '1rem',
+						}}
+					>
+						<div>
+							<h3 className="text-600">Your Cart</h3>
+						</div>
 
-					{trolly.map((item) => {
-						return (
-							<TrollyItem
-								key={item.price_id}
-								price_id={item.price_id}
-								name={item.name}
-								amount={item.amount}
-								price={item.price}
-								deleteFromShoppingCart={deleteFromShoppingCart}
-							/>
-						);
-					})}
-					<hr></hr>
-					<div>
-						<div hidden={trolly.length === 0}>
-							{totalCents && (
-								<p style={{ fontSize: 'var(--fs-300)' }}>
-									Total: {formatCurrency(totalCents * 1000)}{' '}
-								</p>
-							)}
-							<p style={{ fontSize: 'var(--fs-300)' }}></p>
-						</div>
-						<div style={{ marginTop: '.5rem' }}>
-							<button
-								hidden={trolly.length === 0}
-								onClick={toCheckOut}
-								className={'btn text'}
-								style={{
-									backgroundColor: '#7BAFAF',
-									padding: '.4rem .7rem',
-									fontSize: 'var(	--fs-400)',
-								}}
-							>
-								Check Out
-							</button>
-						</div>
+						{trolly.length > 0 ? (
+							<>
+								{trolly.map((item) => {
+									return (
+										<TrollyItem
+											key={item.price_id}
+											price_id={item.price_id}
+											name={item.name}
+											amount={item.amount}
+											price={item.price}
+											deleteFromShoppingCart={deleteFromShoppingCart}
+										/>
+									);
+								})}
+								<hr></hr>
+								<div>
+									<div hidden={trolly.length === 0}>
+										{totalCents && (
+											<p className="text-400">
+												Total: {formatCurrency(totalCents * 1000)}{' '}
+											</p>
+										)}
+									</div>
+									<div style={{ marginTop: '.5rem' }}>
+										<button
+											hidden={trolly.length === 0}
+											onClick={toCheckOut}
+											className={'btn text'}
+											style={{
+												backgroundColor: '#7BAFAF',
+												padding: '.4rem .7rem',
+												fontSize: 'var(	--fs-400)',
+											}}
+										>
+											Check Out
+										</button>
+									</div>
+								</div>
+							</>
+						) : (
+							<></>
+						)}
 					</div>
-				</div>
+				)}
 			</motion.div>
 		</motion.div>
 	);

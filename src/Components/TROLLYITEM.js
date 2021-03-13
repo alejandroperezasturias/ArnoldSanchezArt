@@ -14,10 +14,10 @@ export default function TrollyItem({
 }) {
 	return (
 		<motion.div key={price_id} variants={titleAnim}>
-			<p> {name}</p>
-			<p style={{ fontSize: 'var(	--fs-200)' }}>Items: {amount}</p>
+			<p className="text-400"> {name}</p>
+			<p className="text-300">Items: {amount}</p>
 
-			<p style={{ fontSize: 'var(	--fs-200)' }}>
+			<p className="text-300">
 				Price: {formatCurrency(price * amount * 1000)}
 			</p>
 			<button

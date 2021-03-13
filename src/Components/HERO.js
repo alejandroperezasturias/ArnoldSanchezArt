@@ -212,6 +212,7 @@ export default function HERO() {
 				</div>
 				<div style={{ height: '20vh' }}></div>
 			</div>
+			<div style={{ height: '10vh' }}></div>
 
 			<div
 				style={{

@@ -3,15 +3,16 @@
 	--ff-accent: 'poppins', sans-serif;
 
 	/* small screen font-sizes */
-	--fs-200: 0.125rem;
-	--fs-300: 0.625rem;
+	--fs-200: 0.8rem;
+	--fs-300: 1rem;
 	--fs-400: 1rem;
 	--fs-500: 1rem;
-	--fs-600: 1.2rem;
+	--fs-600: 1.5rem;
 	--fs-900: 1.6rem;
 	--fw-100: 100;
 	--fw-200: 200;
 	--fw-300: 300;
+	--fw-350: 350;
 	--fw-400: 400;
 	/* Bold */
 	--fw-700: 700;
@@ -159,13 +160,13 @@ h1 {
 }
 
 .text-300 {
-	font-size: var(--fs-300);
-	font-weight: var(--fw-300);
+	font-size: var(--fs-200);
+	font-weight: var(--fw-350);
 }
 
 .text-100 {
 	font-size: var(--fs-300);
-	font-weight: var(--fw-100);
+	font-weight: var(--fw-300);
 }
 
 .gradient {
@@ -392,7 +393,7 @@ h1 {
 
 .final-footer {
 	margin-bottom: 5rem;
-	font-weight: 10;
+	font-weight: var(--fw-200);
 	color: var(--clr-neutral-100);
 	text-align: center;
 }
@@ -522,6 +523,9 @@ h1 {
 
 .merch-wrapper > * + * {
 	margin: 5rem 0 0 0;
+}
+.merchcard-info-wrapper {
+	padding: 0rem 1rem;
 }
 
 .merchcard-info-wrapper > * + * {

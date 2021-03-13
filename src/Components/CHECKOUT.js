@@ -332,6 +332,7 @@ export default function CHECKOUT() {
 						className={'flow-content xl-space'}
 					>
 						{trolly.map((item) => {
+							console.log(trolly);
 							return (
 								<div key={item.name + Math.random(100)} className="split">
 									<div style={{ flex: ' 0 1 30%' }}>

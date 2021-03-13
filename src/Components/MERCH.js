@@ -130,12 +130,12 @@ export function MerchCard({
 				<h2 className={'text-600'}>{name}</h2>
 				<div>
 					{description.map((item) => (
-						<li className={'text-100'} key={Math.random()}>
+						<li className={'text-300'} key={Math.random()}>
 							{item}
 						</li>
 					))}
 				</div>
-				<p>
+				<p className={'text-600'}>
 					{formatCurrency(price * 1000)}
 					{'  '}
 					<span style={{ fontSize: 'var(--fs-300)' }}>
