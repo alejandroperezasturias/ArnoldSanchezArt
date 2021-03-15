@@ -4,6 +4,7 @@ export const routeVariants = {
 		y: 10,
 		transition: {
 			duration: 0.5,
+			when: 'beforeChildren',
 		},
 	},
 	visible: {
@@ -11,6 +12,7 @@ export const routeVariants = {
 		y: 0,
 		transition: {
 			duration: 0.5,
+			when: 'beforeChildren',
 		},
 	},
 	exit: {
@@ -187,3 +189,58 @@ export const lineThreeBurger = {
 		transition: { duration: 0.07 },
 	},
 };
+
+export const tattooImage = {
+	open: { left: '0%' },
+	close: {
+		left: '100%',
+		transition: { duration: 0.8, delay: 0.3 },
+	},
+};
+
+export const tattooImage2 = {
+	open: { top: '0%' },
+	close: {
+		top: '100%',
+		transition: { duration: 0.8, delay: 0.4 },
+	},
+};
+
+export const tattooImage3 = {
+	open: { bottom: '0%' },
+	close: {
+		bottom: '100%',
+		transition: { duration: 0.8, delay: 0.4 },
+	},
+};
+
+// const sidebar = {
+// 	open: {
+// 		// circle(radius, placements)
+// 		// clipPath: `circle(10%  at 50% 50%)`,
+// 		scale: 1,
+// 		background: 'white',
+// 		transition: {
+// 			// type: 'spring',
+// 			// stiffness: 20,
+// 			// damping: 5,
+// 			restDelta: 2,
+// 			when: 'beforeChildren',
+// 			staggerChildren: 0.1,
+// 		},
+// 	},
+// 	close: {
+// 		// clipPath: 'circle(40% at 50% 50%)',
+// 		scale: 1,
+// 		background: 'white',
+// 		transition: {
+// 			type: 'spring',
+// 			stiffness: 3000,
+// 			damping: 100,
+// 			// when: 'afterChildren',
+// 			// staggerChildren: 0.09,
+// 			// staggerDirection: -1,
+// 			// duration: 0,
+// 		},
+// 	},
+// };

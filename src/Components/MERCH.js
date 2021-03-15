@@ -41,22 +41,30 @@ export default function MERCH() {
 		<>
 			<BURGER />
 			<motion.div
-				style={{ minHeight: '50vh' }}
+				style={{ minHeight: '50vh', position: 'relative' }}
 				variants={routeVariants}
-				initial="hidden"
-				animate="visible"
-				exit="exit"
-				className={'section'}
-			>
-				<div className={'section-header'} style={{ marginTop: '2.5rem' }}>
+				initial='hidden'
+				animate='visible'
+				exit='exit'
+				className={'section'}>
+				<div className={'section-header'}>
 					<SectionChangeLink
 						weGoTo={'/ART'}
 						exitAnimationDirection={changeExitPropRight}
 						title={'ART'}
 						direction={'rtl'}
 					/>
-					<div style={{ textAlign: 'center', marginTop: '5rem' }}>
-						<h2 className="gradient">MERCH</h2>
+					<div style={{ textAlign: 'center' }}>
+						<h2
+							style={{
+								position: 'absolute',
+								top: '3.5%',
+								left: '50%',
+								transform: 'translateX(-50%)',
+							}}
+							className='gradient'>
+							MERCH
+						</h2>
 						<SHOPPINGCART deleteFromShoppingCart={deleteFromShoppingCart} />
 					</div>
 					<SectionChangeLink
@@ -67,7 +75,7 @@ export default function MERCH() {
 					/>
 				</div>
 
-				<div className="split center-center">
+				<div className='split center-center' id='merch-container'>
 					<div
 						className={'merch-wrapper'}
 						style={{
@@ -77,8 +85,7 @@ export default function MERCH() {
 							marginTop: '10rem',
 							display: 'flex',
 							minHeight: '40vh',
-						}}
-					>
+						}}>
 						{products.map((product) => {
 							return (
 								<MerchCard
@@ -118,15 +125,13 @@ export function MerchCard({
 		<div
 			id={price_id}
 			className={'center-center split'}
-			style={{ '--split-spacer': '3rem' }}
-		>
+			style={{ '--split-spacer': '3rem' }}>
 			<img
 				src={image}
-				width="250px"
+				width='250px'
 				style={{ minHeight: '250px', objectFit: 'cover' }}
-				alt="arnol tattoo bembibre product"
-			></img>
-			<div className="merchcard-info-wrapper">
+				alt='arnol tattoo bembibre product'></img>
+			<div className='merchcard-info-wrapper'>
 				<h2 className={'text-600'}>{name}</h2>
 				<div>
 					{description.map((item) => (
@@ -144,7 +149,7 @@ export function MerchCard({
 				</p>
 				<div className={'merch-card-increase-quantity-wrapper'}>
 					<button
-						className="btn"
+						className='btn'
 						onClick={() => {
 							changeQuantity(-1);
 						}}
@@ -153,8 +158,7 @@ export function MerchCard({
 							width: '40px',
 							height: '40px',
 							borderRadius: '100%',
-						}}
-					>
+						}}>
 						-
 					</button>
 					<span>{amount}</span>
@@ -165,11 +169,10 @@ export function MerchCard({
 							height: '40px',
 							borderRadius: '100%',
 						}}
-						className="btn"
+						className='btn'
 						onClick={() => {
 							changeQuantity(1);
-						}}
-					>
+						}}>
 						+
 					</button>
 				</div>
@@ -180,8 +183,7 @@ export function MerchCard({
 						setAmount(1);
 					}}
 					disabled={amount === 0}
-					className="btn"
-				>
+					className='btn'>
 					ADD TO CART
 				</button>
 			</div>

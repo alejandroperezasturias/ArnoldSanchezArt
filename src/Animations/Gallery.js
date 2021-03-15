@@ -9,34 +9,33 @@ import GalleryImage from './GalleyImage';
 
 export default function Gallery() {
 	return (
-		<div className="art-gallery" style={{minHeight: '100vh'}}>
-			<div className="art-gallery-larger-images">
+		<div className='art-gallery' style={{ minHeight: '100vh' }}>
+			<div className='art-gallery-larger-images'>
 				<motion.div
-					initial="hidden"
-					animate="visible"
+					initial='hidden'
+					animate='visible'
 					variants={{
 						visible: {
 							opacity: 1,
 							transition: {
 								duration: Math.random() * (1.7 - 0.4) + 0.4,
-								delay: 1,
+								delay: 0.7,
 							},
 						},
 						hidden: {
 							opacity: 0,
 						},
-					}}
-				>
+					}}>
 					<GalleryImage src={skull} alt={'skull Bembibre Leon Tattoo'} />
 				</motion.div>
 				<ScrollComponent threshold={0.4}>
 					<GalleryImage src={hand} alt={'hand Bembibre Leon Tattoo'} />
 				</ScrollComponent>
 			</div>
-			<div className="art-gallery-shorter-images">
+			<div className='art-gallery-shorter-images'>
 				<motion.div
-					initial="hidden"
-					animate="visible"
+					initial='hidden'
+					animate='visible'
 					variants={{
 						visible: {
 							opacity: 1,
@@ -48,13 +47,12 @@ export default function Gallery() {
 						hidden: {
 							opacity: 0,
 						},
-					}}
-				>
+					}}>
 					<GalleryImage src={apple} alt={'apple Bembibre Leon Tattoo'} />
 				</motion.div>
 				<motion.div
-					initial="hidden"
-					animate="visible"
+					initial='hidden'
+					animate='visible'
 					variants={{
 						visible: {
 							opacity: 1,
@@ -66,9 +64,11 @@ export default function Gallery() {
 						hidden: {
 							opacity: 0,
 						},
-					}}
-				>
-					<GalleryImage src={boxingGloves} alt={'boxingGloves  Bembibre Leon Tattoo'} />
+					}}>
+					<GalleryImage
+						src={boxingGloves}
+						alt={'boxingGloves  Bembibre Leon Tattoo'}
+					/>
 				</motion.div>
 
 				<ScrollComponent threshold={1}>

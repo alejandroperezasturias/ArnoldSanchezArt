@@ -8,14 +8,12 @@ export function InstagramLinkFooter({ hoverOn, setHoverOn }) {
 		<div style={{ position: 'relative' }}>
 			<a
 				href={'https://www.instagram.com/arnolsegchez/'}
-				aria-label="acme instagram page"
-				style={{ lineHeight: 'normal', overflow: 'hidden' }}
-			>
+				aria-label='acme instagram page'
+				style={{ lineHeight: 'normal', overflow: 'hidden' }}>
 				<motion.h3
 					onHoverStart={() => setHoverOn(true)}
 					onHoverEnd={() => setHoverOn(false)}
-					className={'red text-600'}
-				>
+					className={'red text-600'}>
 					@arnolsegchez
 				</motion.h3>
 			</a>
@@ -30,11 +28,10 @@ export function InstagramLinkFooter({ hoverOn, setHoverOn }) {
 					left: 0,
 					right: 0,
 					width: '0%',
-					height: '0.5%',
+					height: '10%',
 					backgroundColor: 'white',
 					pointerEvents: 'none',
-				}}
-			></motion.div>
+				}}></motion.div>
 		</div>
 	);
 }
@@ -45,11 +42,10 @@ export default function FOOTER() {
 		<>
 			<div
 				className={'xl-space instagram-banner split'}
-				style={{ alignItems: 'center' }}
-			>
+				style={{ alignItems: 'center' }}>
 				<img src={decoration} alt={'decoration'}></img>
 				<div
-					className="flow-content"
+					className='flow-content'
 					style={{
 						width: '100%',
 						display: 'grid',
@@ -57,27 +53,28 @@ export default function FOOTER() {
 						fontSize: 'var(--fs-400)',
 						fontWeight: 'var(--fw-200)',
 						'--flow-spacer': '.4rem',
-					}}
-				>
-					<h3 className={'text-600'}>instagram</h3>
+					}}>
+					<h3 style={{ pointerEvents: 'none' }} className={'text-600'}>
+						instagram
+					</h3>
 					<InstagramLinkFooter setHoverOn={setHoverOn} hoverOn={hoverOn} />
-					<h3 className={'text-600'}>instagram</h3>
+					<h3 style={{ pointerEvents: 'none' }} className={'text-600'}>
+						instagram
+					</h3>
 					<InstagramLinkFooter setHoverOn={setHoverOn} hoverOn={hoverOn} />
 				</div>
 			</div>
 			<div
 				className={'split center-center final-footer'}
-				style={{ '--split-spacer': '2rem' }}
-			>
+				style={{ '--split-spacer': '2rem' }}>
 				<p>© 2020 Designed By Alex Perez. All Rights Reserved</p>
 				<div>
-					<ul className="footer-social">
+					<ul className='footer-social'>
 						<li>
 							<a
-								aria-label="acme instagram Arnol tattoo page"
+								aria-label='acme instagram Arnol tattoo page'
 								style={{ color: 'var(--clr-neutral-100)' }}
-								href="https://www.instagram.com/arnolsegchez/"
-							>
+								href='https://www.instagram.com/arnolsegchez/'>
 								IG
 							</a>
 						</li>
