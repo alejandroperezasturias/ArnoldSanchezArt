@@ -43,15 +43,16 @@ export default function SHOPPINGCART({ deleteFromShoppingCart }) {
 		<>
 			<div
 				style={{
+					zIndex: 10,
 					width: '10rem',
 					textAlign: 'center',
 					position: 'absolute',
-					top: '8%',
 					left: '50%',
 					transform: 'translateX(-50%)',
 					minHeight: '20rem',
 					borderRadius: isOpen ? '1rem 1rem 0rem 0rem' : '1rem',
-				}}>
+				}}
+				className={'shopping-cart'}>
 				<div
 					onClick={() => toggleOpen()}
 					style={{
@@ -63,6 +64,8 @@ export default function SHOPPINGCART({ deleteFromShoppingCart }) {
 						alignItems: 'center',
 						justifyContent: 'center',
 						cursor: 'pointer',
+						zIndex: 10,
+						position: 'relative',
 					}}
 					className={isOpen ? 'trolly-square' : 'trolly-circle'}>
 					<div

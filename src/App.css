@@ -662,6 +662,16 @@ h1 {
 
 /* Trolly */
 
+.shopping-cart {
+	top: 5%;
+}
+
+@media (min-width: 60em) {
+	.shopping-cart {
+		top: 8%;
+	}
+}
+
 .trolly-circle {
 	clip-path: circle(30%);
 	/* transition: all 1000ms ease-in-out; */
@@ -669,5 +679,6 @@ h1 {
 
 .trolly-square {
 	clip-path: none;
+	z-index: 10;
 	border-radius: 1rem 1rem 0rem 0rem;
 }
