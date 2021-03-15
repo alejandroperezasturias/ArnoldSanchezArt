@@ -28,34 +28,29 @@ export default function BURGER() {
 	return (
 		<>
 			<div
-				className="burger flow-content"
-				style={{position:'absolute', top:0, right:0}}
+				className='burger flow-content'
+				style={{ position: 'absolute', top: 0, right: 0 }}
 				onClick={() => {
 					toggleOpen();
-				}}
-			>
+				}}>
 				<motion.div
-					initial="close"
+					initial='close'
 					animate={isOpen ? 'open' : 'close'}
-					variants={lineOneBurger}
-				></motion.div>
+					variants={lineOneBurger}></motion.div>
 				<motion.div
-					initial="close"
+					initial='close'
 					animate={isOpen ? 'open' : 'close'}
-					variants={lineTwoBurger}
-				></motion.div>
+					variants={lineTwoBurger}></motion.div>
 				<motion.div
-					initial="close"
+					initial='close'
 					animate={isOpen ? 'open' : 'close'}
-					variants={lineThreeBurger}
-				></motion.div>
+					variants={lineThreeBurger}></motion.div>
 			</div>
 			<motion.div
 				className={'about-contact-wrapper overflow-hidden'}
-				initial="close"
+				initial='close'
 				animate={isOpen ? 'open' : 'close'}
-				variants={burgerAnimation}
-			>
+				variants={burgerAnimation}>
 				<SectionChangeLink
 					weGoTo={'/'}
 					exitAnimationDirection={changeExitPropHomet}
@@ -92,7 +87,7 @@ export default function BURGER() {
 					variants={titleAnim}
 					toggleOpen={toggleOpen}
 				/>
-				
+
 				<SectionChangeLink
 					weGoTo={'/CONTACT'}
 					exitAnimationDirection={changeExitPropHomet}
@@ -102,7 +97,7 @@ export default function BURGER() {
 					variants={titleAnim}
 					toggleOpen={toggleOpen}
 				/>
-				
+
 				{!user && (
 					<SectionChangeLink
 						weGoTo={'/LOGIN'}

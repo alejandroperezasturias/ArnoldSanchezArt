@@ -591,7 +591,8 @@ h1 {
 
 /* Position the Burger Menu where it belongs */
 .burger {
-	z-index: 3;
+	/* position: relative; */
+	z-index: 1000;
 	padding: 2rem 1.5rem 0rem 0;
 }
 
@@ -631,7 +632,7 @@ h1 {
 	background: red;
 	width: 100%;
 	font-size: var(--fs-600);
-	z-index: 2;
+	z-index: 20;
 }
 
 .about-contact-wrapper > * + * {
