@@ -66,7 +66,7 @@ export default function TATTOO() {
 								initial='open'
 								animate='close'
 								className='absolute tattooImageOverlay'
-								style={{ backgroundColor: 'red' }}></motion.div>
+								style={{ backgroundColor: 'black' }}></motion.div>
 						</motion.div>
 
 						<motion.div className='tattoo-section-tattoo-photos-laptop'>
@@ -79,7 +79,7 @@ export default function TATTOO() {
 									src={LEAF}
 									alt='Arnold Bembibre Leon Tattoo Leaf'></img>
 								<motion.div
-									style={{ backgroundColor: 'red' }}
+									style={{ backgroundColor: 'black' }}
 									variants={tattooImage2}
 									className='absolute'
 									initial='open'
@@ -94,7 +94,7 @@ export default function TATTOO() {
 									src={LETTERS}
 									alt='Arnold Bembibre Leon Letters Leaf'></img>
 								<motion.div
-									style={{ backgroundColor: 'red' }}
+									style={{ backgroundColor: 'black' }}
 									className='absolute'
 									variants={tattooImage3}
 									initial='open'

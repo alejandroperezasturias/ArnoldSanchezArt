@@ -13,14 +13,14 @@ import { motion } from 'framer-motion';
 import { routeVariants, changeExitPropHomet } from '../Animations/animation';
 import SectionChangeLink from '../Animations/SectionChangeLink';
 import USER from './USER';
-import Select from '@material-ui/core/Select';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import {
-	ThemeProvider,
-	createMuiTheme,
-	makeStyles,
-} from '@material-ui/core/styles';
+// import Select from '@material-ui/core/Select';
+// import FormControl from '@material-ui/core/FormControl';
+// import InputLabel from '@material-ui/core/InputLabel';
+// import {
+// 	// ThemeProvider,
+// 	createMuiTheme,
+// 	makeStyles,
+// } from '@material-ui/core/styles';
 import { AuthContext } from '../App';
 import BURGER from './BURGER';
 import FloatingLinks from './FLOATINGLINKS';
@@ -64,10 +64,10 @@ function SaveCard() {
 		}
 	};
 
-	const getTheSelectedCreditCard = (e) => {
-		const selectedCard = wallet.filter((card) => card.id === e.target.value);
-		setSelectedCreditCart(selectedCard[0]);
-	};
+	// const getTheSelectedCreditCard = (e) => {
+	// 	const selectedCard = wallet.filter((card) => card.id === e.target.value);
+	// 	setSelectedCreditCart(selectedCard[0]);
+	// };
 
 	// const cancelSetupIntent = () => {
 	// 	setSetupIntent();
@@ -126,18 +126,18 @@ function SaveCard() {
 		await auth.signOut();
 	};
 
-	const useStyles = makeStyles((theme) => ({
-		formControl: {
-			width: '15rem',
-		},
-	}));
-	const classes = useStyles();
+	// const useStyles = makeStyles((theme) => ({
+	// 	formControl: {
+	// 		width: '15rem',
+	// 	},
+	// }));
+	// const classes = useStyles();
 
-	const darkTheme = createMuiTheme({
-		palette: {
-			type: 'dark',
-		},
-	});
+	// const darkTheme = createMuiTheme({
+	// 	palette: {
+	// 		type: 'dark',
+	// 	},
+	// });
 
 	return (
 		<>
@@ -146,11 +146,10 @@ function SaveCard() {
 				<motion.div
 					style={{ minHeight: '90vh', position: 'relative' }}
 					variants={routeVariants}
-					initial="hidden"
-					animate="visible"
-					exit="exit"
-					className={'section'}
-				>
+					initial='hidden'
+					animate='visible'
+					exit='exit'
+					className={'section'}>
 					<div
 						className={'section-header'}
 						style={{
@@ -158,8 +157,7 @@ function SaveCard() {
 							display: 'flex',
 							justifyContent: 'space-between',
 							alignItems: 'center',
-						}}
-					>
+						}}>
 						<SectionChangeLink
 							weGoTo={'/TATTOO'}
 							exitAnimationDirection={changeExitPropHomet}
@@ -181,13 +179,11 @@ function SaveCard() {
 							justifyContent: 'center',
 							alignItems: 'center',
 							minHeight: '85vh',
-						}}
-					>
+						}}>
 						<div className={'user-dsh flow-content'}>
 							<div
 								className={'split center-center'}
-								style={{ minHeight: '150px' }}
-							>
+								style={{ minHeight: '150px' }}>
 								{user2?.displayImage && (
 									<img
 										style={{
@@ -196,8 +192,7 @@ function SaveCard() {
 											minHeight: '80px',
 										}}
 										src={user2.displayImage}
-										alt="user-avatar"
-									></img>
+										alt='user-avatar'></img>
 								)}
 							</div>
 							<div
@@ -208,39 +203,51 @@ function SaveCard() {
 									alignItems: 'flex-start',
 									position: 'relative',
 									minHeight: '30vh',
-								}}
-							>
+								}}>
 								<div className={'flow-content'}>
 									<div>
-										<p className={'text-400'}>Your Orders</p>
+										<p className={'text-600'}>Your Orders</p>
 									</div>
-									{loading && <CircularProgress color="secondary" />}
+									{loading && <CircularProgress color='secondary' />}
 									<div style={{ minWidth: '17rem' }}></div>
 									{!loading && (
 										<div>
-											<ol
-												className="flow-content"
+											<div
+												// className='flow-content'
 												style={{
 													'--flow-spacer': '.5rem',
 													maxHeight: '20vh',
 													minHeight: '20vh',
 													overflowY: 'scroll',
-												}}
-											>
+													display: 'grid',
+													gridTemplateColumns: 'repeat(3, auto)',
+													gap: '20px',
+													placeItems: 'center',
+												}}>
+												<h3 className={'text-400'}>Amount</h3>
+												<h3 className={'text-400'}>Date</h3>
+												<h3 className={'text-400'}>ID</h3>
 												{paymentIntents.map((paymentSource) => {
-													// console.log(paymentSource);
+													console.log(paymentSource);
 													return paymentSource.status === 'succeeded' ? (
-														<li key={paymentSource.id}>
-															{paymentSource.currency}
-															{'  '}
-															{formatCurrency(paymentSource.amount * 10)} -{' '}
-															{timeConverter(paymentSource.created)}
-														</li>
+														<>
+															<h4 className={'text-300'}>
+																{paymentSource.currency}{' '}
+																{formatCurrency(paymentSource.amount * 10)}
+															</h4>
+															<h4 className={'text-300'}>
+																{timeConverter(paymentSource.created)}
+															</h4>
+															<h4 className={'text-300'}>
+																{' '}
+																{paymentSource.id.substr(15, 20)}
+															</h4>
+														</>
 													) : (
 														<></>
 													);
 												})}
-											</ol>
+											</div>
 										</div>
 									)}
 									{/* <div>
@@ -285,7 +292,7 @@ function SaveCard() {
 									</form>
 								)} */}
 								</div>
-								<div
+								{/* <div
 									className={'bars split center-center'}
 									style={{
 										'--split-spacer': '0.5rem',
@@ -293,15 +300,15 @@ function SaveCard() {
 										position: 'absolute',
 										top: '50%',
 										left: '50%',
-										/* bring your own prefixes */
+								
 										transform: 'translate(-50%, -50%)',
 									}}
 								>
 									<hr width="1" size="250"></hr>
 									<hr width="1" size="150"></hr>
 									<hr width="1" size="50"></hr>
-								</div>
-								<div>
+								</div> */}
+								{/* <div>
 									<div className={'flow-content'}>
 										<div>
 											<h3 className={'text-400'}>
@@ -311,7 +318,7 @@ function SaveCard() {
 										<div>
 											<ThemeProvider theme={darkTheme}>
 												<FormControl className={classes.formControl}>
-													<InputLabel htmlFor="credit-cards-users">
+													<InputLabel htmlFor='credit-cards-users'>
 														Your Credit Cards
 													</InputLabel>
 													<Select
@@ -321,9 +328,8 @@ function SaveCard() {
 														inputProps={{
 															name: 'Credit Cards',
 															id: 'credit-cards-users',
-														}}
-													>
-														<option aria-label="None" value="" />
+														}}>
+														<option aria-label='None' value='' />
 														{wallet.map((paymentSource) => (
 															<CreditCard
 																key={paymentSource.id}
@@ -341,8 +347,7 @@ function SaveCard() {
 											<div>
 												<h3
 													style={{ marginBottom: '1rem', marginTop: '2rem' }}
-													className={'text-400'}
-												>
+													className={'text-400'}>
 													Delete
 												</h3>
 												<div>
@@ -359,11 +364,11 @@ function SaveCard() {
 												>
 													<span aria-hidden="true">×</span>
 												</button> */}
-												</div>
+								{/* </div>
 											</div>
 										)}
 									</div>
-								</div>
+								</div> */}
 							</div>
 							<div>
 								<button className={'gradient btn'} onClick={logOut}>
@@ -376,17 +381,15 @@ function SaveCard() {
 
 					<div
 						className={'split center-center final-footer xl-space'}
-						style={{ '--split-spacer': '2rem' }}
-					>
+						style={{ '--split-spacer': '2rem' }}>
 						<p>© 2020 Designed By Alex Perez. All Rights Reserved</p>
 						<div>
-							<ul className="footer-social">
+							<ul className='footer-social'>
 								<li>
 									<a
-										aria-label="acme instagram Arnol tattoo page"
+										aria-label='acme instagram Arnol tattoo page'
 										style={{ color: 'var(--clr-neutral-100)' }}
-										href="https://www.instagram.com/arnolsegchez/"
-									>
+										href='https://www.instagram.com/arnolsegchez/'>
 										IG
 									</a>
 								</li>
@@ -399,18 +402,18 @@ function SaveCard() {
 	);
 }
 
-function CreditCard({ paymentSource }) {
-	const { last4, brand, exp_month, exp_year } = paymentSource.card;
-	return (
-		<option value={paymentSource.id}>
-			{brand} **** **** **** {last4} expires {exp_month}/{exp_year}
-		</option>
-	);
-}
+// function CreditCard({ paymentSource }) {
+// 	const { last4, brand, exp_month, exp_year } = paymentSource.card;
+// 	return (
+// 		<option value={paymentSource.id}>
+// 			{brand} **** **** **** {last4} expires {exp_month}/{exp_year}
+// 		</option>
+// 	);
+// }
 
 export default function CUSTOMER() {
 	return (
-		<Suspense fallback={<CircularProgress color="secondary" />}>
+		<Suspense fallback={<CircularProgress color='secondary' />}>
 			<SaveCard />
 		</Suspense>
 	);

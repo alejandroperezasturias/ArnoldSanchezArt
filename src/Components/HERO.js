@@ -35,15 +35,13 @@ export function SectionChangeLinkHero({ weGoTo, height, title, scaleText }) {
 				<motion.div
 					style={{ height }}
 					className={'hero-scroll-progress split center-center'}
-					whileTap={{ scale: 1.1 }}
-				>
+					whileTap={{ scale: 1.1 }}>
 					<div style={{ position: 'relative' }}>
 						<motion.h2
 							onHoverStart={() => setHoverOn(true)}
 							onHoverEnd={() => setHoverOn(false)}
 							style={{ scaleText }}
-							className={'text-900'}
-						>
+							className={'text-900'}>
 							{title}
 						</motion.h2>
 						<motion.div
@@ -59,8 +57,7 @@ export function SectionChangeLinkHero({ weGoTo, height, title, scaleText }) {
 								height: '3%',
 								backgroundColor: 'white',
 								pointerEvents: 'none',
-							}}
-						></motion.div>
+							}}></motion.div>
 					</div>
 				</motion.div>
 			</Link>
@@ -107,7 +104,7 @@ export default function HERO() {
 	// Plus 0.2 to give it delay so we don't need to hook up any interaction observer
 	const height = useTransform(
 		yScroll,
-		[scrollPercentageStart + 0.2, scrollPercentageEnd + 0.2],
+		[scrollPercentageStart + 0.2, scrollPercentageEnd + 0.1],
 		[38, 150]
 	);
 
@@ -136,12 +133,11 @@ export default function HERO() {
 
 	return (
 		<motion.div
-			initial="hidden"
-			animate="visible"
-			exit="exit"
+			initial='hidden'
+			animate='visible'
+			exit='exit'
 			variants={heroVariants}
-			className="text-align-center hero"
-		>
+			className='text-align-center hero'>
 			<div
 				className={'section-header'}
 				style={{
@@ -149,8 +145,7 @@ export default function HERO() {
 					display: 'flex',
 					justifyContent: 'space-between',
 					alignItems: 'center',
-				}}
-			>
+				}}>
 				<SectionChangeLink
 					weGoTo={'/TATTOO'}
 					exitAnimationDirection={changeExitPropRight}
@@ -179,24 +174,21 @@ export default function HERO() {
 				/>
 			</div>
 			<a
-				href="http://localhost:3000/"
-				aria-label="acme home page"
-				className={'hero-logo  center-center'}
-			>
+				href='http://localhost:3000/'
+				aria-label='acme home page'
+				className={'hero-logo  center-center'}>
 				<div style={{ minHeight: '4rem' }}>
-					<img src={logo} alt="logo"></img>
+					<img src={logo} alt='logo'></img>
 				</div>
 
 				<h1
 					className={'gradient'}
-					style={{ scale, color: 'var(--clr-neutral-100)' }}
-				>
+					style={{ scale, color: 'var(--clr-neutral-100)' }}>
 					arnolsegchez
 				</h1>
 				<p
 					className={'hero-subtitle gradient'}
-					style={{ color: 'var(--clr-neutral-100)' }}
-				>
+					style={{ color: 'var(--clr-neutral-100)' }}>
 					art
 				</p>
 			</a>
@@ -207,8 +199,7 @@ export default function HERO() {
 					<motion.img
 						style={{ scale, opacity, y }}
 						src={skull}
-						alt="Arnold Bembibre Leon Tattoo Skull"
-					></motion.img>
+						alt='Arnold Bembibre Leon Tattoo Skull'></motion.img>
 				</div>
 				<div style={{ height: '20vh' }}></div>
 			</div>
@@ -220,30 +211,29 @@ export default function HERO() {
 					alignItems: 'flex-start',
 					justifyContent: 'center',
 					width: '100%',
-				}}
-			>
+				}}>
 				<SectionChangeLinkHero
-					weGoTo="/TATTOO"
+					weGoTo='/TATTOO'
 					height={height}
-					title="TATTOO"
+					title='TATTOO'
 					scaleText={scaleText}
 				/>
 				<SectionChangeLinkHero
-					weGoTo="/ART"
+					weGoTo='/ART'
 					height={height}
-					title="ART"
+					title='ART'
 					scaleText={scaleText}
 				/>
 				<SectionChangeLinkHero
-					weGoTo="/MERCH"
+					weGoTo='/MERCH'
 					height={height}
-					title="MERCH"
+					title='MERCH'
 					scaleText={scaleText}
 				/>
 				<SectionChangeLinkHero
-					weGoTo="/CONTACT"
+					weGoTo='/CONTACT'
 					height={height}
-					title="CONTACT"
+					title='CONTACT'
 					scaleText={scaleText}
 				/>
 			</div>
