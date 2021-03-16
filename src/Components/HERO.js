@@ -12,6 +12,7 @@ import {
 	useTransform,
 	useViewportScroll,
 	useSpring,
+	AnimateSharedLayout,
 } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
@@ -30,7 +31,7 @@ export function SectionChangeLinkHero({ weGoTo, height, title, scaleText }) {
 	const [hoverOn, setHoverOn] = useState(false);
 
 	return (
-		<>
+		<motion.div layout>
 			<Link to={weGoTo} className={'navigation-link-hero'}>
 				<motion.div
 					style={{ height }}
@@ -61,7 +62,7 @@ export function SectionChangeLinkHero({ weGoTo, height, title, scaleText }) {
 					</div>
 				</motion.div>
 			</Link>
-		</>
+		</motion.div>
 	);
 }
 
@@ -104,7 +105,7 @@ export default function HERO() {
 	// Plus 0.2 to give it delay so we don't need to hook up any interaction observer
 	const height = useTransform(
 		yScroll,
-		[scrollPercentageStart + 0.2, scrollPercentageEnd + 0.1],
+		[scrollPercentageStart, scrollPercentageEnd],
 		[38, 150]
 	);
 
@@ -212,30 +213,32 @@ export default function HERO() {
 					justifyContent: 'center',
 					width: '100%',
 				}}>
-				<SectionChangeLinkHero
-					weGoTo='/TATTOO'
-					height={height}
-					title='TATTOO'
-					scaleText={scaleText}
-				/>
-				<SectionChangeLinkHero
-					weGoTo='/ART'
-					height={height}
-					title='ART'
-					scaleText={scaleText}
-				/>
-				<SectionChangeLinkHero
-					weGoTo='/MERCH'
-					height={height}
-					title='MERCH'
-					scaleText={scaleText}
-				/>
-				<SectionChangeLinkHero
-					weGoTo='/CONTACT'
-					height={height}
-					title='CONTACT'
-					scaleText={scaleText}
-				/>
+				<AnimateSharedLayout>
+					<SectionChangeLinkHero
+						weGoTo='/TATTOO'
+						height={height}
+						title='TATTOO'
+						scaleText={scaleText}
+					/>
+					<SectionChangeLinkHero
+						weGoTo='/ART'
+						height={height}
+						title='ART'
+						scaleText={scaleText}
+					/>
+					<SectionChangeLinkHero
+						weGoTo='/MERCH'
+						height={height}
+						title='MERCH'
+						scaleText={scaleText}
+					/>
+					<SectionChangeLinkHero
+						weGoTo='/CONTACT'
+						height={height}
+						title='CONTACT'
+						scaleText={scaleText}
+					/>
+				</AnimateSharedLayout>
 			</div>
 			<FOOTER />
 		</motion.div>
