@@ -80,6 +80,7 @@ export default function HERO() {
 	const [scrollPercentageEnd, setScrollPercentageEnd] = useState(null);
 
 	const { scrollYProgress } = useViewportScroll();
+
 	const yScroll = useSpring(scrollYProgress, {
 		stiffness: 500,
 		damping: 100,
@@ -112,7 +113,7 @@ export default function HERO() {
 	const y = useTransform(
 		yScroll,
 		[scrollPercentageStart, scrollPercentageEnd],
-		[50, 150],
+		[0, 0],
 		{ clamp: false }
 		// [0, 600]
 	);
