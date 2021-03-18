@@ -113,7 +113,7 @@ export default function HERO() {
 	const y = useTransform(
 		yScroll,
 		[scrollPercentageStart, scrollPercentageEnd],
-		[0, 0],
+		[50, 150],
 		{ clamp: false }
 		// [0, 600]
 	);
