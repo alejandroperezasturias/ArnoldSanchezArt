@@ -48,6 +48,7 @@ export default function SHOPPINGCART({ deleteFromShoppingCart }) {
 					textAlign: 'center',
 					position: 'absolute',
 					left: '50%',
+					top: '80%',
 					transform: 'translateX(-50%)',
 					minHeight: '20rem',
 					borderRadius: isOpen ? '1rem 1rem 0rem 0rem' : '1rem',

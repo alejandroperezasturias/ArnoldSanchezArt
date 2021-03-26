@@ -28,7 +28,7 @@ export function InstagramLinkFooter({ hoverOn, setHoverOn }) {
 					left: 0,
 					right: 0,
 					width: '0%',
-					height: '10%',
+					height: '8%',
 					backgroundColor: 'white',
 					pointerEvents: 'none',
 				}}></motion.div>

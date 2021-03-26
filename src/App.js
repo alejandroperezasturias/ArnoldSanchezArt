@@ -44,6 +44,7 @@ function App() {
 	}, [shoppingCart]);
 
 	const deleteFromShoppingCart = (id) => {
+		// Check if the item we are deleting is in the shoppingCart
 		const existingItem = shoppingCart.find((entry) => entry.id === id);
 		if (!existingItem) return;
 		const shoppingCartCopy = [...shoppingCart];
@@ -67,39 +68,39 @@ function App() {
 	};
 
 	return (
-		<div className="App">
+		<div className='App'>
 			<AuthContext.Provider value={authContextValue}>
 				<ScrollToTop />
 				<AnimatePresence exitBeforeEnter>
 					<Switch location={location} key={location.pathname}>
-						<Route path="/SUCCESS" exact>
+						<Route path='/SUCCESS' exact>
 							<SuccessPage />
 						</Route>
-						<Route path="/" exact>
+						<Route path='/' exact>
 							<HERO />
 						</Route>
-						<Route path="/TATTOO" exact>
+						<Route path='/TATTOO' exact>
 							<TATTOO />
 						</Route>
-						<Route path="/ART" exact>
+						<Route path='/ART' exact>
 							<ART />
 						</Route>
-						<Route path="/MERCH" exact>
+						<Route path='/MERCH' exact>
 							<MERCH />
 						</Route>
-						<Route path="/CHECKOUT" exact>
+						<Route path='/CHECKOUT' exact>
 							<CHECKOUT />
 						</Route>
-						<Route path="/CUSTOMER" exact>
+						<Route path='/CUSTOMER' exact>
 							<CUSTOMER user={user} />
 						</Route>
-						<Route path="/LOGIN" exact>
+						<Route path='/LOGIN' exact>
 							<LOGIN />
 						</Route>
-						<Route path="/SIGNUP" exact>
+						<Route path='/SIGNUP' exact>
 							<SIGNUP />
 						</Route>
-						<Route path="/FORGOTPASSWORD" exact>
+						<Route path='/FORGOTPASSWORD' exact>
 							<FORGOTPASSWORD />
 						</Route>
 					</Switch>

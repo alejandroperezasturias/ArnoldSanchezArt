@@ -30,10 +30,10 @@ function SaveCard() {
 	// const elements = useElements();
 	const [user2, setUser2] = useState();
 	// const [setupIntent, setSetupIntent] = useState();
-	const [wallet, setWallet] = useState([]);
+	// const [wallet, setWallet] = useState([]);
 	const [paymentIntents, setPaymentIntents] = useState([]);
 	const [loading, setLoading] = useState(false);
-	const [selectCreditCart, setSelectedCreditCart] = useState();
+	// const [selectCreditCart, setSelectedCreditCart] = useState();
 	// const [loading, setLoading] = useState(false);
 	const { user } = useContext(AuthContext);
 
@@ -46,12 +46,12 @@ function SaveCard() {
 			});
 	};
 
-	const getWallet = async () => {
-		if (user) {
-			const paymentMethods = await fetchFromAPI('wallet', { method: 'GET' });
-			setWallet(paymentMethods);
-		}
-	};
+	// const getWallet = async () => {
+	// 	if (user) {
+	// 		const paymentMethods = await fetchFromAPI('wallet', { method: 'GET' });
+	// 		setWallet(paymentMethods);
+	// 	}
+	// };
 
 	const getPaymentIntents = async () => {
 		if (user) {
@@ -59,8 +59,8 @@ function SaveCard() {
 			const paymentIntents = await fetchFromAPI('clienthistory', {
 				method: 'GET',
 			});
-			setPaymentIntents(paymentIntents);
 			setLoading(false);
+			setPaymentIntents(paymentIntents);
 		}
 	};
 
@@ -74,7 +74,7 @@ function SaveCard() {
 	// };
 
 	useEffect(() => {
-		getWallet();
+		// getWallet();
 		getPaymentIntents();
 		user && getUserInfoFromDB(user.uid);
 	}, [user]);
@@ -204,7 +204,13 @@ function SaveCard() {
 									position: 'relative',
 									minHeight: '30vh',
 								}}>
-								<div className={'flow-content'}>
+								<div
+									className={'flow-content'}
+									style={{
+										border: ' 1px solid white',
+										borderRadius: '1rem',
+										padding: '2rem',
+									}}>
 									<div>
 										<p className={'text-600'}>Your Orders</p>
 									</div>
@@ -228,7 +234,6 @@ function SaveCard() {
 												<h3 className={'text-400'}>Date</h3>
 												<h3 className={'text-400'}>ID</h3>
 												{paymentIntents.map((paymentSource) => {
-													console.log(paymentSource);
 													return paymentSource.status === 'succeeded' ? (
 														<>
 															<h4 className={'text-300'}>
@@ -248,6 +253,13 @@ function SaveCard() {
 													);
 												})}
 											</div>
+											{paymentIntents.length === 0 ? (
+												<h4 className={'text-300'}>
+													Todavia no hay ningun pedido
+												</h4>
+											) : (
+												<></>
+											)}
 										</div>
 									)}
 									{/* <div>

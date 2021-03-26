@@ -47,7 +47,7 @@ export default function MERCH() {
 				animate='visible'
 				exit='exit'
 				className={'section'}>
-				<div className={'section-header'}>
+				<div className={'section-header'} style={{ position: 'relative' }}>
 					<SectionChangeLink
 						weGoTo={'/ART'}
 						exitAnimationDirection={changeExitPropRight}
@@ -58,9 +58,9 @@ export default function MERCH() {
 						<h2
 							style={{
 								position: 'absolute',
-								top: '3.5%',
+								top: '50%',
 								left: '50%',
-								transform: 'translateX(-50%)',
+								transform: 'translateX(-50%) translateY(-50%)',
 							}}
 							className='gradient'>
 							MERCH

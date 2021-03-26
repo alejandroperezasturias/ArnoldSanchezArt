@@ -1,10 +1,4 @@
-import {
-	useState,
-	useRef,
-	useLayoutEffect,
-	useEffect,
-	useContext,
-} from 'react';
+import { useState, useRef, useLayoutEffect, useContext } from 'react';
 import logo from '../images/logo.svg';
 import skull from '../images/skull_3.jpg';
 import {
@@ -27,21 +21,27 @@ import USER from './USER';
 import { AuthContext } from '../App';
 import BURGER from './BURGER';
 
-export function SectionChangeLinkHero({ weGoTo, height, title, scaleText }) {
+export function SectionChangeLinkHero({
+	weGoTo,
+	height,
+	title,
+	opacity,
+	scale,
+}) {
 	const [hoverOn, setHoverOn] = useState(false);
 
 	return (
 		<motion.div layout>
 			<Link to={weGoTo} className={'navigation-link-hero'}>
 				<motion.div
-					style={{ height }}
+					style={{ height, opacity }}
 					className={'hero-scroll-progress split center-center'}
 					whileTap={{ scale: 1.1 }}>
 					<div style={{ position: 'relative' }}>
 						<motion.h2
 							onHoverStart={() => setHoverOn(true)}
 							onHoverEnd={() => setHoverOn(false)}
-							style={{ scaleText }}
+							style={{ scale }}
 							className={'text-900'}>
 							{title}
 						</motion.h2>
@@ -68,12 +68,8 @@ export function SectionChangeLinkHero({ weGoTo, height, title, scaleText }) {
 
 export default function HERO() {
 	const ref = useRef();
-	const [display, setDisplay] = useState('none');
-	const { user } = useContext(AuthContext);
 
-	useEffect(() => {
-		user?.displayName ? setDisplay('none') : setDisplay('block');
-	}, [user]);
+	const { user } = useContext(AuthContext);
 
 	// Stores the start middle end scrolling position for our container
 	const [scrollPercentageStart, setScrollPercentageStart] = useState(null);
@@ -103,17 +99,29 @@ export default function HERO() {
 		[1, 0.8]
 	);
 
+	const opacityInverse = useTransform(
+		yScroll,
+		[scrollPercentageStart, scrollPercentageEnd],
+		[0.5, 1]
+	);
+
 	// Plus 0.2 to give it delay so we don't need to hook up any interaction observer
 	const height = useTransform(
 		yScroll,
-		[scrollPercentageStart, scrollPercentageEnd],
-		[38, 150]
+		[scrollPercentageStart + 0.11, scrollPercentageEnd + 0.11],
+		[38, 120]
+	);
+
+	const scaleMenus = useTransform(
+		yScroll,
+		[scrollPercentageStart + 0.1, scrollPercentageEnd + 0.1],
+		[0.7, 1]
 	);
 
 	const y = useTransform(
 		yScroll,
 		[scrollPercentageStart, scrollPercentageEnd],
-		[50, 150],
+		[28, 150],
 		{ clamp: false }
 		// [0, 600]
 	);
@@ -196,16 +204,15 @@ export default function HERO() {
 			</a>
 			<div style={{ minHeight: '7vh' }}></div>
 			<div ref={ref}>
-				<div style={{ minHeight: '15vh' }}></div>
+				<div style={{ minHeight: '20vh' }}></div>
 				<div className={'hero-image'} style={{ minHeight: '12vh' }}>
 					<motion.img
 						style={{ scale, opacity, y }}
 						src={skull}
 						alt='Arnold Bembibre Leon Tattoo Skull'></motion.img>
 				</div>
-				<div style={{ height: '20vh' }}></div>
+				<div style={{ height: '25vh' }}></div>
 			</div>
-			<div style={{ height: '10vh' }}></div>
 
 			<div
 				style={{
@@ -218,24 +225,32 @@ export default function HERO() {
 					<SectionChangeLinkHero
 						weGoTo='/TATTOO'
 						height={height}
+						scale={scaleMenus}
+						opacity={opacityInverse}
 						title='TATTOO'
 						scaleText={scaleText}
 					/>
 					<SectionChangeLinkHero
 						weGoTo='/ART'
 						height={height}
+						scale={scaleMenus}
+						opacity={opacityInverse}
 						title='ART'
 						scaleText={scaleText}
 					/>
 					<SectionChangeLinkHero
 						weGoTo='/MERCH'
 						height={height}
+						scale={scaleMenus}
+						opacity={opacityInverse}
 						title='MERCH'
 						scaleText={scaleText}
 					/>
 					<SectionChangeLinkHero
 						weGoTo='/CONTACT'
 						height={height}
+						scale={scaleMenus}
+						opacity={opacityInverse}
 						title='CONTACT'
 						scaleText={scaleText}
 					/>
